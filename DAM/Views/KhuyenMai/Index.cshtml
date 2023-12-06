@@ -1,0 +1,163 @@
+﻿@model IEnumerable<DAM.Models.KhuyenMai>
+@{
+    ViewBag.Title = "TaoMoi";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
+}
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Xác nhận xóa</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Bạn có muốn xóa không?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Ok</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="@Url.Action("TaoMoi","KhuyenMai")" id="btn_TaoMoi">
+    <i class='fa-solid fa-plus fa-beat' style='color: #ffffff;'></i>
+</a>
+<div class="form-group col-lg-12">
+    @using (Html.BeginForm("TimKiem", "KhuyenMai", FormMethod.Get))
+    {
+        <div class="col-md-3">
+            <input type="text" placeholder="Nhập từ khóa cần tìm" name="keyword" value="@ViewBag.Search" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="submit" value="Tìm kiếm" class="btn btn-success" />
+        </div>
+    }
+</div>
+<div id="ctn">
+    @grid.GetHtml(
+        tableStyle: "gridTable",
+        headerStyle: "gridHead",
+        footerStyle: "gridFooter",
+        rowStyle: "gridRow",
+        alternatingRowStyle: "gridAltRow",
+        columns: grid.Columns(
+            grid.Column("MaKM", "Mã khuyến mãi"),
+            grid.Column("MaRap", "Mã rạp"),
+            grid.Column("TenKM", "Tên khuyến mãi"),
+            grid.Column("HinhAnh", "Hình ảnh", format: x =>
+            {
+
+                 if (!string.IsNullOrEmpty(x.HinhAnh) && (x.HinhAnh) != "LogoFilm.png")
+                    {
+                        return @Html.Raw("<div class=\"img-container\"><img class=\"HinhAnh\" src=\"../Content/KMImages/" + x.HinhAnh + "\"></div>");
+                    }
+                 else
+                    {
+                    return @Html.Raw("<div class=\"img-container\"><img class=\"HinhAnh\" src=\"../Content/Image/LogoFilm.png\"></div>");
+                    }
+            }),
+                //grid.Column("HinhAnh", "Hình ảnh", format: x => @Html.Raw("<div class=\"img-container\"><img class=\"HinhAnh\" src=\"../Content/TKImages/" + x.HinhAnh + "\"></div>")),
+                grid.Column("NoiDung", "Nội dung"),
+
+                grid.Column("NgayBD", "Ngày bắt đầu", format: x => x.NgayBD.ToString("dd/MM/yyyy")),
+                grid.Column("NgayKT", "Ngày kết thúc", format: x => x.NgayKT.ToString("dd/MM/yyyy")),
+                grid.Column(format: x =>
+{
+    var link = Url.Action("Sua", new { MaKM = x.MaKM });
+    return new HtmlString($"<a href='{link}'><i class=\"fa-regular fa-pen-to-square\" style=\"font-size: 30px;\"></i></a>");
+}),
+grid.Column(format: x =>
+{
+    var link = Url.Action("Xoa", new { MaKM = x.MaKM });
+    return new HtmlString($"<a href=\"#\" data-href='{link}' data-toggle=\"modal\" data-target=\"#confirm-delete\"><i class=\"fa-solid fa-trash\" style=\"font-size: 30px;\"></i></a>");
+})
+))
+</div>
+
+<style>
+    .gridTable {
+        width: 2000px;
+    }
+
+    .gridHead {
+        border-bottom: 2px solid;
+        position: sticky;
+        top: 0;
+        background-color: white;
+    }
+
+        .gridHead th {
+            text-align: center;
+        }
+
+    .gridRow td,
+    .gridAltRow td {
+        text-align: center;
+        height: 100px;
+        border-bottom: 2px solid #7F8C8D;
+    }
+
+    .gridFooter {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+    }
+
+        .gridFooter td {
+            font-weight: bold;
+            padding-left: 30px;
+        }
+
+    .img-container {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+        .img-container .HinhAnh {
+            height: 100%;
+            width: 100%;
+            object-fit: scale-down;
+        }
+
+    #ctn {
+        width: 99%;
+        margin: 0 auto;
+        overflow: scroll;
+        height: 535px
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: grey;
+        border-radius: 5px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #449D44;
+        }
+
+    .gridTable tr td a i:hover {
+        color: orangered;
+    }
+</style>
+<script>
+    $('#confirm-delete').on('show.bs.modal', function (e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+        $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+    });
+</script>
+
+

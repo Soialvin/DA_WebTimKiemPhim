@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  line-height: normal;
+  width:100%;
+}
+
+:root {
+  /* fonts */
+  --font-roboto: Roboto;
+
+  /* font sizes */
+  --font-size-13xl: 32px;
+  --font-size-5xl: 24px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-fuchsia: rgba(255, 0, 199, 0);
+  --color-darkorange: #f47f1f;
+  --color-black: #000;
+  --color-gainsboro-100: #d9d9d9;
+  --color-gainsboro-200: rgba(217, 217, 217, 0);
+}

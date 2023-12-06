@@ -1,0 +1,44 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<DAM.Models.ViewModel.PhanLoaiPhimViewModel>
+
+@{
+    ViewBag.Title = "PhanLoaiPhim";
+    Layout = "~/Views/Layout/TheLoaiPhimLayout.cshtml";
+}
+
+<div class="browse-agile-w3ls general-w3ls">
+    <div class="tittle-head">
+        <h4 class="latest-text">@Model.FirstOrDefault().TenTL</h4>
+        <div class="container">
+            <div class="agileits-single-top">
+                <ol class="breadcrumb">
+                    <li><a href="@Url.Action("Main","Main")">Trang chủ</a></li>
+                    <li class="active">Thể loại</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="browse-inner">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-2 w3l-movie-gride-agile">
+                    <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })" class="hvr-shutter-out-horizontal">
+                        <img src="@Url.Content("~/Content/MovieImages/" + item.HinhAnh)" title="album-name" alt=" " />
+                        <div class="w3l-action-icon"><i class="fa-solid fa-circle-info" style="color: #ffffff;" aria-hidden="true"></i></div>
+                    </a>
+                    <div class="mid-1">
+                        <div class="w3l-movie-text">
+                            <h6><a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a></h6>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<div class="blog-pagenat-wthree">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("PhanLoaiPhim", new { page = page, @MaTL = ViewBag.MaTL }))
+</div>

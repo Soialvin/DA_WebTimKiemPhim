@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "DangNhap";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Đăng nhập</title>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Bootstrap-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Style -->
+    <link rel="stylesheet" href="~/Content/css1/style.css" type="text/css" media="all" />
+
+</head>
+
+<body>
+    <!-- login form -->
+    <section class="w3l-login">
+        <div class="overlay">
+            <div class="wrapper">
+                <div class="logo">
+                    <a class="brand-logo" href="#"></a>
+                </div>
+                <div class="form-section">
+                    <h3>Đăng Nhập</h3>
+                    <h6>Để tiếp tục với chúng tôi</h6>
+                    <form action="#" method="post" class="signin-form">
+                        <div class="form-input">
+                            <input type="text" name="user" placeholder="Username" required="" autofocus>
+                        </div>
+                        <div class="form-input">
+                            <input type="password" name="password" placeholder="Password" required="">
+                        </div>
+                        <link href="~/Content/css1/style.css" rel="stylesheet" />
+                        @*<label class="check-remaind">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <p class="remember">Remember me</p>
+                            </label>*@
+                        <p class="text-danger">
+                            @TempData["error"]
+                        </p>
+                        <button type="submit" class="btn btn-primary theme-button mt-4">Log in</button>
+
+                        <div class="new-signup">
+                            <a href="~/DangNhapDangKy/DangKy" class="signuplink">Chưa có tên người dùng hoặc mật khẩu?</a>
+                        </div>
+                    </form>
+                    @*<p class="signup">Don’t have account yet? <a href="#signup.html" class="signuplink">Sign Up</a></p>*@
+                </div>
+            </div>
+        </div>
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
+
+        <!-- copyright -->
+        <div class="copy-right">
+            <p style="color:black">&copy; 2023 Snow Login Form. All rights reserved | Design by <a href="https://www.facebook.com/profile.php?id=100041505130533" target="_blank" style="color:red;">Dũng Hồ</a></p>
+        </div>
+        <!-- //copyright -->
+    </section>
+
+    <!-- /login form -->
+</body>
+
+</html>
+
+

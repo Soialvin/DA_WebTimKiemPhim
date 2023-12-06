@@ -1,0 +1,50 @@
+﻿@using DAM.Models
+@model IEnumerable<KhuyenMai>
+
+<div class="Latest-tv-series">
+    <h4 class="latest-text w3_latest_text w3_home_popular">Chương trình khuyến mãi</h4>
+    <div class="container">
+        <section class="slider">
+            <div class="flexslider">
+                <ul class="slides">
+                    @{ 
+                        List<KhuyenMai> list = Model.ToList();
+                    }
+                    @for (int i = 0; i < list.Count() / 6 + (list.Count() % 6 == 0 ? 0 : 1); i++)
+                    {
+                        <li>
+                            <div class="agile_tv_series_grid">
+                                <div class="agileinfo_flexislider_grids">
+                                    @for (int j = i * 6; j < (i + 1) * 6 && j < list.Count(); j++)
+                                    {
+                                        <div class="col-md-2 w3l-movie-gride-agile">
+                                            <a href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = list[j].MaKM })" class="hvr-shutter-out-horizontal">
+                                                <img src="@Url.Content("~/Content/KMImages/"+list[j].HinhAnh)" title="album-name" class="img-responsive" alt=" " />
+                                                <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                            </a>
+                                        </div>
+                                    }
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </section>
+        <!-- flexSlider -->
+        <link rel="stylesheet" href="~/Content/MainLayout/css/flexslider.css" type="text/css" media="screen" property="" />
+        <script defer src="~/Content/MainLayout/js/jquery.flexslider.js"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+                    }
+                });
+            });
+        </script>
+        <!-- //flexSlider -->
+    </div>
+</div>

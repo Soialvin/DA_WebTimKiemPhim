@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Trang chủ</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+    <link rel="stylesheet" href="~/Content/css/global.css">
+    <link rel="stylesheet" href="~/Content/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap">
+</head>
+<body>
+    <div class="trang-chu-new">
+        <div class="header">
+            <div class="menu"></div>
+            <div class="menuitem">
+                <div class="m-item-4">
+                    <div class="m-item-41"></div>
+                    <div class="m-Item-Link">@Html.ActionLink("HỖ TRỢ", "Home", "Home", new {@class = "groupLinkMenu"})</div>
+                </div>
+                <div class="m-item-3">
+                    <div class="m-item-31"></div>
+                    <div class="m-Item-Link">@Html.ActionLink("RẠP / GIÁ VÉ", "Home", "Home", new { @class = "groupLinkMenu" })</div>
+                </div>
+                <div class="m-item-2">
+                    <div class="m-item-31"></div>
+                    <div class="m-Item-Link">@Html.ActionLink("SỰ KIỆN", "Home", "Home", new { @class = "groupLinkMenu" })</div>
+                </div>
+                <div class="m-item-1">
+                    <div class="m-item-11"></div>
+                    <div class="m-Item-Link">@Html.ActionLink("PHIM", "Home", "Home", new { @class = "groupLinkMenu" })</div>
+                </div>
+            </div>
+            <div class="h-r">
+                <div class="h-r1"></div>
+                <div class="tk">
+                    <div class="dangnhap">
+                        @*<ul>
+                            <li>
+                                Đăng nhập
+                                <ul>
+                                    <li>Thông tin tài khoản</li>
+                                    <li>Đăng xuất</li>
+                                </ul>
+                            </li>
+                        </ul>*@
+                    </div>
+                    <img class="user-1-icon" alt="" src="~/Content/Image/user-1@2x.png">
+                    <div class="dangnhap1">@Html.ActionLink("Đăng nhập", "DangNhap", "DangNhapDangKy",null, new { @class = "dangNhapLink" })</div>
+                </div>
+            </div>
+            <div class="h-c">
+                <div class="h-r1"></div>
+                <div class="timkiem">
+                    <div class="timkiem1"></div>
+                    <img class="search-1-icon" alt="" src="~/Content/Image/search-1@2x.png">
+                </div>
+            </div>
+            <div class="h-l">
+                <div class="h-l1"></div>
+                <img class="pngwing-1-icon" alt="" src="~/Content/Image/pngwing-1@2x.png">
+            </div>
+        </div>
+        @RenderBody()
+        @*<div class="movie">
+            <div class="buttonxemthem">
+                <div class="button"></div>
+                <div class="xem-thm">XEM THÊM</div>
+            </div>
+            <div class="movie-1">
+                <div class="content-1"></div>
+                <div class="text-1">
+                    <span class="text-1-txt">
+                        <p class="the-nun-ii">THE NUN II</p>
+                        <p class="the-nun-ii">ÁC QUỶ MA SƠ</p>
+                    </span>
+                </div>
+                <img class="movie-1-icon" alt="" src="~/Content/Image/public/movie-1@2x.png">
+            </div>
+            <div class="movie-2">
+                <div class="content-1"></div>
+                <div class="text-2">
+                    <span class="text-1-txt">
+                        <p class="the-nun-ii">A HAUNTING IN VENICE</p>
+                        <p class="the-nun-ii">ÁN MẠNG Ở VENICE</p>
+                    </span>
+                </div>
+                <img class="movie-1-icon" alt="" src="~/Content/Image/movie-2@2x.png">
+            </div>
+            <div class="movie-4">
+                <div class="content-1"></div>
+                <div class="text-4">
+                    <span class="text-1-txt">
+                        <p class="the-nun-ii">RETRIBUTION</p>
+                        <p class="the-nun-ii">TRỪNG PHẠT</p>
+                    </span>
+                </div>
+                <img class="movie-1-icon" alt="" src="~/Content/Image/movie-4@2x.png">
+            </div>
+            <div class="movie-5">
+                <div class="content-1"></div>
+                <div class="text-1">
+                    <span class="text-1-txt">
+                        <p class="the-nun-ii">HONEY SWEET</p>
+                        <p class="the-nun-ii">NHÂN DUYÊN TIỀN ĐÌNH</p>
+                    </span>
+                </div>
+                <img class="movie-1-icon" alt="" src="~/Content/Image/movie-5@2x.png">
+            </div>
+            <div class="movie-6">
+                <div class="content-1"></div>
+                <div class="text-1">THE JUNGLE BUNCH 2: THE GREAT TREASURE QUEST</div>
+                <img class="movie-1-icon" alt="" src="~/Content/Image/movie-6@2x.png">
+            </div>
+            <div class="title">
+                <div class="movie-3">
+                    <div class="content-1"></div>
+                    <div class="text-2">
+                        <span class="text-1-txt">
+                            <p class="the-nun-ii">DON'T BUY THE SELLER</p>
+                            <p class="the-nun-ii">ĐƠN HÀNG TỪ SÁT NHÂN</p>
+                        </span>
+                    </div>
+                    <img class="movie-1-icon" alt="" src="~/Content/Image/movie-3@2x.png">
+                </div>
+                <div class="title-2"></div>
+                <div class="title-1"></div>
+                <div class="phimdangchieu">PHIM ĐANG CHIẾU</div>
+                <div class="phimsapchieu">PHIM SẮP CHIẾU</div>
+            </div>
+        </div>
+        <div class="km">
+            <div class="km-8-parent">
+                <img class="km-8-icon" alt="" src="~/Content/Image/km-8@2x.png">
+
+                <img class="km-7-icon" alt="" src="~/Content/Image/km-7@2x.png">
+
+                <img class="km-6-icon" alt="" src="~/Content/Image/km-6@2x.png">
+
+                <img class="km-5-icon" alt="" src="~/Content/Image/km-5@2x.png">
+
+                <img class="km-4-icon" alt="" src="~/Content/Image/km-4@2x.png">
+
+                <img class="km-3-icon" alt="" src="~/Content/Image/km-3@2x.png">
+
+                <img class="km-2-icon" alt="" src="~/Content/Image/km-2@2x.png">
+
+                <img class="km-1-icon" alt="" src="~/Content/Image/km-1@2x.png">
+            </div>
+            <div class="km1"></div>
+            <div class="tinkhuyenmai">TIN KHUYẾN MÃI</div>
+        </div>*@
+        <div class="footer">
+            <div class="f-b"></div>
+            <div class="f-t"></div>
+            <div class="tt">
+                <div class="tt-item-1">
+                    <div class="tt-item-11"></div>
+                    <div class="gioithieu">GIỚI THIỆU</div>
+                </div>
+                <div class="tt-item-2">
+                    <div class="tt-item-11"></div>
+                    <div class="gocdienanh">GÓC ĐIỆN ẢNH</div>
+                </div>
+                <div class="tt-item-3">
+                    <div class="tt-item-31"></div>
+                    <div class="gioithieu">HỖ TRỢ</div>
+                </div>
+                <div class="tt-item-4">
+                    <div class="tt-item-11"></div>
+                    <div class="ketnoi">KẾT NỐI</div>
+                </div>
+                <div class="tt-item-5">
+                    <div class="tt-item-51"></div>
+                    <div class="vechungtoi">Về chúng tôi</div>
+                </div>
+                <div class="tt-item-6">
+                    <div class="tt-item-51"></div>
+                    <div class="gocdienanh">Thể loại</div>
+                </div>
+                <div class="tt-item-7">
+                    <div class="tt-item-71"></div>
+                    <div class="gioithieu">Góp ý</div>
+                </div>
+                <div class="tt-item-8">
+                    <img class="tt-item-8-2-icon" alt="" src="~/Content/Image/tt-item-8-2@2x.png">
+
+                    <img class="tt-item-8-1-icon" alt="" src="~/Content/Image/tt-item-8-1@2x.png">
+                </div>
+                <div class="tt-item-9">
+                    <div class="tt-item-51"></div>
+                    <div class="vechungtoi">Chính sách</div>
+                </div>
+                <div class="tt-item-10">
+                    <div class="tt-item-51"></div>
+                    <div class="gocdienanh">Phim hay tháng</div>
+                </div>
+                <div class="tt-item-111">
+                    <div class="tt-item-71"></div>
+                    <div class="gioithieu">Rạp / vé</div>
+                </div>
+                <div class="tt-item-12">
+                    <div class="tt-item-121"></div>
+                    <div class="gioithieu">DOWNLOAD</div>
+                </div>
+                <div class="tt-item-13">
+                    <div class="tt-item-51"></div>
+                    <div class="gioithieu">Thỏa thuận</div>
+                </div>
+                <div class="tt-item-14">
+                    <div class="tt-item-51"></div>
+                    <div class="gocdienanh">Bình luận phim</div>
+                </div>
+                <div class="tt-item-15">
+                    <div class="tt-item-71"></div>
+                    <div class="gioithieu">Tuyển dụng</div>
+                </div>
+                <div class="tt-item-16">
+                    <img class="tt-item-16-icon" alt="" src="~/Content/Image/tt-item-16@2x.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

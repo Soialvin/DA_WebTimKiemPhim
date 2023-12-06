@@ -1,0 +1,40 @@
+﻿@using PagedList.Mvc
+@using DAM.Models
+@model PagedList.IPagedList<KhuyenMai>
+@{
+    ViewBag.Title = "AllKhuyenMai";
+    Layout = "~/Views/Layout/TheLoaiPhimLayout.cshtml";
+}
+
+<div class="browse-agile-w3ls general-w3ls">
+    <div class="tittle-head">
+        <h4 class="latest-text">Chương trình khuyến mãi</h4>
+        <div class="container">
+            <div class="agileits-single-top">
+                <ol class="breadcrumb">
+                    <li><a href="@Url.Action("Main","Main")">Trang chủ</a></li>
+                    <li class="active">Tin tức</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="browse-inner">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-2 w3l-movie-gride-agile">
+                    <a href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = item.MaKM })" class="hvr-shutter-out-horizontal">
+                        <img src="@Url.Content("~/Content/KMImages/" + item.HinhAnh)" title="album-name" alt=" " />
+                        <div class="w3l-action-icon"><i class="fa-solid fa-circle-info" style="color: #ffffff;" aria-hidden="true"></i></div>
+                    </a>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<div class="blog-pagenat-wthree">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("AllKhuyenMai", new { page = page}))
+</div>
+

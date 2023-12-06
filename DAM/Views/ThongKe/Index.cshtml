@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Thống kê số lượng tài khoản theo tháng";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<h2>THỐNG KÊ TÀI KHOẢN</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <canvas id="chartUser"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/chart.min.js"></script>
+<script>
+    // Execute an AJAX request to retrieve data from the stored procedure
+    $.ajax({
+        type: "GET",
+        url: "@Url.Action("GetMonthlyUserCounts", "QLTaiKhoan")",
+        dataType: "json",
+        success: function (data) {
+            var ctx = document.getElementById('chartUser');
+            var labels = data.map(function (item) {
+                return "Tháng" + item.Tháng + "/" + item.Năm; // Display month/year as labels
+            });
+            var userCounts = data.map(function (item) {
+                return item.SốTàiKhoản; // Get the user counts
+            });
+            var barChartData = {
+                labels: labels,
+                datasets: [{
+                    label: 'Số Tài Khoản',
+                    data: userCounts,
+                    borderColor: '#FFFFFF',
+                    backgroundColor: '#29BFDA',
+                    tension: 0.1,
+                    barThickness: 200
+                }]
+            };
+
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+            });
+        }
+    });
+</script>

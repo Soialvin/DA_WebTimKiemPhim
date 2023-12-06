@@ -1,0 +1,35 @@
+﻿@model DAM.Models.ViewModel.RapSCPhimViewModel
+
+@{
+    ViewBag.Title = "XuLyVe";
+    Layout = "~/Views/Layout/ThongTinChiTietLayout.cshtml";
+}
+
+<div class="col-sm-8 single-left">
+    <h4 style="margin: 0 0 50px 0;" class="latest-text w3_latest_text">Đặt vé</h4>
+    <div class="all-comments">
+        <div style="" class="all-comments-info">
+            <p style="font-size:20px; font-weight:bold">Thông tin chi tiết</p>
+            <div class="agile-info-wthree-box">
+                <form>
+
+                    <p class="ttPhim">Tên phim: @Model.TenPhim</p>
+                    <p class="ttPhim">Tên rạp: @Model.TenRap</p>
+                    <p class="ttPhim">Ghế đã chọn: @string.Join(",", Model.MaGhe)</p>
+                    <p class="ttPhim">Khung giờ: @Model.KhungGio</p>
+                    <p class="ttPhim">Giá vé: @Model.GiaVe</p>
+                    <div class="w3l_sign_in_register" style="float:none; width:100%;">
+                        <ul style="width:20%; margin:0 auto;">
+                            <li>
+                                @Html.ActionLink("Thanh toán", "", "", null, new { @class = "datVeLink" })
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

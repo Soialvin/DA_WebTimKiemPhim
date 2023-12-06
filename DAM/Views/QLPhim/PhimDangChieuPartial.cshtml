@@ -1,0 +1,43 @@
+﻿@using DAM.Models
+@model IEnumerable<Phim>
+
+@if (Model.Count() < 12)
+{
+    foreach (var item in Model)
+    {
+        <div class="col-md-2 w3l-movie-gride-agile">
+            <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })" class="hvr-shutter-out-horizontal">
+                @*imager 182*268*@
+                <img src="@Url.Content("~/Content/MovieImages/"+item.HinhAnh)" title="album-name" class="img-responsive" alt=" " />
+                @*<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>*@
+                <div class="w3l-action-icon"><i class="fa-solid fa-circle-info" style="color: #ffffff;" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                <div class="w3l-movie-text">
+                    <h6><a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a></h6>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    foreach (var item in Model.Take(12))
+    {
+        <div class="col-md-2 w3l-movie-gride-agile">
+            <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })" class="hvr-shutter-out-horizontal">
+                @*imager 182*268*@
+                <img src="@Url.Content("~/Content/MovieImages/"+item.HinhAnh)" title="album-name" class="img-responsive" alt=" " />
+                @*<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>*@
+                <div class="w3l-action-icon"><i class="fa-solid fa-circle-info" style="color: #ffffff;" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                <div class="w3l-movie-text">
+                    <h6><a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a></h6>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

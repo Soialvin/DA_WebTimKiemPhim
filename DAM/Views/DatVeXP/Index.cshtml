@@ -1,0 +1,64 @@
+﻿@model DAM.Models.Ve
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/MainLayout.cshtml";
+}
+<div id="slidey" style="display:none;">
+    <ul>
+        <li><img src="~/Content/MainLayout/images/5.jpg" alt=" "><p class='title'>Tarzan</p><p class='description'> Tarzan, đã thích nghi với cuộc sống ở London, được gọi trở lại ngôi nhà cũ của mình trong rừng để điều tra các hoạt động tại một trại khai thác mỏ.</p></li>
+        <li><img src="~/Content/MainLayout/images/2.jpg" alt=" "><p class='title'>Maximum Ride</p><p class='description'>Sáu đứa trẻ, được sinh ra với ADN chim, bay vòng quanh đất nước để khám phá nguồn gốc của chúng. Trên đường đi, quá khứ bí ẩn của họ là...</p></li>
+        <li><img src="~/Content/MainLayout/images/3.jpg" alt=" "><p class='title'>Independence</p><p class='description'>Số phận của loài người đang nằm trong sự cân bằng khi Tổng thống Mỹ và công dân quyết định liệu những người ngoài hành tinh này có đáng tin cậy... hay sợ hãi.</p></li>
+        <li><img src="~/Content/MainLayout/images/4.jpg" alt=" "><p class='title'>Central Intelligence</p><p class='description'>Bị bắt nạt khi còn là một thiếu niên vì thừa cân, Bob Stone (Dwayne Johnson) xuất hiện trong buổi họp mặt trường trung học của mình trông khỏe mạnh và cơ bắp. Yêu cầu được giữ bí mật...</p></li>
+        <li><img src="~/Content/MainLayout/images/6.jpg" alt=" "><p class='title'>Ice Age</p><p class='description'>Trong phần tiếp theo của bộ phim, Scrat tiếp tục đấu tranh để kiểm soát con tàu ngoài hành tinh cho đến khi nó rơi xuống sao Hỏa, phá hủy tất cả sự sống trên hành tinh.</p></li>
+        <li><img src="~/Content/MainLayout/images/7.jpg" alt=" "><p class='title'>X - Man</p><p class='description'>Vào năm 1977, các nhà điều tra siêu nhiên Ed (Patrick Wilson) và Lorraine Warren đến từ một cuộc hành trình tự áp đặt để đi du lịch đến Enfield, một thị trấn ở phía bắc...</p></li>
+    </ul>
+</div>
+<div class="general">
+    <h4 class="latest-text w3_latest_text">Đặt vé</h4>
+    <div class="container">
+        <style>
+            #form_TaoMoi {
+                width: 820px;
+                margin: 0 auto;
+            }
+        </style>
+        <div id="form_TaoMoi">
+            @using (Html.BeginForm("Index", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MaPhim, "MaPhim", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MaPhim", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MaRap, "MaRap", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MaRap", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MaSC, "MaSC", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MaSC", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Đặt vé" class="btn btn-warning" />
+                    </div>
+                </div>
+            }
+            </div>
+
+    </div>
+</div>
+

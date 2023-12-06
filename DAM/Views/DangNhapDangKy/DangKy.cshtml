@@ -1,0 +1,76 @@
+﻿@model DAM.Models.TaiKhoan
+@{
+    ViewBag.Title = "dangky";
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Content/cssDK/style.css">
+<title>Đăng kí</title>
+<div class="login">
+    <div class="container">
+        <h3 style="color:yellow">Đăng Ký</h3>
+        <div class="login-form-grids animated wow slideInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+            @using (Html.BeginForm("DangKy", "DangNhapDangKy"))
+            {
+                <div>
+                    <span>Họ và Tên</span>
+                    <span>@Html.TextBox("HoVaTen", "")</span>
+                    @Html.ValidationMessageFor(model => model.HoVaTen, "", new { @class = "text-danger" })
+                </div>
+
+                <div>
+                    <span>Tài khoản</span>
+                    <span> @Html.TextBox("TenTK", "")</span>
+                    @Html.ValidationMessageFor(model => model.TenTK, "", new { @class = "text-danger" })
+                </div>
+
+                <div>
+                    <span>Mật khẩu</span>
+                    <span>@Html.Password("MatKhau", "")</span>
+                    <span1>@ViewBag.loimk</span1>
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                </div>
+
+                <div>
+                    <span>Email</span>
+                    <span>@Html.TextBox("Email")</span>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div>
+                    <span>Số điện thoại</span>
+                    <span>@Html.TextBox("SoDienThoai", "")</span>
+                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                </div>
+
+                <div>
+                    <span>Địa chỉ</span>
+                    <span1>@Html.TextBox("DiaChi", "")</span1>
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                </div>
+                <input type="submit" value="Đăng ký">
+                <p>Đã có tài khoản? <a href="~/DangNhapDangKy/Dangnhap">Đăng nhập</a></p>
+            }
+        </div>
+
+    </div>
+</div>
+<style>
+    .text-danger, span1 {
+        color: red;
+    }
+
+    input {
+        padding-left: 45px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        border-left-width: 2px;
+        border-top-width: 2px;
+        border-right-width: 2px;
+        border-bottom-width: 2px;
+    }
+</style>
+
+

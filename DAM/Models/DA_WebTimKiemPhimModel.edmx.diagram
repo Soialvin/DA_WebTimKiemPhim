@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab80e8bbe4494b248102dc69a1292127" Name="Diagram1">
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.Ghe" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.Ghe_Ve" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.HoaDon" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.KhuyenMai" Width="1.5" PointX="6" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.LichSu" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.Phim" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.Phim_TheLoai" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.Rap" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.SuatChieu" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.SuatChieu_Phim" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.SuatChieu_Rap" Width="1.5" PointX="9" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.TaiKhoan" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.TheLoai" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.Ve" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.YeuThich" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DA_WebTimKiemPhimModel.YeuThich_Phim" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Ghe_Ve__MaVe__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Ghe_Ve__MaVe__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__HoaDon__MaVe__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__HoaDon__TrangTha__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__KhuyenMai__NgayK__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__LichSu__TenTK__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Phim_TheL__MaPhi__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__SuatChieu__MaPhi__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Ve__MaPhim__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__YeuThich___MaPhi__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Phim_TheL__MaPhi__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__SuatChieu__MaRap__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Ve__MaRap__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__SuatChieu___MaSC__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__SuatChieu___MaSC__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__Ve__TrangThaiVe__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__YeuThich__TenTK__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="DA_WebTimKiemPhimModel.FK__YeuThich___MaPhi__5AEE82B9" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

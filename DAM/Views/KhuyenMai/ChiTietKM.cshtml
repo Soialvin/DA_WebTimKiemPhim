@@ -1,0 +1,36 @@
+﻿@using DAM.Models
+@model DAM.Models.ViewModel.ChiTietKMViewModel
+@{
+    ViewBag.Title = "ChiTietKM";
+    Layout = "~/Views/Layout/ThongTinChiTietLayout.cshtml";
+}
+
+<div class="col-sm-8 single-left">
+    <div class="song">
+        <div class="song-info">
+            <h3>@Model.TenKM</h3>
+        </div>
+        <div class="video-grid-single-page-agileits">
+            <div id="KM" style="width: 40%; margin: 0 auto;"><img src="@Url.Content("~/Content/KMImages/"+Model.HinhAnh)" alt="" class="img-responsive" /></div>
+        </div>
+    </div>
+
+    <div class="clearfix"> </div>
+
+    <div class="all-comments">
+        <div class="all-comments-info">
+            <p style="font-size:20px; font-weight:bold">Thông tin chi tiết</p>
+            <div class="agile-info-wthree-box">
+                <form>
+                    <p class="ttKM">Tên Khuyến mãi: @Model.TenKM</p>
+                    <p class="ttKM">Nội dung: @Model.NoiDung</p>
+                    <p class="ttKM">Ngày bắt đầu: @Model.NgayBD.ToString("dd/MM/yyyy")</p>
+                    <p class="ttKM">Ngày kết thúc: @Model.NgayKT.ToString("dd/MM/yyyy")</p>
+                    <p class="ttKM">Tên rạp: @Model.TenRap</p>
+                    <div class="clearfix"> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
