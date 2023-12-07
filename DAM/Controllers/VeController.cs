@@ -30,6 +30,56 @@ namespace DAM.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult loadRap(string selectedPhim)
+        {
+            var rap = db.SuatChieu_Phim
+                .Join(db.SuatChieus, scp => scp.MaSC, sc => sc.MaSC,
+                (scp, sc) => new
+                {
+                    MaPhim = scp.MaPhim,
+                    MaSC = sc .MaSC
+                })
+                .Join(db.SuatChieu_Rap, x => x.MaSC, scr => scr.MaSC,
+                (x, scr)=> new
+                {
+                    MaPhim = x.MaPhim,
+                    MaSC = x.MaSC,
+                    MaRap = scr.MaRap
+                })
+                .Join(db.Raps, y => y.MaRap, r => r.MaRap,
+                (y, r) => new
+                {
+                    MaPhim = y.MaPhim,
+                    MaSC = y.MaSC,
+                    MaRap = y.MaRap,
+                    TenRap = r.TenRap
+                }).ToList();
+            var listRap = rap.Where(x => x.MaPhim == selectedPhim).ToList();
+            return Json(listRap, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult loadSC(string selectedPhim, string selectedRap)
+        {
+            var suatChieu = db.SuatChieu_Phim
+                .Join(db.SuatChieus, scp => scp.MaSC, sc => sc.MaSC,
+                (scp, sc) => new
+                {
+                    MaPhim = scp.MaPhim,
+                    MaSC = sc.MaSC,
+                    KhungGio = sc.KhungGio
+                })
+                .Join(db.SuatChieu_Rap, x => x.MaSC, scr => scr.MaSC,
+                (x, scr) => new
+                {
+                    MaPhim = x.MaPhim,
+                    MaSC = x.MaSC,
+                    KhungGio = x.KhungGio,
+                    MaRap = scr.MaRap
+                }).ToList();
+            var listSC = suatChieu.Where(x => x.MaPhim == selectedPhim && x.MaRap == selectedRap).ToList();
+            return Json(listSC, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
         public ActionResult ChonGhe(RapSCPhimViewModel RSCP)
         {
             ViewBag.MaPhim = new SelectList(db.Phims.OrderBy(x => x.TenPhim), "MaPhim", "TenPhim");

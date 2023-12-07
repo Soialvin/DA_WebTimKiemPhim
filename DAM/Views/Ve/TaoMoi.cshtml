@@ -17,51 +17,149 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.MaPhim, "Mã phim", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.MaPhim, ViewBag.MaPhim as SelectList, "- Chọn phim -", new { @class = "form-control", onchange = "showMaRap()" })
+                            @Html.DropDownList("MaPhim", null, "- Chọn phim -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
                             @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.MaRap, "Mã rạp", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.MaRap, ViewBag.MaRap as SelectList, "- Chọn rạp -", new { @class = "form-control", @disabled ="disabled",onchange = "showMaRap()" })
+                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled ="disable", @id = "dropdown2",onchange = "showMaRap()" })
                             @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.MaSC, "Mã suất chiếu", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.MaSC, ViewBag.MaSC as SelectList, "- Chọn suất chiếu -", new { @class = "form-control" , @disabled = "disabled", onchange = "showMaRap()" })
+                            @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control",@disabled = "disable", @id = "dropdown3",onchange = "showMaSC()" })
                             @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="DatVe" style="display:flex; justify-content: center;">
-                    <input type="submit" value="Đặt vé" id="datVeButton" class="btn btn-warning" disabled />
+                    <input type="submit" value="Đặt vé" id="datVeButton" class="btn btn-warning" disabled/>
                 </div>
             }
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
-        function showMaRap() {
-            var maPhimDropdown = document.getElementById("MaPhim");
-            var maRapDropdown = document.getElementById("MaRap");
-            var maSCDropdown = document.getElementById("MaSC");
+        function showMaPhim() {
+            var maPhimDropdown = document.getElementById("dropdown1");
+            var maRapDropdown = document.getElementById("dropdown2");
+            var maSCDropdown = document.getElementById("dropdown3");
             var datVeButton = document.getElementById("datVeButton");
-            if (maPhimDropdown.value !== "") {
+            if (maPhimDropdown.value != "") {
                 maRapDropdown.disabled = false;
-                maSCDropdown.disabled = false;
-            } else {
+                maSCDropdown.disabled = true;
+                maSCDropdown.selectedIndex = 0;
+                datVeButton.disabled = true;
+            }
+            else {
                 maRapDropdown.disabled = true;
                 maRapDropdown.selectedIndex = 0; // Đặt lại giá trị rạp về giá trị mặc định
                 maSCDropdown.disabled = true;
                 maSCDropdown.selectedIndex = 0;
-            }
-            if (maPhimDropdown.value !== "" && maRapDropdown.value !== "" && maSCDropdown.value !== "") {
-                datVeButton.disabled = false;
-            } else {
                 datVeButton.disabled = true;
             }
         }
+        function showMaRap() {
+            var maRapDropdown = document.getElementById("dropdown2");
+            var maSCDropdown = document.getElementById("dropdown3");
+            var datVeButton = document.getElementById("datVeButton");
+            if (maRapDropdown.value != "") {
+                maSCDropdown.disabled = false;
+                datVeButton.disabled = true;
+            }
+            else {
+                maSCDropdown.disabled = true;
+                maSCDropdown.selectedIndex = 0;
+                datVeButton.disabled = true;
+            }
+        }
+        function showMaSC() {
+            var maSCDropdown = document.getElementById("dropdown3");
+            var datVeButton = document.getElementById("datVeButton");
+
+            if (maSCDropdown.value != "") {
+                datVeButton.disabled = false;
+            }
+            else {
+                datVeButton.disabled = true;
+            }
+        }
+
+        $(document).ready(function () {
+            // Gọi hàm loadRapOptions khi giá trị của dropdown MaPhim thay đổi
+            $("#dropdown1").change(function () {
+                loadRapOptions();
+            });
+
+            // Gọi hàm loadSCOptions khi giá trị của dropdown MaRap thay đổi
+            $("#dropdown2").change(function () {
+                loadSCOptions();
+            });
+
+            function loadRapOptions() {
+                var selectedPhim = $("#dropdown1").val();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("loadRap", "Ve")",
+                    data: { selectedPhim: selectedPhim },
+                    success: function (data) {
+                        $("#dropdown2").empty();
+                        $("#dropdown2").append($('<option>', {
+                            value: "",
+                            text: "- Chọn rạp -"
+                        }));
+                        $.each(data, function (index, option) {
+                            $("#dropdown2").append($('<option>', {
+                                value: option.MaRap,
+                                text: option.TenRap
+                            }));
+                        });
+                    }
+                });
+            }
+
+            function loadSCOptions() {
+                var selectedPhim = $("#dropdown1").val();
+                var selectedRap = $("#dropdown2").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("loadSC", "Ve")",
+                    data: { selectedPhim: selectedPhim, selectedRap: selectedRap },
+                    success: function (data) {
+                        $("#dropdown3").empty();
+                        $("#dropdown3").append($('<option>', {
+                            value: "",
+                            text: "- Chọn suất chiếu -"
+                        }));
+                        $.each(data, function (index, option) {
+                            var timespan = option.KhungGio;
+
+                            // Lấy giá trị giờ, phút và giây từ timespan
+                            var hours = timespan.Hours;
+                            var minutes = timespan.Minutes;
+                            var seconds = timespan.Seconds;
+
+                            // Định dạng giá trị giờ, phút và giây
+                            var formattedHours = hours < 10 ? "0" + hours : hours;
+                            var formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+                            var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+
+                            // Tạo chuỗi hiển thị timespan
+                            var timespanString = formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
+                            
+                            $("#dropdown3").append($('<option>', {
+                                value: option.MaSC,
+                                text: timespanString
+                            }));
+                        });
+                    }
+                });
+            }
+        });
     </script>
 </body>
