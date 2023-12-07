@@ -15,6 +15,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <!-- Style -->
     <link rel="stylesheet" href="~/Content/css1/style.css" type="text/css" media="all" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 </head>
 
@@ -23,6 +24,12 @@
     <section class="w3l-login">
         <div class="overlay">
             <div class="wrapper">
+                @if (TempData["AlertMessage"] != null)
+                {
+                    <div style="text-align:center" id="AlertBox" class="alert @TempData["AlertType"] hide">
+                        @TempData["AlertMessage"]
+                    </div>
+                }
                 <div class="logo">
                     <a class="brand-logo" href="#"></a>
                 </div>
@@ -67,8 +74,8 @@
     </section>
 
     <!-- /login form -->
+    <script src="~/Content/web_Layout/js/updateAlert.js"></script>
 </body>
-
 </html>
 
 
