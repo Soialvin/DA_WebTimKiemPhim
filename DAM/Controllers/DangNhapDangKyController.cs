@@ -79,27 +79,36 @@ namespace DAM.Controllers
         {
             if (ModelState.IsValid)
             {
-                if ((tk.MatKhau).Length > 15 || (tk.MatKhau).Length < 5)
+                try
                 {
-                    ViewBag.loimk = "Mật khẩu tối đa 15 kí tự, tối thiểu là 5 kí tự";
+                    if ((tk.MatKhau).Length > 15 || (tk.MatKhau).Length < 5)
+                    {
+                        ViewBag.loimk = "Mật khẩu tối đa 15 kí tự, tối thiểu là 5 kí tự";
+                        return View(tk);
+                    }
+                    if ((tk.MatKhau).Contains(" "))
+                    {
+                        ViewBag.loimk = "Mật khẩu không chứa khoảng trắng";
+                        return View(tk);
+                    }
+                    tk.LoaiTK = "User";
+                    tk.TrangThai = "Đang hoạt động";
+                    tk.NgayDK = DateTime.Now;
+                    tk.HinhAnh = "systemusers_104569.png";
+                    // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu  
+                    //tk.MatKhau = BCryptNet.HashPassword(tk.MatKhau);
+                    MH_GM mh = new MH_GM();
+                    tk.MatKhau = mh.MH(tk.MatKhau);
+                    db.TaiKhoans.Add(tk);
+                    db.SaveChanges();
+                    SetAlert("Đăng ký thành công", "sucsess");
+                    return RedirectToAction("Dangnhap", "DangNhapDangKy");
+                }
+                catch (Exception)
+                {
+                    SetAlert($"Đăng ký không thành công", "danger");
                     return View(tk);
                 }
-                if ((tk.MatKhau).Contains(" "))
-                {
-                    ViewBag.loimk = "Mật khẩu không chứa khoảng trắng";
-                    return View(tk);
-                }
-                tk.LoaiTK = "User";
-                tk.TrangThai = "Đang hoạt động";
-                tk.NgayDK = DateTime.Now;
-                tk.HinhAnh = "systemusers_104569.png";
-                // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu  
-                //tk.MatKhau = BCryptNet.HashPassword(tk.MatKhau);
-                MH_GM mh = new MH_GM();
-                tk.MatKhau = mh.MH(tk.MatKhau);
-                db.TaiKhoans.Add(tk);
-                db.SaveChanges();
-                return RedirectToAction("Dangnhap", "DangNhapDangKy");
             }
             return View(tk);
         }

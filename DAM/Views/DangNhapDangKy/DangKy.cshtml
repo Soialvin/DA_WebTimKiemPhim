@@ -4,10 +4,18 @@
     Layout = null;
 }
 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="~/Content/cssDK/style.css">
 <title>Đăng kí</title>
 <div class="login">
     <div class="container">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div style="text-align:center" id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
         <h3 style="color:yellow">Đăng Ký</h3>
         <div class="login-form-grids animated wow slideInUp animated animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
             @using (Html.BeginForm("DangKy", "DangNhapDangKy"))
@@ -72,5 +80,6 @@
         border-bottom-width: 2px;
     }
 </style>
+<script src="~/Content/web_Layout/js/updateAlert.js"></script>
 
 
