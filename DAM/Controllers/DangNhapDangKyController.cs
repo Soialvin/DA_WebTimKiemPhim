@@ -1,4 +1,5 @@
-﻿using DAM.Models;
+﻿using CaptchaMvc.HtmlHelpers;
+using DAM.Models;
 using DAM.Models.Salt_MH;
 using System;
 using System.Collections.Generic;
@@ -89,6 +90,11 @@ namespace DAM.Controllers
                     if ((tk.MatKhau).Contains(" "))
                     {
                         ViewBag.loimk = "Mật khẩu không chứa khoảng trắng";
+                        return View(tk);
+                    }
+                    if (!this.IsCaptchaValid("captcha sai"))
+                    {
+                        ViewBag.thongbao = "Sai mã captcha";
                         return View(tk);
                     }
                     tk.LoaiTK = "User";
