@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "ThongKeDoanhThu";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>THỐNG KÊ DOANH THU</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-8">
+            <canvas id="chartUser"></canvas>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tháng</th>
+                        <th>Doanh Thu</th>
+                    </tr>
+                </thead>
+                <tbody id="load_data"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/chart.min.js"></script>
+<script>
+    // Execute an AJAX request to retrieve data from the stored procedure
+    $.ajax({
+        type: "GET",
+        url: "@Url.Action("ThongKeDoanhThuTheoThang", "QLTaiKhoan")",
+        dataType: "json",
+        success: function (data) {
+            var ctx = document.getElementById('chartUser');
+            var labels = data.map(function (item) {
+                return "Tháng " + item.Tháng; // Display month/year as labels
+            });
+            var userCounts = data.map(function (item) {
+                return item.ToTal; // Get the user counts
+            });
+            var barChartData = {
+                labels: labels,
+                datasets: [{
+                    label: 'triệu vnđ',
+                    data: userCounts,
+                    borderColor: '#FFFFFF',
+                    backgroundColor: '#29BFDA',
+                    tension: 0.1,
+                    barThickness: 150
+                }]
+            };
+
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+            });
+            load_data(data);
+        }
+    });
+    function load_data(data) {
+        var strHtml = "";
+        data.forEach(function (item, index) {
+            strHtml += "<tr>";
+            strHtml += "<td>" + (index + 1) + "</td>";
+            strHtml += "<td>" + item.Tháng + "</td>";
+            strHtml += "<td>" + item.ToTal + " Triệu vnđ"+"</td>";
+            strHtml += "</tr>";
+        });
+        $("#load_data").html(strHtml);
+    }
+</script>
+
+

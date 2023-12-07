@@ -378,11 +378,25 @@ namespace DAM.Controllers
                 return Json(data, JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult ThongKeDoanhThuTheoThang()
+        {
+            using (var context = new DA_WebTimKiemPhimEntities())
+            {
+                var data = context.Database.SqlQuery<ThongKeDoanhThuTheoThangBD>("ThongKeDoanhThuTheoThang").ToList();
+                return Json(data, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public class MonthlyUserCount
         {
             public int Năm { get; set; }
             public int Tháng { get; set; }
             public int SốTàiKhoản { get; set; }
+        }
+        public class ThongKeDoanhThuTheoThangBD
+        {
+            public int Tháng { get; set; }
+            public decimal ToTal { get; set; }
         }
         public ActionResult ExportExcel()
         {

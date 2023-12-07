@@ -19,7 +19,17 @@ namespace DAM.Controllers
         DA_WebTimKiemPhimEntities db = new DA_WebTimKiemPhimEntities();
         public ActionResult Index()
         {
-            return View(db.KhuyenMais);
+            var result = db.KhuyenMais.Select(x => new ChiTietKMViewModel
+            {
+                MaKM = x.MaKM,
+                MaRap = x.MaRap,
+                TenKM = x.TenKM,
+                HinhAnh = x.HinhAnh,
+                NoiDung = x.NoiDung,
+                NgayBD = x.NgayBD,
+                NgayKT = x.NgayKT
+            }).ToList();
+            return View(result);
         }
         [HttpGet]
         public ActionResult TaoMoi()
@@ -56,7 +66,17 @@ namespace DAM.Controllers
                 }
                 km.NgayBD = DateTime.Now;
                 km.NgayKT = DateTime.Now.AddYears(1);
-                db.KhuyenMais.Add(km);
+                var x = new KhuyenMai
+                {
+                    MaKM = km.MaRap,
+                    MaRap = km.MaRap,
+                    TenKM = km.TenKM,
+                    HinhAnh = km.HinhAnh,
+                    NoiDung = km.NoiDung,
+                    NgayBD = km.NgayBD,
+                    NgayKT = km.NgayKT
+                };
+                db.KhuyenMais.Add(x);
                 try
                 {
                     if (Session["user"] != null)
@@ -119,6 +139,11 @@ namespace DAM.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var x = db.KhuyenMais.Find(km.MaKM);
+                    if (x == null)
+                    {
+                        return HttpNotFound();
+                    }
                     if (HinhAnh != null && HinhAnh.ContentLength != 0)
                     {
                         var fileName = Path.GetFileName(HinhAnh.FileName);
@@ -150,7 +175,12 @@ namespace DAM.Controllers
                         var anh = Session["Anh"] as KhuyenMai;
                         km.HinhAnh = anh.HinhAnh;
                     }
-                    db.Entry(km).State = System.Data.Entity.EntityState.Modified;
+                    x.TenKM = km.TenKM;
+                    x.MaRap = km.MaRap;
+                    x.HinhAnh = km.HinhAnh;
+                    x.NoiDung = km.NoiDung;
+                    x.NgayBD = km.NgayBD;
+                    x.NgayKT = km.NgayKT;
                     if (Session["user"] != null)
                     {
                         TaiKhoan TKDN = (TaiKhoan)Session["user"];

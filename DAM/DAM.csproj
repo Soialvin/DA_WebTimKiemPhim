@@ -320,8 +320,11 @@
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\KhoangTrangTiengVietKhuyenMai.cs" />
+    <Compile Include="Validation\KTMaKhyenMai.cs" />
     <Compile Include="Validation\KTMaRC.cs" />
     <Compile Include="Validation\KhoangTrangTiengVietMaPhim.cs" />
+    <Compile Include="Validation\KTNgayKM.cs" />
     <Compile Include="Validation\TiengVietMK.cs" />
     <Compile Include="Validation\KhoangTrangTiengVietTenTK.cs" />
     <Compile Include="Validation\KTEmail.cs" />
@@ -679,6 +682,7 @@
     <Content Include="Views\RapChieu\SCRap.cshtml" />
     <Content Include="Views\RapChieu\TaoMoiSCRap.cshtml" />
     <Content Include="Views\RapChieu\SuaSCRap.cshtml" />
+    <Content Include="Views\ThongKe\ThongKeDoanhThu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

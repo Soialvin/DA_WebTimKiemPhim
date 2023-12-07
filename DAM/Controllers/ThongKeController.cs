@@ -13,5 +13,9 @@ namespace DAM.Controllers
         {
             return View();
         }
+        public ActionResult ThongKeDoanhThu()
+        {
+            return View();
+        }
     }
 }
