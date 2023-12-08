@@ -104,7 +104,7 @@ namespace DAM.Controllers
                 MaSC = laySC.MaSC,
                 TenPhim = layPhim.TenPhim,
                 TenRap = layRap.TenRap,
-                GiaVe = layRap.GiaVe.ToString(),
+                GiaVe = layRap.GiaVe,
                 KhungGio = laySC.KhungGio
             };
             return View(laydl);
@@ -116,7 +116,6 @@ namespace DAM.Controllers
             List<string> listPPThanhToan = new List<string> { "Thanh toán qua E-Banking", "Thanh toán qua MoMo", "Thanh toán qua VnPay" };
             ViewBag.PPThanhToan = new SelectList(listPPThanhToan);
             int soLuongGheDaChon = listGheDaChon.Count;
-            decimal giaVe = decimal.Parse(RSCP.GiaVe);
             var laydl = new HoaDonViewModel
             {
                 MaPhim = RSCP.MaPhim,
@@ -124,8 +123,9 @@ namespace DAM.Controllers
                 TenPhim = RSCP.TenPhim,
                 TenRap = RSCP.TenRap,
                 MaGhe = listGheDaChon,
-                MaSC = RSCP.KhungGio.ToString(),
-                GiaVe = (giaVe * soLuongGheDaChon).ToString(),
+                MaSC = RSCP.MaSC,
+                GiaVe = RSCP.GiaVe,
+                TongTien = ((decimal)(RSCP.GiaVe * soLuongGheDaChon)),
                 KhungGio = RSCP.KhungGio
             };
             return View(laydl);

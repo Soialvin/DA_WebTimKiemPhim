@@ -15,6 +15,6 @@ namespace DAM.Models.ViewModel
         public Nullable<System.TimeSpan> KhungGio { get; set; }
         public List<string> MaGhe { get; set; }
         public string MaGheDaChon {  get; set; }
-        public string GiaVe { get; set; }
+        public Nullable<decimal> GiaVe { get; set; }
     }
 }

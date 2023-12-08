@@ -380,6 +380,28 @@ width:100%;
     color: #fff;
     background:#222;
 }
+
+.agile-info-wthree-box input[type="button"] {
+      outline: none;
+    font-style: normal;
+    padding: 8px 20px;
+    background: #ff8d1b;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+    border: none;
+    transition: .5s all;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    -o-transition: .5s all;
+    -ms-transition: .5s all;
+}
+.agile-info-wthree-box input[type="button"]:hover{
+    text-decoration: none;
+    color: #fff;
+    background:#222;
+}
+
 .all-comments-buttons ul li a.newest{
 	position:relative;
 }

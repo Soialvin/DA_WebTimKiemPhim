@@ -7,100 +7,147 @@
 <body>
     <div class="col-sm-8 single-left">
         <h4 style="margin: 0 0 50px 0;" class="latest-text w3_latest_text">Đặt vé</h4>
-        @if (Session["user"] == null)
-        {
-            <div>
-                <p>Bạn cần đăng nhập để đặt vé.</p>
-                @Html.ActionLink("Đăng nhập", "DangNhap", "DangNhapDangKy", new { ReturnUrl = Request.RawUrl }, new { @class = "btn btn-primary" })
-            </div>
-        }
-        else
-        {
-            <div class="agile-info-wthree-box">
-                @using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="agile-info-wthree-box">
+            @using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.MaPhim, "Mã phim", htmlAttributes: new { @class = "control-label col-md-1" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("MaPhim", null, "- Chọn phim -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
-                                @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.MaRap, "Mã rạp", htmlAttributes: new { @class = "control-label col-md-1" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown2", onchange = "showMaRap()" })
-                                @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.MaSC, "Mã suất chiếu", htmlAttributes: new { @class = "control-label col-md-1" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown3", onchange = "showMaSC()" })
-                                @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MaPhim, "Mã phim", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MaPhim", null, "- Chọn phim -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
+                            @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="DatVe" style="display:flex; justify-content: center;">
-                        <input type="submit" value="Đặt vé" id="datVeButton" disabled @*onclick="checkSession()"*@ />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MaRap, "Mã rạp", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown2", onchange = "showMaRap()" })
+                            @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                }
-            </div>
-        }
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MaSC, "Mã suất chiếu", htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown3", onchange = "showMaSC()" })
+                            @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="DatVe" style="display:flex; justify-content: center;">
+                    @if (Session["user"] == null)
+                    {
+                        <input type="button" value="Đặt vé" id="datVeButton1" disabled />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Đặt vé" id="datVeButton" disabled />
+                    }
+                </div>
+            }
+        </div>
     </div>
     <style>
         #datVeButton:disabled {
             pointer-events: none;
         }
+
+        #datVeButton1:disabled {
+            pointer-events: none;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
+        document.getElementById("datVeButton1").addEventListener('click', function() {
+            window.location.href = '@Url.Action("DangNhap", "DangNhapDangKy")';
+        });
+
         function showMaPhim() {
             var maPhimDropdown = document.getElementById("dropdown1");
             var maRapDropdown = document.getElementById("dropdown2");
             var maSCDropdown = document.getElementById("dropdown3");
             var datVeButton = document.getElementById("datVeButton");
-            if (maPhimDropdown.value != "") {
-                maRapDropdown.disabled = false;
-                maSCDropdown.disabled = true;
-                maSCDropdown.selectedIndex = 0;
-                datVeButton.disabled = true;
+            var datVeButton1 = document.getElementById("datVeButton1");
+            if (datVeButton != null) {
+                if (maPhimDropdown.value != "") {
+                    maRapDropdown.disabled = false;
+                    maSCDropdown.disabled = true;
+                    maSCDropdown.selectedIndex = 0;
+                    datVeButton.disabled = true;
+                }
+                else {
+                    maRapDropdown.disabled = true;
+                    maRapDropdown.selectedIndex = 0; // Đặt lại giá trị rạp về giá trị mặc định
+                    maSCDropdown.disabled = true;
+                    maSCDropdown.selectedIndex = 0;
+                    datVeButton.disabled = true;
+                }
             }
-            else {
-                maRapDropdown.disabled = true;
-                maRapDropdown.selectedIndex = 0; // Đặt lại giá trị rạp về giá trị mặc định
-                maSCDropdown.disabled = true;
-                maSCDropdown.selectedIndex = 0;
-                datVeButton.disabled = true;
+            if (datVeButton1 != null) {
+                if (maPhimDropdown.value != "") {
+                    maRapDropdown.disabled = false;
+                    maSCDropdown.disabled = true;
+                    maSCDropdown.selectedIndex = 0;
+                    datVeButton1.disabled = true;
+                }
+                else {
+                    maRapDropdown.disabled = true;
+                    maRapDropdown.selectedIndex = 0; // Đặt lại giá trị rạp về giá trị mặc định
+                    maSCDropdown.disabled = true;
+                    maSCDropdown.selectedIndex = 0;
+                    datVeButton1.disabled = true;
+                }
             }
         }
         function showMaRap() {
             var maRapDropdown = document.getElementById("dropdown2");
             var maSCDropdown = document.getElementById("dropdown3");
             var datVeButton = document.getElementById("datVeButton");
-            if (maRapDropdown.value != "") {
-                maSCDropdown.disabled = false;
-                datVeButton.disabled = true;
+            var datVeButton1 = document.getElementById("datVeButton1");
+            if (datVeButton != null) {
+                if (maRapDropdown.value != "") {
+                    maSCDropdown.disabled = false;
+                    datVeButton.disabled = true;
+                }
+                else {
+                    maSCDropdown.disabled = true;
+                    maSCDropdown.selectedIndex = 0;
+                    datVeButton.disabled = true;
+                }
             }
-            else {
-                maSCDropdown.disabled = true;
-                maSCDropdown.selectedIndex = 0;
-                datVeButton.disabled = true;
+            if (datVeButton1 != null) {
+                if (maRapDropdown.value != "") {
+                    maSCDropdown.disabled = false;
+                    datVeButton1.disabled = true;
+                }
+                else {
+                    maSCDropdown.disabled = true;
+                    maSCDropdown.selectedIndex = 0;
+                    datVeButton1.disabled = true;
+                }
             }
         }
         function showMaSC() {
             var maSCDropdown = document.getElementById("dropdown3");
             var datVeButton = document.getElementById("datVeButton");
-
-            if (maSCDropdown.value != "") {
-                datVeButton.disabled = false;
+            var datVeButton1 = document.getElementById("datVeButton1");
+            if (datVeButton != null) {
+                if (maSCDropdown.value != "") {
+                    datVeButton.disabled = false;
+                }
+                else {
+                    datVeButton.disabled = true;
+                }
             }
-            else {
-                datVeButton.disabled = true;
+            if (datVeButton1 != null) {
+                if (maSCDropdown.value != "") {
+                    datVeButton1.disabled = false;
+                }
+                else {
+                    datVeButton1.disabled = true;
+                }
             }
         }
 

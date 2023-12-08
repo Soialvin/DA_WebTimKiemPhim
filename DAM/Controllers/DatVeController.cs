@@ -1,4 +1,5 @@
 ﻿using DAM.Models;
+using DAM.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,6 +120,53 @@ namespace DAM.Controllers
             result = result.Where(x => (x.TenTK != null && x.TenTK.Contains(keyword)) ).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", result);
+        }
+        [HttpPost]
+        public ActionResult XuLyHD(HoaDonViewModel model)
+        {
+            List<string> listPPThanhToan = new List<string> { "Thanh toán qua E-Banking", "Thanh toán qua MoMo", "Thanh toán qua VnPay" };
+            ViewBag.PPThanhToan = new SelectList(listPPThanhToan);
+            if (Session["user"] != null)
+            {
+                TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                var v = new Ve
+                {
+                    MaSC = model.MaSC,
+                    MaPhim = model.MaPhim,
+                    MaRap = model.MaRap,
+                    NgayTao = DateTime.Now,
+                    TrangThaiVe = "Chưa xóa"
+                };
+                db.Ves.Add(v);
+                foreach (var item in model.MaGhe)
+                {
+                    var g_v = new Ghe_Ve
+                    {
+                        MaVe = v.MaVe,
+                        MaGhe = item
+                    };
+                    db.Ghe_Ve.Add(g_v);
+                }
+                var hd = new HoaDon
+                {
+                    MaVe = v.MaVe,
+                    TenTK = TKDN.TenTK,
+                    NgayDat = DateTime.Now,
+                    TongTien = model.TongTien,
+                    PPThanhToan = model.PPThanhToan,
+                    TrangThai = "Đã thanh toán"
+                };
+                db.HoaDons.Add(hd);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            return RedirectToAction("Main","Main");
         }
     }
 }
