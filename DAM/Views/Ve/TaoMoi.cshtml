@@ -50,13 +50,13 @@
                     </div>
                 }
             </div>
-
         }
-
     </div>
-
-
-
+    <style>
+        #datVeButton:disabled {
+            pointer-events: none;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
         function showMaPhim() {
@@ -176,14 +176,5 @@
                 });
             }
         });
-@*function checkSession() {
-    var session = '@Session["user"]'
-    if (session === null) {
-        window.location.href = '@Url.Action("DangNhap", "DangNhapDangKy")';
-    }
-    else {
-        document.getElementById('purchaseForm').submit();
-    }
-}*@
     </script>
 </body>
