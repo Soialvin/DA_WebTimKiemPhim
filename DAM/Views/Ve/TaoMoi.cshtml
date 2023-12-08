@@ -16,45 +16,49 @@
         }
         else
         {
-            using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="agile-info-wthree-box">
+                @using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.MaPhim, "Mã phim", htmlAttributes: new { @class = "control-label col-md-1" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("MaPhim", null, "- Chọn phim -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
-                            @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaPhim, "Mã phim", htmlAttributes: new { @class = "control-label col-md-1" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("MaPhim", null, "- Chọn phim -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
+                                @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaRap, "Mã rạp", htmlAttributes: new { @class = "control-label col-md-1" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown2", onchange = "showMaRap()" })
+                                @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaSC, "Mã suất chiếu", htmlAttributes: new { @class = "control-label col-md-1" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown3", onchange = "showMaSC()" })
+                                @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.MaRap, "Mã rạp", htmlAttributes: new { @class = "control-label col-md-1" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown2", onchange = "showMaRap()" })
-                            @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
-                        </div>
+                    <div class="DatVe" style="display:flex; justify-content: center;">
+                        <input type="submit" value="Đặt vé" id="datVeButton" disabled @*onclick="checkSession()"*@ />
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.MaSC, "Mã suất chiếu", htmlAttributes: new { @class = "control-label col-md-1" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown3", onchange = "showMaSC()" })
-                            @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="DatVe" style="display:flex; justify-content: center;">
-                    <input type="submit" value="Đặt vé" id="datVeButton" class="btn btn-warning" disabled @*onclick="checkSession()"*@/>
-                </div>
-            }
+                }
+            </div>
+
         }
 
     </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
         function showMaPhim() {
             var maPhimDropdown = document.getElementById("dropdown1");
             var maRapDropdown = document.getElementById("dropdown2");
@@ -181,5 +185,5 @@
         document.getElementById('purchaseForm').submit();
     }
 }*@
-</script>
-    </body>
+    </script>
+</body>

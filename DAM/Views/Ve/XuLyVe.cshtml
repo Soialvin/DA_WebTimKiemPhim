@@ -22,19 +22,13 @@
                     <p class="ttPhim">Khung giờ: @Model.KhungGio</p>
                     <p class="ttPhim">Giá vé: @Model.GiaVe</p>
                     <div class="w3l_sign_in_register" style="float:none; width:100%;">
-
                     </div>
-
                     <div class="form-group">
-
                         <div class="col-md-8">
-                            @Html.DropDownList("PPThanhToan", null, "- Chọn phương thức thanh toán -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
-
+                            @Html.DropDownList("PPThanhToan", null, "- Chọn phương thức thanh toán -", htmlAttributes: new { @class = "form-control", @id = "dropdownTT", onchange = "showPPTT()" })
                         </div>
-
-
                     </div>
-                    <input type="submit" value="Thanh toán" style="margin-left: 17%;" />
+                    <input type="submit" style="margin-left: 17%;"  id="btn_ThanhToan" value="Thanh toán" disabled class="hoverable"/>
                 </div>
                 }
             </div>
@@ -44,23 +38,16 @@
 
 <script>
     function showPPTT() {
-        var maPhimDropdown = document.getElementById("dropdown1");
-        var maRapDropdown = document.getElementById("dropdown2");
-        var maSCDropdown = document.getElementById("dropdown3");
-        var datVeButton = document.getElementById("datVeButton");
-        if (maPhimDropdown.value != "") {
-            maRapDropdown.disabled = false;
-            maSCDropdown.disabled = true;
-            maSCDropdown.selectedIndex = 0;
-            datVeButton.disabled = true;
+        var ThanhToanDropdown = document.getElementById("dropdownTT");
+        var ThanhToanButton = document.getElementById("btn_ThanhToan");
+
+        if (ThanhToanDropdown.value != "") {
+            ThanhToanButton.disabled = false;
         }
         else {
-            maRapDropdown.disabled = true;
-            maRapDropdown.selectedIndex = 0; // Đặt lại giá trị rạp về giá trị mặc định
-            maSCDropdown.disabled = true;
-            maSCDropdown.selectedIndex = 0;
-            datVeButton.disabled = true;
+            ThanhToanButton.disabled = true;
         }
+        
     }
 </script>
 
