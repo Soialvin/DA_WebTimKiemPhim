@@ -82,28 +82,25 @@ namespace DAM.Controllers
         [HttpPost]
         public ActionResult ChonGhe(RapSCPhimViewModel RSCP)
         {
-            ViewBag.MaPhim = new SelectList(db.Phims.OrderBy(x => x.TenPhim), "MaPhim", "TenPhim");
-            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.TenRap), "MaRap", "TenRap");
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
-            
-            List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
-            var RapGheVe = db.Raps
-                .Join(db.Ves, rap => rap.MaRap, ve => ve.MaRap,
-                (rap, ve) => new { MaRap = rap.MaRap, MaVe = ve.MaVe })
-                .Join(db.Ghe_Ve, x => x.MaVe, y => y.MaVe, (x, y) => new
+            var RapGheVe = db.Ves
+                .Join(db.Ghe_Ve, ve => ve.MaVe, gv => gv.MaVe, (ve, gv) => new
                 {
-                    MaRap = x.MaRap,
-                    MaVe = x.MaVe,
-                    MaGhe = y.MaGhe
+                    MaRap = ve.MaRap,
+                    MaVe = ve.MaVe,
+                    MaGhe = gv.MaGhe,
+                    MaSC = ve.MaSC,
+                    MaPhim = ve.MaPhim,
+                    TrangThaiVe = ve.TrangThaiVe
                 });
+            var listGhe = RapGheVe.Where(x => x.MaRap == RSCP.MaRap && x.MaSC == RSCP.MaSC && x.MaPhim == RSCP.MaPhim && x.TrangThaiVe == "Chưa xóa");
             var laySC = db.SuatChieus.FirstOrDefault(x => x.MaSC == RSCP.MaSC);
             var layRap = db.Raps.FirstOrDefault(x => x.MaRap == RSCP.MaRap);
             var layPhim = db.Phims.FirstOrDefault(x => x.MaPhim == RSCP.MaPhim);
             var laydl = new RapSCPhimViewModel
             {
-                MaPhim = RSCP.MaPhim,
-                MaRap = RSCP.MaRap,
-                MaGhe = RapGheVe.Select(x => x.MaGhe).ToList(),
+                MaPhim = layPhim.MaPhim,
+                MaRap = layRap.MaRap,
+                MaGhe = listGhe.Select(x => x.MaGhe).ToList(),
                 MaSC = laySC.MaSC,
                 TenPhim = layPhim.TenPhim,
                 TenRap = layRap.TenRap,
@@ -115,13 +112,12 @@ namespace DAM.Controllers
         [HttpPost]
         public ActionResult XuLyVe(RapSCPhimViewModel RSCP)
         {
-            ViewBag.MaPhim = new SelectList(db.Phims.OrderBy(x => x.TenPhim), "MaPhim", "TenPhim");
-            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.TenRap), "MaRap", "TenRap");
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
             List<string> listGheDaChon = new List<string>(RSCP.MaGheDaChon.Split(','));
+            List<string> listPPThanhToan = new List<string> { "Thanh toán qua E-Banking", "Thanh toán qua MoMo", "Thanh toán qua VnPay" };
+            ViewBag.PPThanhToan = new SelectList(listPPThanhToan);
             int soLuongGheDaChon = listGheDaChon.Count;
             decimal giaVe = decimal.Parse(RSCP.GiaVe);
-            var laydl = new RapSCPhimViewModel
+            var laydl = new HoaDonViewModel
             {
                 MaPhim = RSCP.MaPhim,
                 MaRap = RSCP.MaRap,

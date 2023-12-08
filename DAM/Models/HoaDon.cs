@@ -19,6 +19,7 @@ namespace DAM.Models
         public string TenTK { get; set; }
         public System.DateTime NgayDat { get; set; }
         public decimal TongTien { get; set; }
+        public string PPThanhToan { get; set; }
         public string TrangThai { get; set; }
     
         public virtual Ve Ve { get; set; }

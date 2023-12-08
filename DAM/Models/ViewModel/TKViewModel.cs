@@ -27,6 +27,7 @@ namespace DAM.Models.ViewModel
         [DisplayName("Địa chỉ")]
         public string DiaChi { get; set; }
         [DisplayName("Số điện thoại")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Số điện thoại chỉ được nhập số.")]
         [Required(ErrorMessage = "{0} không được để trống")]
         [KTSDT]
         public string SoDienThoai { get; set; }

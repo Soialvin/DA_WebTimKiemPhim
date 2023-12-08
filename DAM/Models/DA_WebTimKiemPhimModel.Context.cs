@@ -58,7 +58,7 @@ namespace DAM.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertGhe", maGheParameter);
         }
     
-        public virtual int InsertHoaDon(string tenTK, Nullable<System.DateTime> ngayDat, Nullable<decimal> tongTien, string trangThai)
+        public virtual int InsertHoaDon(string tenTK, Nullable<System.DateTime> ngayDat, Nullable<decimal> tongTien, string pPThanhToan, string trangThai)
         {
             var tenTKParameter = tenTK != null ?
                 new ObjectParameter("TenTK", tenTK) :
@@ -72,11 +72,15 @@ namespace DAM.Models
                 new ObjectParameter("TongTien", tongTien) :
                 new ObjectParameter("TongTien", typeof(decimal));
     
+            var pPThanhToanParameter = pPThanhToan != null ?
+                new ObjectParameter("PPThanhToan", pPThanhToan) :
+                new ObjectParameter("PPThanhToan", typeof(string));
+    
             var trangThaiParameter = trangThai != null ?
                 new ObjectParameter("TrangThai", trangThai) :
                 new ObjectParameter("TrangThai", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertHoaDon", tenTKParameter, ngayDatParameter, tongTienParameter, trangThaiParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertHoaDon", tenTKParameter, ngayDatParameter, tongTienParameter, pPThanhToanParameter, trangThaiParameter);
         }
     
         public virtual int InsertKhuyenMai(string maKM, string maRap, string tenKM, string hinhAnh, string noiDung, Nullable<System.DateTime> ngayBD, Nullable<System.DateTime> ngayKT)
@@ -298,6 +302,31 @@ namespace DAM.Models
                 new ObjectParameter("TrangThai", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertTK", tenTKParameter, matKhauParameter, hoVaTenParameter, hinhAnhParameter, diaChiParameter, soDienThoaiParameter, emailParameter, loaiTKParameter, ngayDKParameter, trangThaiParameter);
+        }
+    
+        public virtual int InsertVe(string maSC, string maPhim, string maRap, Nullable<System.DateTime> ngayTao, string trangThaiVe)
+        {
+            var maSCParameter = maSC != null ?
+                new ObjectParameter("MaSC", maSC) :
+                new ObjectParameter("MaSC", typeof(string));
+    
+            var maPhimParameter = maPhim != null ?
+                new ObjectParameter("MaPhim", maPhim) :
+                new ObjectParameter("MaPhim", typeof(string));
+    
+            var maRapParameter = maRap != null ?
+                new ObjectParameter("MaRap", maRap) :
+                new ObjectParameter("MaRap", typeof(string));
+    
+            var ngayTaoParameter = ngayTao.HasValue ?
+                new ObjectParameter("NgayTao", ngayTao) :
+                new ObjectParameter("NgayTao", typeof(System.DateTime));
+    
+            var trangThaiVeParameter = trangThaiVe != null ?
+                new ObjectParameter("TrangThaiVe", trangThaiVe) :
+                new ObjectParameter("TrangThaiVe", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertVe", maSCParameter, maPhimParameter, maRapParameter, ngayTaoParameter, trangThaiVeParameter);
         }
     
         public virtual ObjectResult<ThongKeDoanhThuTheoThang_Result> ThongKeDoanhThuTheoThang()

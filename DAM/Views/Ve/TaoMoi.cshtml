@@ -7,8 +7,16 @@
 <body>
     <div class="col-sm-8 single-left">
         <h4 style="margin: 0 0 50px 0;" class="latest-text w3_latest_text">Đặt vé</h4>
-        <div class="all-comments">
-            @using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        @if (Session["user"] == null)
+        {
+            <div>
+                <p>Bạn cần đăng nhập để đặt vé.</p>
+                @Html.ActionLink("Đăng nhập", "DangNhap", "DangNhapDangKy", new { ReturnUrl = Request.RawUrl }, new { @class = "btn btn-primary" })
+            </div>
+        }
+        else
+        {
+            using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-horizontal">
@@ -24,26 +32,29 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.MaRap, "Mã rạp", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled ="disable", @id = "dropdown2",onchange = "showMaRap()" })
+                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown2", onchange = "showMaRap()" })
                             @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.MaSC, "Mã suất chiếu", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control",@disabled = "disable", @id = "dropdown3",onchange = "showMaSC()" })
+                            @Html.DropDownList("MaSC", null, "- Chọn suất chiếu -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown3", onchange = "showMaSC()" })
                             @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="DatVe" style="display:flex; justify-content: center;">
-                    <input type="submit" value="Đặt vé" id="datVeButton" class="btn btn-warning" disabled/>
+                    <input type="submit" value="Đặt vé" id="datVeButton" class="btn btn-warning" disabled @*onclick="checkSession()"*@/>
                 </div>
             }
-        </div>
+        }
+
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
         function showMaPhim() {
             var maPhimDropdown = document.getElementById("dropdown1");
             var maRapDropdown = document.getElementById("dropdown2");
@@ -151,7 +162,7 @@
 
                             // Tạo chuỗi hiển thị timespan
                             var timespanString = formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
-                            
+
                             $("#dropdown3").append($('<option>', {
                                 value: option.MaSC,
                                 text: timespanString
@@ -161,5 +172,14 @@
                 });
             }
         });
-    </script>
-</body>
+@*function checkSession() {
+    var session = '@Session["user"]'
+    if (session === null) {
+        window.location.href = '@Url.Action("DangNhap", "DangNhapDangKy")';
+    }
+    else {
+        document.getElementById('purchaseForm').submit();
+    }
+}*@
+</script>
+    </body>

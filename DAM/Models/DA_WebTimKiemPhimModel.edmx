@@ -28,6 +28,7 @@
           <Property Name="TenTK" Type="varchar" MaxLength="50" />
           <Property Name="NgayDat" Type="date" Nullable="false" />
           <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PPThanhToan" Type="nvarchar" MaxLength="50" />
           <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="KhuyenMai">
@@ -157,7 +158,7 @@
           <Property Name="MaYT" Type="int" />
           <Property Name="MaPhim" Type="varchar" MaxLength="10" />
         </EntityType>
-        <Association Name="FK__Ghe_Ve__MaVe__4AB81AF0">
+        <Association Name="FK__Ghe_Ve__MaVe__5EBF139D">
           <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
           <End Role="Ghe_Ve" Type="Self.Ghe_Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ghe_Ve__MaVe__4BAC3F29">
+        <Association Name="FK__Ghe_Ve__MaVe__5FB337D6">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="Ghe_Ve" Type="Self.Ghe_Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -181,7 +182,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HoaDon__MaVe__5165187F">
+        <Association Name="FK__HoaDon__MaVe__656C112C">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,7 +194,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HoaDon__TrangTha__5070F446">
+        <Association Name="FK__HoaDon__TrangTha__6477ECF3">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -205,7 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KhuyenMai__NgayK__3E52440B">
+        <Association Name="FK__KhuyenMai__NgayK__5165187F">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichSu__TenTK__5535A963">
+        <Association Name="FK__LichSu__TenTK__693CA210">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="LichSu" Type="Self.LichSu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Phim_TheL__MaPhi__37A5467C">
+        <Association Name="FK__Phim_TheL__MaPhi__4AB81AF0">
           <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
           <End Role="Phim_TheLoai" Type="Self.Phim_TheLoai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Phim_TheL__MaPhi__38996AB5">
+        <Association Name="FK__Phim_TheL__MaPhi__4BAC3F29">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="Phim_TheLoai" Type="Self.Phim_TheLoai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -253,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu___MaSC__5EBF139D">
+        <Association Name="FK__SuatChieu___MaSC__72C60C4A">
           <End Role="SuatChieu" Type="Self.SuatChieu" Multiplicity="0..1" />
           <End Role="SuatChieu_Phim" Type="Self.SuatChieu_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -265,7 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu___MaSC__6383C8BA">
+        <Association Name="FK__SuatChieu___MaSC__778AC167">
           <End Role="SuatChieu" Type="Self.SuatChieu" Multiplicity="0..1" />
           <End Role="SuatChieu_Rap" Type="Self.SuatChieu_Rap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -277,7 +278,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu__MaPhi__5FB337D6">
+        <Association Name="FK__SuatChieu__MaPhi__73BA3083">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="SuatChieu_Phim" Type="Self.SuatChieu_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -289,7 +290,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu__MaRap__6477ECF3">
+        <Association Name="FK__SuatChieu__MaRap__787EE5A0">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="SuatChieu_Rap" Type="Self.SuatChieu_Rap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -301,7 +302,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__MaPhim__440B1D61">
+        <Association Name="FK__Ve__MaPhim__571DF1D5">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -313,7 +314,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__MaRap__44FF419A">
+        <Association Name="FK__Ve__MaRap__5812160E">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -325,7 +326,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__TrangThaiVe__4316F928">
+        <Association Name="FK__Ve__TrangThaiVe__5629CD9C">
           <End Role="SuatChieu" Type="Self.SuatChieu" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -337,7 +338,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__YeuThich___MaPhi__5AEE82B9">
+        <Association Name="FK__YeuThich___MaPhi__6EF57B66">
           <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="0..1" />
           <End Role="YeuThich_Phim" Type="Self.YeuThich_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -349,7 +350,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__YeuThich___MaPhi__5BE2A6F2">
+        <Association Name="FK__YeuThich___MaPhi__6FE99F9F">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="YeuThich_Phim" Type="Self.YeuThich_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -361,7 +362,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__YeuThich__TenTK__5812160E">
+        <Association Name="FK__YeuThich__TenTK__6C190EBB">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
           <ReferentialConstraint>
@@ -381,6 +382,7 @@
           <Parameter Name="TenTK" Type="varchar" Mode="In" />
           <Parameter Name="NgayDat" Type="date" Mode="In" />
           <Parameter Name="TongTien" Type="decimal" Mode="In" />
+          <Parameter Name="PPThanhToan" Type="nvarchar" Mode="In" />
           <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="InsertKhuyenMai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -445,6 +447,13 @@
           <Parameter Name="NgayDK" Type="date" Mode="In" />
           <Parameter Name="TrangThai" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="InsertVe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSC" Type="varchar" Mode="In" />
+          <Parameter Name="MaPhim" Type="varchar" Mode="In" />
+          <Parameter Name="MaRap" Type="varchar" Mode="In" />
+          <Parameter Name="NgayTao" Type="date" Mode="In" />
+          <Parameter Name="TrangThaiVe" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="ThongKeDoanhThuTheoThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DA_WebTimKiemPhimModelStoreContainer">
           <EntitySet Name="Ghe" EntityType="Self.Ghe" Schema="dbo" store:Type="Tables" />
@@ -463,75 +472,75 @@
           <EntitySet Name="Ve" EntityType="Self.Ve" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YeuThich" EntityType="Self.YeuThich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YeuThich_Phim" EntityType="Self.YeuThich_Phim" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Ghe_Ve__MaVe__4AB81AF0" Association="Self.FK__Ghe_Ve__MaVe__4AB81AF0">
+          <AssociationSet Name="FK__Ghe_Ve__MaVe__5EBF139D" Association="Self.FK__Ghe_Ve__MaVe__5EBF139D">
             <End Role="Ghe" EntitySet="Ghe" />
             <End Role="Ghe_Ve" EntitySet="Ghe_Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ghe_Ve__MaVe__4BAC3F29" Association="Self.FK__Ghe_Ve__MaVe__4BAC3F29">
+          <AssociationSet Name="FK__Ghe_Ve__MaVe__5FB337D6" Association="Self.FK__Ghe_Ve__MaVe__5FB337D6">
             <End Role="Ve" EntitySet="Ve" />
             <End Role="Ghe_Ve" EntitySet="Ghe_Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__HoaDon__MaVe__5165187F" Association="Self.FK__HoaDon__MaVe__5165187F">
+          <AssociationSet Name="FK__HoaDon__MaVe__656C112C" Association="Self.FK__HoaDon__MaVe__656C112C">
             <End Role="Ve" EntitySet="Ve" />
             <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__HoaDon__TrangTha__5070F446" Association="Self.FK__HoaDon__TrangTha__5070F446">
+          <AssociationSet Name="FK__HoaDon__TrangTha__6477ECF3" Association="Self.FK__HoaDon__TrangTha__6477ECF3">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
-          <AssociationSet Name="FK__KhuyenMai__NgayK__3E52440B" Association="Self.FK__KhuyenMai__NgayK__3E52440B">
+          <AssociationSet Name="FK__KhuyenMai__NgayK__5165187F" Association="Self.FK__KhuyenMai__NgayK__5165187F">
             <End Role="Rap" EntitySet="Rap" />
             <End Role="KhuyenMai" EntitySet="KhuyenMai" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichSu__TenTK__5535A963" Association="Self.FK__LichSu__TenTK__5535A963">
+          <AssociationSet Name="FK__LichSu__TenTK__693CA210" Association="Self.FK__LichSu__TenTK__693CA210">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="LichSu" EntitySet="LichSu" />
           </AssociationSet>
-          <AssociationSet Name="FK__Phim_TheL__MaPhi__37A5467C" Association="Self.FK__Phim_TheL__MaPhi__37A5467C">
+          <AssociationSet Name="FK__Phim_TheL__MaPhi__4AB81AF0" Association="Self.FK__Phim_TheL__MaPhi__4AB81AF0">
             <End Role="TheLoai" EntitySet="TheLoai" />
             <End Role="Phim_TheLoai" EntitySet="Phim_TheLoai" />
           </AssociationSet>
-          <AssociationSet Name="FK__Phim_TheL__MaPhi__38996AB5" Association="Self.FK__Phim_TheL__MaPhi__38996AB5">
+          <AssociationSet Name="FK__Phim_TheL__MaPhi__4BAC3F29" Association="Self.FK__Phim_TheL__MaPhi__4BAC3F29">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="Phim_TheLoai" EntitySet="Phim_TheLoai" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu___MaSC__5EBF139D" Association="Self.FK__SuatChieu___MaSC__5EBF139D">
+          <AssociationSet Name="FK__SuatChieu___MaSC__72C60C4A" Association="Self.FK__SuatChieu___MaSC__72C60C4A">
             <End Role="SuatChieu" EntitySet="SuatChieu" />
             <End Role="SuatChieu_Phim" EntitySet="SuatChieu_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu___MaSC__6383C8BA" Association="Self.FK__SuatChieu___MaSC__6383C8BA">
+          <AssociationSet Name="FK__SuatChieu___MaSC__778AC167" Association="Self.FK__SuatChieu___MaSC__778AC167">
             <End Role="SuatChieu" EntitySet="SuatChieu" />
             <End Role="SuatChieu_Rap" EntitySet="SuatChieu_Rap" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu__MaPhi__5FB337D6" Association="Self.FK__SuatChieu__MaPhi__5FB337D6">
+          <AssociationSet Name="FK__SuatChieu__MaPhi__73BA3083" Association="Self.FK__SuatChieu__MaPhi__73BA3083">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="SuatChieu_Phim" EntitySet="SuatChieu_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu__MaRap__6477ECF3" Association="Self.FK__SuatChieu__MaRap__6477ECF3">
+          <AssociationSet Name="FK__SuatChieu__MaRap__787EE5A0" Association="Self.FK__SuatChieu__MaRap__787EE5A0">
             <End Role="Rap" EntitySet="Rap" />
             <End Role="SuatChieu_Rap" EntitySet="SuatChieu_Rap" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__MaPhim__440B1D61" Association="Self.FK__Ve__MaPhim__440B1D61">
+          <AssociationSet Name="FK__Ve__MaPhim__571DF1D5" Association="Self.FK__Ve__MaPhim__571DF1D5">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__MaRap__44FF419A" Association="Self.FK__Ve__MaRap__44FF419A">
+          <AssociationSet Name="FK__Ve__MaRap__5812160E" Association="Self.FK__Ve__MaRap__5812160E">
             <End Role="Rap" EntitySet="Rap" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__TrangThaiVe__4316F928" Association="Self.FK__Ve__TrangThaiVe__4316F928">
+          <AssociationSet Name="FK__Ve__TrangThaiVe__5629CD9C" Association="Self.FK__Ve__TrangThaiVe__5629CD9C">
             <End Role="SuatChieu" EntitySet="SuatChieu" />
             <End Role="Ve" EntitySet="Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__YeuThich___MaPhi__5AEE82B9" Association="Self.FK__YeuThich___MaPhi__5AEE82B9">
+          <AssociationSet Name="FK__YeuThich___MaPhi__6EF57B66" Association="Self.FK__YeuThich___MaPhi__6EF57B66">
             <End Role="YeuThich" EntitySet="YeuThich" />
             <End Role="YeuThich_Phim" EntitySet="YeuThich_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__YeuThich___MaPhi__5BE2A6F2" Association="Self.FK__YeuThich___MaPhi__5BE2A6F2">
+          <AssociationSet Name="FK__YeuThich___MaPhi__6FE99F9F" Association="Self.FK__YeuThich___MaPhi__6FE99F9F">
             <End Role="Phim" EntitySet="Phim" />
             <End Role="YeuThich_Phim" EntitySet="YeuThich_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__YeuThich__TenTK__5812160E" Association="Self.FK__YeuThich__TenTK__5812160E">
+          <AssociationSet Name="FK__YeuThich__TenTK__6C190EBB" Association="Self.FK__YeuThich__TenTK__6C190EBB">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="YeuThich" EntitySet="YeuThich" />
           </AssociationSet>
@@ -546,7 +555,7 @@
             <PropertyRef Name="MaGhe" />
           </Key>
           <Property Name="MaGhe" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Ghe_Ve" Relationship="Self.FK__Ghe_Ve__MaVe__4AB81AF0" FromRole="Ghe" ToRole="Ghe_Ve" />
+          <NavigationProperty Name="Ghe_Ve" Relationship="Self.FK__Ghe_Ve__MaVe__5EBF139D" FromRole="Ghe" ToRole="Ghe_Ve" />
         </EntityType>
         <EntityType Name="Ghe_Ve">
           <Key>
@@ -555,8 +564,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaGhe" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="MaVe" Type="Int32" />
-          <NavigationProperty Name="Ghe" Relationship="Self.FK__Ghe_Ve__MaVe__4AB81AF0" FromRole="Ghe_Ve" ToRole="Ghe" />
-          <NavigationProperty Name="Ve" Relationship="Self.FK__Ghe_Ve__MaVe__4BAC3F29" FromRole="Ghe_Ve" ToRole="Ve" />
+          <NavigationProperty Name="Ghe" Relationship="Self.FK__Ghe_Ve__MaVe__5EBF139D" FromRole="Ghe_Ve" ToRole="Ghe" />
+          <NavigationProperty Name="Ve" Relationship="Self.FK__Ghe_Ve__MaVe__5FB337D6" FromRole="Ghe_Ve" ToRole="Ve" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -567,9 +576,10 @@
           <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NgayDat" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PPThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Ve" Relationship="Self.FK__HoaDon__MaVe__5165187F" FromRole="HoaDon" ToRole="Ve" />
-          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__HoaDon__TrangTha__5070F446" FromRole="HoaDon" ToRole="TaiKhoan" />
+          <NavigationProperty Name="Ve" Relationship="Self.FK__HoaDon__MaVe__656C112C" FromRole="HoaDon" ToRole="Ve" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__HoaDon__TrangTha__6477ECF3" FromRole="HoaDon" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="KhuyenMai">
           <Key>
@@ -582,7 +592,7 @@
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NgayBD" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="NgayKT" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Rap" Relationship="Self.FK__KhuyenMai__NgayK__3E52440B" FromRole="KhuyenMai" ToRole="Rap" />
+          <NavigationProperty Name="Rap" Relationship="Self.FK__KhuyenMai__NgayK__5165187F" FromRole="KhuyenMai" ToRole="Rap" />
         </EntityType>
         <EntityType Name="LichSu">
           <Key>
@@ -592,7 +602,7 @@
           <Property Name="ThongTinTT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NgayGioTT" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__LichSu__TenTK__5535A963" FromRole="LichSu" ToRole="TaiKhoan" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__LichSu__TenTK__693CA210" FromRole="LichSu" ToRole="TaiKhoan" />
         </EntityType>
         <EntityType Name="Phim">
           <Key>
@@ -607,10 +617,10 @@
           <Property Name="ThoiLuong" Type="Int32" />
           <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayChieu" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Phim_TheLoai" Relationship="Self.FK__Phim_TheL__MaPhi__38996AB5" FromRole="Phim" ToRole="Phim_TheLoai" />
-          <NavigationProperty Name="SuatChieu_Phim" Relationship="Self.FK__SuatChieu__MaPhi__5FB337D6" FromRole="Phim" ToRole="SuatChieu_Phim" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__MaPhim__440B1D61" FromRole="Phim" ToRole="Ve" />
-          <NavigationProperty Name="YeuThich_Phim" Relationship="Self.FK__YeuThich___MaPhi__5BE2A6F2" FromRole="Phim" ToRole="YeuThich_Phim" />
+          <NavigationProperty Name="Phim_TheLoai" Relationship="Self.FK__Phim_TheL__MaPhi__4BAC3F29" FromRole="Phim" ToRole="Phim_TheLoai" />
+          <NavigationProperty Name="SuatChieu_Phim" Relationship="Self.FK__SuatChieu__MaPhi__73BA3083" FromRole="Phim" ToRole="SuatChieu_Phim" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__MaPhim__571DF1D5" FromRole="Phim" ToRole="Ve" />
+          <NavigationProperty Name="YeuThich_Phim" Relationship="Self.FK__YeuThich___MaPhi__6FE99F9F" FromRole="Phim" ToRole="YeuThich_Phim" />
         </EntityType>
         <EntityType Name="Phim_TheLoai">
           <Key>
@@ -619,8 +629,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaTL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaPhim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__Phim_TheL__MaPhi__38996AB5" FromRole="Phim_TheLoai" ToRole="Phim" />
-          <NavigationProperty Name="TheLoai" Relationship="Self.FK__Phim_TheL__MaPhi__37A5467C" FromRole="Phim_TheLoai" ToRole="TheLoai" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__Phim_TheL__MaPhi__4BAC3F29" FromRole="Phim_TheLoai" ToRole="Phim" />
+          <NavigationProperty Name="TheLoai" Relationship="Self.FK__Phim_TheL__MaPhi__4AB81AF0" FromRole="Phim_TheLoai" ToRole="TheLoai" />
         </EntityType>
         <EntityType Name="Rap">
           <Key>
@@ -631,9 +641,9 @@
           <Property Name="DiaChi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GiaVe" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="TrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="KhuyenMais" Relationship="Self.FK__KhuyenMai__NgayK__3E52440B" FromRole="Rap" ToRole="KhuyenMai" />
-          <NavigationProperty Name="SuatChieu_Rap" Relationship="Self.FK__SuatChieu__MaRap__6477ECF3" FromRole="Rap" ToRole="SuatChieu_Rap" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__MaRap__44FF419A" FromRole="Rap" ToRole="Ve" />
+          <NavigationProperty Name="KhuyenMais" Relationship="Self.FK__KhuyenMai__NgayK__5165187F" FromRole="Rap" ToRole="KhuyenMai" />
+          <NavigationProperty Name="SuatChieu_Rap" Relationship="Self.FK__SuatChieu__MaRap__787EE5A0" FromRole="Rap" ToRole="SuatChieu_Rap" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__MaRap__5812160E" FromRole="Rap" ToRole="Ve" />
         </EntityType>
         <EntityType Name="SuatChieu">
           <Key>
@@ -643,9 +653,9 @@
           <Property Name="KhungGio" Type="Time" Nullable="false" Precision="7" />
           <Property Name="LoaiChieu" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TrangThai" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SuatChieu_Phim" Relationship="Self.FK__SuatChieu___MaSC__5EBF139D" FromRole="SuatChieu" ToRole="SuatChieu_Phim" />
-          <NavigationProperty Name="SuatChieu_Rap" Relationship="Self.FK__SuatChieu___MaSC__6383C8BA" FromRole="SuatChieu" ToRole="SuatChieu_Rap" />
-          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__TrangThaiVe__4316F928" FromRole="SuatChieu" ToRole="Ve" />
+          <NavigationProperty Name="SuatChieu_Phim" Relationship="Self.FK__SuatChieu___MaSC__72C60C4A" FromRole="SuatChieu" ToRole="SuatChieu_Phim" />
+          <NavigationProperty Name="SuatChieu_Rap" Relationship="Self.FK__SuatChieu___MaSC__778AC167" FromRole="SuatChieu" ToRole="SuatChieu_Rap" />
+          <NavigationProperty Name="Ves" Relationship="Self.FK__Ve__TrangThaiVe__5629CD9C" FromRole="SuatChieu" ToRole="Ve" />
         </EntityType>
         <EntityType Name="SuatChieu_Phim">
           <Key>
@@ -654,8 +664,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaSC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaPhim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__SuatChieu__MaPhi__5FB337D6" FromRole="SuatChieu_Phim" ToRole="Phim" />
-          <NavigationProperty Name="SuatChieu" Relationship="Self.FK__SuatChieu___MaSC__5EBF139D" FromRole="SuatChieu_Phim" ToRole="SuatChieu" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__SuatChieu__MaPhi__73BA3083" FromRole="SuatChieu_Phim" ToRole="Phim" />
+          <NavigationProperty Name="SuatChieu" Relationship="Self.FK__SuatChieu___MaSC__72C60C4A" FromRole="SuatChieu_Phim" ToRole="SuatChieu" />
         </EntityType>
         <EntityType Name="SuatChieu_Rap">
           <Key>
@@ -665,8 +675,8 @@
           <Property Name="MaSC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MaRap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NgayChieu" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Rap" Relationship="Self.FK__SuatChieu__MaRap__6477ECF3" FromRole="SuatChieu_Rap" ToRole="Rap" />
-          <NavigationProperty Name="SuatChieu" Relationship="Self.FK__SuatChieu___MaSC__6383C8BA" FromRole="SuatChieu_Rap" ToRole="SuatChieu" />
+          <NavigationProperty Name="Rap" Relationship="Self.FK__SuatChieu__MaRap__787EE5A0" FromRole="SuatChieu_Rap" ToRole="Rap" />
+          <NavigationProperty Name="SuatChieu" Relationship="Self.FK__SuatChieu___MaSC__778AC167" FromRole="SuatChieu_Rap" ToRole="SuatChieu" />
         </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
@@ -682,9 +692,9 @@
           <Property Name="LoaiTK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NgayDK" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__TrangTha__5070F446" FromRole="TaiKhoan" ToRole="HoaDon" />
-          <NavigationProperty Name="LichSus" Relationship="Self.FK__LichSu__TenTK__5535A963" FromRole="TaiKhoan" ToRole="LichSu" />
-          <NavigationProperty Name="YeuThiches" Relationship="Self.FK__YeuThich__TenTK__5812160E" FromRole="TaiKhoan" ToRole="YeuThich" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__TrangTha__6477ECF3" FromRole="TaiKhoan" ToRole="HoaDon" />
+          <NavigationProperty Name="LichSus" Relationship="Self.FK__LichSu__TenTK__693CA210" FromRole="TaiKhoan" ToRole="LichSu" />
+          <NavigationProperty Name="YeuThiches" Relationship="Self.FK__YeuThich__TenTK__6C190EBB" FromRole="TaiKhoan" ToRole="YeuThich" />
         </EntityType>
         <EntityType Name="TheLoai">
           <Key>
@@ -692,7 +702,7 @@
           </Key>
           <Property Name="MaTL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenTL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Phim_TheLoai" Relationship="Self.FK__Phim_TheL__MaPhi__37A5467C" FromRole="TheLoai" ToRole="Phim_TheLoai" />
+          <NavigationProperty Name="Phim_TheLoai" Relationship="Self.FK__Phim_TheL__MaPhi__4AB81AF0" FromRole="TheLoai" ToRole="Phim_TheLoai" />
         </EntityType>
         <EntityType Name="Ve">
           <Key>
@@ -704,11 +714,11 @@
           <Property Name="MaRap" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NgayTao" Type="DateTime" Precision="0" />
           <Property Name="TrangThaiVe" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Ghe_Ve" Relationship="Self.FK__Ghe_Ve__MaVe__4BAC3F29" FromRole="Ve" ToRole="Ghe_Ve" />
-          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__MaVe__5165187F" FromRole="Ve" ToRole="HoaDon" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__Ve__MaPhim__440B1D61" FromRole="Ve" ToRole="Phim" />
-          <NavigationProperty Name="Rap" Relationship="Self.FK__Ve__MaRap__44FF419A" FromRole="Ve" ToRole="Rap" />
-          <NavigationProperty Name="SuatChieu" Relationship="Self.FK__Ve__TrangThaiVe__4316F928" FromRole="Ve" ToRole="SuatChieu" />
+          <NavigationProperty Name="Ghe_Ve" Relationship="Self.FK__Ghe_Ve__MaVe__5FB337D6" FromRole="Ve" ToRole="Ghe_Ve" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK__HoaDon__MaVe__656C112C" FromRole="Ve" ToRole="HoaDon" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__Ve__MaPhim__571DF1D5" FromRole="Ve" ToRole="Phim" />
+          <NavigationProperty Name="Rap" Relationship="Self.FK__Ve__MaRap__5812160E" FromRole="Ve" ToRole="Rap" />
+          <NavigationProperty Name="SuatChieu" Relationship="Self.FK__Ve__TrangThaiVe__5629CD9C" FromRole="Ve" ToRole="SuatChieu" />
         </EntityType>
         <EntityType Name="YeuThich">
           <Key>
@@ -716,8 +726,8 @@
           </Key>
           <Property Name="MaYT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__YeuThich__TenTK__5812160E" FromRole="YeuThich" ToRole="TaiKhoan" />
-          <NavigationProperty Name="YeuThich_Phim" Relationship="Self.FK__YeuThich___MaPhi__5AEE82B9" FromRole="YeuThich" ToRole="YeuThich_Phim" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__YeuThich__TenTK__6C190EBB" FromRole="YeuThich" ToRole="TaiKhoan" />
+          <NavigationProperty Name="YeuThich_Phim" Relationship="Self.FK__YeuThich___MaPhi__6EF57B66" FromRole="YeuThich" ToRole="YeuThich_Phim" />
         </EntityType>
         <EntityType Name="YeuThich_Phim">
           <Key>
@@ -726,10 +736,10 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaYT" Type="Int32" />
           <Property Name="MaPhim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Phim" Relationship="Self.FK__YeuThich___MaPhi__5BE2A6F2" FromRole="YeuThich_Phim" ToRole="Phim" />
-          <NavigationProperty Name="YeuThich" Relationship="Self.FK__YeuThich___MaPhi__5AEE82B9" FromRole="YeuThich_Phim" ToRole="YeuThich" />
+          <NavigationProperty Name="Phim" Relationship="Self.FK__YeuThich___MaPhi__6FE99F9F" FromRole="YeuThich_Phim" ToRole="Phim" />
+          <NavigationProperty Name="YeuThich" Relationship="Self.FK__YeuThich___MaPhi__6EF57B66" FromRole="YeuThich_Phim" ToRole="YeuThich" />
         </EntityType>
-        <Association Name="FK__Ghe_Ve__MaVe__4AB81AF0">
+        <Association Name="FK__Ghe_Ve__MaVe__5EBF139D">
           <End Role="Ghe" Type="Self.Ghe" Multiplicity="0..1" />
           <End Role="Ghe_Ve" Type="Self.Ghe_Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -741,7 +751,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ghe_Ve__MaVe__4BAC3F29">
+        <Association Name="FK__Ghe_Ve__MaVe__5FB337D6">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="Ghe_Ve" Type="Self.Ghe_Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -753,7 +763,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HoaDon__MaVe__5165187F">
+        <Association Name="FK__HoaDon__MaVe__656C112C">
           <End Role="Ve" Type="Self.Ve" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -765,7 +775,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HoaDon__TrangTha__5070F446">
+        <Association Name="FK__HoaDon__TrangTha__6477ECF3">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
@@ -777,7 +787,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__KhuyenMai__NgayK__3E52440B">
+        <Association Name="FK__KhuyenMai__NgayK__5165187F">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="KhuyenMai" Type="Self.KhuyenMai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -789,7 +799,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LichSu__TenTK__5535A963">
+        <Association Name="FK__LichSu__TenTK__693CA210">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="LichSu" Type="Self.LichSu" Multiplicity="*" />
           <ReferentialConstraint>
@@ -801,7 +811,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Phim_TheL__MaPhi__38996AB5">
+        <Association Name="FK__Phim_TheL__MaPhi__4BAC3F29">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="Phim_TheLoai" Type="Self.Phim_TheLoai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -813,7 +823,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu__MaPhi__5FB337D6">
+        <Association Name="FK__SuatChieu__MaPhi__73BA3083">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="SuatChieu_Phim" Type="Self.SuatChieu_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -825,7 +835,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__MaPhim__440B1D61">
+        <Association Name="FK__Ve__MaPhim__571DF1D5">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -837,7 +847,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__YeuThich___MaPhi__5BE2A6F2">
+        <Association Name="FK__YeuThich___MaPhi__6FE99F9F">
           <End Role="Phim" Type="Self.Phim" Multiplicity="0..1" />
           <End Role="YeuThich_Phim" Type="Self.YeuThich_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -849,7 +859,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Phim_TheL__MaPhi__37A5467C">
+        <Association Name="FK__Phim_TheL__MaPhi__4AB81AF0">
           <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
           <End Role="Phim_TheLoai" Type="Self.Phim_TheLoai" Multiplicity="*" />
           <ReferentialConstraint>
@@ -861,7 +871,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu__MaRap__6477ECF3">
+        <Association Name="FK__SuatChieu__MaRap__787EE5A0">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="SuatChieu_Rap" Type="Self.SuatChieu_Rap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -873,7 +883,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__MaRap__44FF419A">
+        <Association Name="FK__Ve__MaRap__5812160E">
           <End Role="Rap" Type="Self.Rap" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -885,7 +895,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu___MaSC__5EBF139D">
+        <Association Name="FK__SuatChieu___MaSC__72C60C4A">
           <End Role="SuatChieu" Type="Self.SuatChieu" Multiplicity="0..1" />
           <End Role="SuatChieu_Phim" Type="Self.SuatChieu_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -897,7 +907,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SuatChieu___MaSC__6383C8BA">
+        <Association Name="FK__SuatChieu___MaSC__778AC167">
           <End Role="SuatChieu" Type="Self.SuatChieu" Multiplicity="0..1" />
           <End Role="SuatChieu_Rap" Type="Self.SuatChieu_Rap" Multiplicity="*" />
           <ReferentialConstraint>
@@ -909,7 +919,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ve__TrangThaiVe__4316F928">
+        <Association Name="FK__Ve__TrangThaiVe__5629CD9C">
           <End Role="SuatChieu" Type="Self.SuatChieu" Multiplicity="0..1" />
           <End Role="Ve" Type="Self.Ve" Multiplicity="*" />
           <ReferentialConstraint>
@@ -921,7 +931,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__YeuThich__TenTK__5812160E">
+        <Association Name="FK__YeuThich__TenTK__6C190EBB">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
           <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="*" />
           <ReferentialConstraint>
@@ -933,7 +943,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__YeuThich___MaPhi__5AEE82B9">
+        <Association Name="FK__YeuThich___MaPhi__6EF57B66">
           <End Role="YeuThich" Type="Self.YeuThich" Multiplicity="0..1" />
           <End Role="YeuThich_Phim" Type="Self.YeuThich_Phim" Multiplicity="*" />
           <ReferentialConstraint>
@@ -962,75 +972,75 @@
           <EntitySet Name="Ves" EntityType="Self.Ve" />
           <EntitySet Name="YeuThiches" EntityType="Self.YeuThich" />
           <EntitySet Name="YeuThich_Phim" EntityType="Self.YeuThich_Phim" />
-          <AssociationSet Name="FK__Ghe_Ve__MaVe__4AB81AF0" Association="Self.FK__Ghe_Ve__MaVe__4AB81AF0">
+          <AssociationSet Name="FK__Ghe_Ve__MaVe__5EBF139D" Association="Self.FK__Ghe_Ve__MaVe__5EBF139D">
             <End Role="Ghe" EntitySet="Ghes" />
             <End Role="Ghe_Ve" EntitySet="Ghe_Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ghe_Ve__MaVe__4BAC3F29" Association="Self.FK__Ghe_Ve__MaVe__4BAC3F29">
+          <AssociationSet Name="FK__Ghe_Ve__MaVe__5FB337D6" Association="Self.FK__Ghe_Ve__MaVe__5FB337D6">
             <End Role="Ve" EntitySet="Ves" />
             <End Role="Ghe_Ve" EntitySet="Ghe_Ve" />
           </AssociationSet>
-          <AssociationSet Name="FK__HoaDon__MaVe__5165187F" Association="Self.FK__HoaDon__MaVe__5165187F">
+          <AssociationSet Name="FK__HoaDon__MaVe__656C112C" Association="Self.FK__HoaDon__MaVe__656C112C">
             <End Role="Ve" EntitySet="Ves" />
             <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK__HoaDon__TrangTha__5070F446" Association="Self.FK__HoaDon__TrangTha__5070F446">
+          <AssociationSet Name="FK__HoaDon__TrangTha__6477ECF3" Association="Self.FK__HoaDon__TrangTha__6477ECF3">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="HoaDon" EntitySet="HoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK__KhuyenMai__NgayK__3E52440B" Association="Self.FK__KhuyenMai__NgayK__3E52440B">
+          <AssociationSet Name="FK__KhuyenMai__NgayK__5165187F" Association="Self.FK__KhuyenMai__NgayK__5165187F">
             <End Role="Rap" EntitySet="Raps" />
             <End Role="KhuyenMai" EntitySet="KhuyenMais" />
           </AssociationSet>
-          <AssociationSet Name="FK__LichSu__TenTK__5535A963" Association="Self.FK__LichSu__TenTK__5535A963">
+          <AssociationSet Name="FK__LichSu__TenTK__693CA210" Association="Self.FK__LichSu__TenTK__693CA210">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="LichSu" EntitySet="LichSus" />
           </AssociationSet>
-          <AssociationSet Name="FK__Phim_TheL__MaPhi__38996AB5" Association="Self.FK__Phim_TheL__MaPhi__38996AB5">
+          <AssociationSet Name="FK__Phim_TheL__MaPhi__4BAC3F29" Association="Self.FK__Phim_TheL__MaPhi__4BAC3F29">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="Phim_TheLoai" EntitySet="Phim_TheLoai" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu__MaPhi__5FB337D6" Association="Self.FK__SuatChieu__MaPhi__5FB337D6">
+          <AssociationSet Name="FK__SuatChieu__MaPhi__73BA3083" Association="Self.FK__SuatChieu__MaPhi__73BA3083">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="SuatChieu_Phim" EntitySet="SuatChieu_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__MaPhim__440B1D61" Association="Self.FK__Ve__MaPhim__440B1D61">
+          <AssociationSet Name="FK__Ve__MaPhim__571DF1D5" Association="Self.FK__Ve__MaPhim__571DF1D5">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__YeuThich___MaPhi__5BE2A6F2" Association="Self.FK__YeuThich___MaPhi__5BE2A6F2">
+          <AssociationSet Name="FK__YeuThich___MaPhi__6FE99F9F" Association="Self.FK__YeuThich___MaPhi__6FE99F9F">
             <End Role="Phim" EntitySet="Phims" />
             <End Role="YeuThich_Phim" EntitySet="YeuThich_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__Phim_TheL__MaPhi__37A5467C" Association="Self.FK__Phim_TheL__MaPhi__37A5467C">
+          <AssociationSet Name="FK__Phim_TheL__MaPhi__4AB81AF0" Association="Self.FK__Phim_TheL__MaPhi__4AB81AF0">
             <End Role="TheLoai" EntitySet="TheLoais" />
             <End Role="Phim_TheLoai" EntitySet="Phim_TheLoai" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu__MaRap__6477ECF3" Association="Self.FK__SuatChieu__MaRap__6477ECF3">
+          <AssociationSet Name="FK__SuatChieu__MaRap__787EE5A0" Association="Self.FK__SuatChieu__MaRap__787EE5A0">
             <End Role="Rap" EntitySet="Raps" />
             <End Role="SuatChieu_Rap" EntitySet="SuatChieu_Rap" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__MaRap__44FF419A" Association="Self.FK__Ve__MaRap__44FF419A">
+          <AssociationSet Name="FK__Ve__MaRap__5812160E" Association="Self.FK__Ve__MaRap__5812160E">
             <End Role="Rap" EntitySet="Raps" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu___MaSC__5EBF139D" Association="Self.FK__SuatChieu___MaSC__5EBF139D">
+          <AssociationSet Name="FK__SuatChieu___MaSC__72C60C4A" Association="Self.FK__SuatChieu___MaSC__72C60C4A">
             <End Role="SuatChieu" EntitySet="SuatChieux" />
             <End Role="SuatChieu_Phim" EntitySet="SuatChieu_Phim" />
           </AssociationSet>
-          <AssociationSet Name="FK__SuatChieu___MaSC__6383C8BA" Association="Self.FK__SuatChieu___MaSC__6383C8BA">
+          <AssociationSet Name="FK__SuatChieu___MaSC__778AC167" Association="Self.FK__SuatChieu___MaSC__778AC167">
             <End Role="SuatChieu" EntitySet="SuatChieux" />
             <End Role="SuatChieu_Rap" EntitySet="SuatChieu_Rap" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ve__TrangThaiVe__4316F928" Association="Self.FK__Ve__TrangThaiVe__4316F928">
+          <AssociationSet Name="FK__Ve__TrangThaiVe__5629CD9C" Association="Self.FK__Ve__TrangThaiVe__5629CD9C">
             <End Role="SuatChieu" EntitySet="SuatChieux" />
             <End Role="Ve" EntitySet="Ves" />
           </AssociationSet>
-          <AssociationSet Name="FK__YeuThich__TenTK__5812160E" Association="Self.FK__YeuThich__TenTK__5812160E">
+          <AssociationSet Name="FK__YeuThich__TenTK__6C190EBB" Association="Self.FK__YeuThich__TenTK__6C190EBB">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="YeuThich" EntitySet="YeuThiches" />
           </AssociationSet>
-          <AssociationSet Name="FK__YeuThich___MaPhi__5AEE82B9" Association="Self.FK__YeuThich___MaPhi__5AEE82B9">
+          <AssociationSet Name="FK__YeuThich___MaPhi__6EF57B66" Association="Self.FK__YeuThich___MaPhi__6EF57B66">
             <End Role="YeuThich" EntitySet="YeuThiches" />
             <End Role="YeuThich_Phim" EntitySet="YeuThich_Phim" />
           </AssociationSet>
@@ -1042,6 +1052,7 @@
             <Parameter Name="TenTK" Mode="In" Type="String" />
             <Parameter Name="NgayDat" Mode="In" Type="DateTime" />
             <Parameter Name="TongTien" Mode="In" Type="Decimal" />
+            <Parameter Name="PPThanhToan" Mode="In" Type="String" />
             <Parameter Name="TrangThai" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertKhuyenMai">
@@ -1106,6 +1117,13 @@
             <Parameter Name="NgayDK" Mode="In" Type="DateTime" />
             <Parameter Name="TrangThai" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="InsertVe">
+            <Parameter Name="MaSC" Mode="In" Type="String" />
+            <Parameter Name="MaPhim" Mode="In" Type="String" />
+            <Parameter Name="MaRap" Mode="In" Type="String" />
+            <Parameter Name="NgayTao" Mode="In" Type="DateTime" />
+            <Parameter Name="TrangThaiVe" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="ThongKeDoanhThuTheoThang" ReturnType="Collection(DA_WebTimKiemPhimModel.ThongKeDoanhThuTheoThang_Result)" />
         </EntityContainer>
         <ComplexType Name="DemTKTheoThangNam_Result">
@@ -1147,6 +1165,7 @@
                 <ScalarProperty Name="TenTK" ColumnName="TenTK" />
                 <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="PPThanhToan" ColumnName="PPThanhToan" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1311,6 +1330,7 @@
           <FunctionImportMapping FunctionImportName="insertSuatChieu_Rap" FunctionName="DA_WebTimKiemPhimModel.Store.insertSuatChieu_Rap" />
           <FunctionImportMapping FunctionImportName="InsertTheLoai" FunctionName="DA_WebTimKiemPhimModel.Store.InsertTheLoai" />
           <FunctionImportMapping FunctionImportName="InsertTK" FunctionName="DA_WebTimKiemPhimModel.Store.InsertTK" />
+          <FunctionImportMapping FunctionImportName="InsertVe" FunctionName="DA_WebTimKiemPhimModel.Store.InsertVe" />
           <FunctionImportMapping FunctionImportName="ThongKeDoanhThuTheoThang" FunctionName="DA_WebTimKiemPhimModel.Store.ThongKeDoanhThuTheoThang">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DA_WebTimKiemPhimModel.ThongKeDoanhThuTheoThang_Result">

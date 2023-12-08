@@ -243,6 +243,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Salt_MH\MH_GM.cs" />
+    <Compile Include="Models\ViewModel\ChiTietKMViewModel.cs" />
+    <Compile Include="Models\ViewModel\ChiTietPhimViewModel.cs" />
     <Compile Include="Models\DA_WebTimKiemPhimModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -276,25 +279,31 @@
     <Compile Include="Models\LichSu.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\HoaDonViewModel.cs" />
+    <Compile Include="Models\ViewModel\PhanLoaiPhimViewModel.cs" />
     <Compile Include="Models\Phim.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\PhimViewModel.cs" />
     <Compile Include="Models\Phim_TheLoai.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rap.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Salt_MH\MH_GM.cs" />
+    <Compile Include="Models\ViewModel\RapPhimViewModel.cs" />
+    <Compile Include="Models\ViewModel\RapSCPhimViewModel.cs" />
     <Compile Include="Models\SuatChieu.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\SuatChieuPhimModel.cs" />
     <Compile Include="Models\SuatChieu_Phim.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SuatChieu_Rap.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\SuatChieu_RapViewModel.cs" />
     <Compile Include="Models\TaiKhoan.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
@@ -304,18 +313,10 @@
     <Compile Include="Models\ThongKeDoanhThuTheoThang_Result.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\TKViewModel.cs" />
     <Compile Include="Models\Ve.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ViewModel\ChiTietKMViewModel.cs" />
-    <Compile Include="Models\ViewModel\ChiTietPhimViewModel.cs" />
-    <Compile Include="Models\ViewModel\PhanLoaiPhimViewModel.cs" />
-    <Compile Include="Models\ViewModel\PhimViewModel.cs" />
-    <Compile Include="Models\ViewModel\RapPhimViewModel.cs" />
-    <Compile Include="Models\ViewModel\RapSCPhimViewModel.cs" />
-    <Compile Include="Models\ViewModel\SuatChieuPhimModel.cs" />
-    <Compile Include="Models\ViewModel\SuatChieu_RapViewModel.cs" />
-    <Compile Include="Models\ViewModel\TKViewModel.cs" />
     <Compile Include="Models\YeuThich.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>

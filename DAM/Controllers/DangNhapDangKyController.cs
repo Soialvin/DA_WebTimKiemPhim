@@ -1,6 +1,7 @@
 ﻿using CaptchaMvc.HtmlHelpers;
 using DAM.Models;
 using DAM.Models.Salt_MH;
+using DAM.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace DAM.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DangNhap(string user, string password, TaiKhoan tk)
+        public ActionResult DangNhap(string user, string password)
         {
             //Checkdb
 
@@ -76,7 +77,7 @@ namespace DAM.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DangKy(TaiKhoan tk)
+        public ActionResult DangKy(TKViewModel tk)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +98,7 @@ namespace DAM.Controllers
                         ViewBag.thongbao = "Sai mã captcha";
                         return View(tk);
                     }
+                    
                     tk.LoaiTK = "User";
                     tk.TrangThai = "Đang hoạt động";
                     tk.NgayDK = DateTime.Now;
@@ -105,7 +107,20 @@ namespace DAM.Controllers
                     //tk.MatKhau = BCryptNet.HashPassword(tk.MatKhau);
                     MH_GM mh = new MH_GM();
                     tk.MatKhau = mh.MH(tk.MatKhau);
-                    db.TaiKhoans.Add(tk);
+                    TaiKhoan tkkh = new TaiKhoan
+                    {
+                        TenTK =tk.TenTK,
+                        HoVaTen = tk.HoVaTen,
+                        MatKhau = tk.MatKhau,
+                        HinhAnh =tk.HinhAnh,
+                        DiaChi = tk.DiaChi,
+                        SoDienThoai = tk.SoDienThoai,
+                        Email = tk.Email,
+                        LoaiTK = tk.LoaiTK,
+                        NgayDK = tk.NgayDK,
+                        TrangThai = tk.TrangThai
+                    };
+                    db.TaiKhoans.Add(tkkh);
                     db.SaveChanges();
                     SetAlert("Đăng ký thành công", "sucsess");
                     return RedirectToAction("Dangnhap", "DangNhapDangKy");
