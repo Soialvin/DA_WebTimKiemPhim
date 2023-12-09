@@ -392,6 +392,15 @@
     <Content Include="Content\Image\user-1%402x.png" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\jquery.timepicker.min.css" />
+    <Content Include="Content\KMImages\happyday.jpg" />
+    <Content Include="Content\KMImages\thecung.png" />
+    <Content Include="Content\KMImages\thieunhi.png" />
+    <Content Include="Content\KMImages\tietkiem.png" />
+    <Content Include="Content\KMImages\u22.jpg" />
+    <Content Include="Content\KMImages\vnpay.png" />
+    <Content Include="Content\KMImages\voucherve.png" />
+    <Content Include="Content\KMImages\wish.jpg" />
+    <Content Include="Content\KMImages\zalo.png" />
     <Content Include="Content\MainLayout\css\bootstrap.css" />
     <Content Include="Content\MainLayout\css\contactstyle.css" />
     <Content Include="Content\MainLayout\css\faqstyle.css" />
@@ -495,6 +504,28 @@
     <Content Include="Content\MainLayout\js\move-top.js" />
     <Content Include="Content\MainLayout\js\owl.carousel.js" />
     <Content Include="Content\MainLayout\js\simplePlayer.js" />
+    <Content Include="Content\MovieImages\antman.png" />
+    <Content Include="Content\MovieImages\aquaman.png" />
+    <Content Include="Content\MovieImages\bankhongthan.png" />
+    <Content Include="Content\MovieImages\chiemdoat.png" />
+    <Content Include="Content\MovieImages\doctorstrange.png" />
+    <Content Include="Content\MovieImages\drpn.png" />
+    <Content Include="Content\MovieImages\dune.png" />
+    <Content Include="Content\MovieImages\insideout2.png" />
+    <Content Include="Content\MovieImages\keanhon.png" />
+    <Content Include="Content\MovieImages\kyan.png" />
+    <Content Include="Content\MovieImages\lordofthering.png" />
+    <Content Include="Content\MovieImages\lovereset.png" />
+    <Content Include="Content\MovieImages\napoleon.png" />
+    <Content Include="Content\MovieImages\nguoivocuoicung.png" />
+    <Content Include="Content\MovieImages\nhabanu.png" />
+    <Content Include="Content\MovieImages\nhavitdicu.png" />
+    <Content Include="Content\MovieImages\pawpatrol.png" />
+    <Content Include="Content\MovieImages\shazam.png" />
+    <Content Include="Content\MovieImages\themarvels.png" />
+    <Content Include="Content\MovieImages\troll.png" />
+    <Content Include="Content\MovieImages\wish.png" />
+    <Content Include="Content\MovieImages\wonka.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TKImages\systemusers_104569.png" />
     <Content Include="Content\web_Layout\css\bootstrap.min.css" />
@@ -689,8 +720,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\KMImages\" />
-    <Folder Include="Content\MovieImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
