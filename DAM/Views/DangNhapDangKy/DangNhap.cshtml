@@ -53,24 +53,17 @@
                             @TempData["error"]
                         </p>
                         <button type="submit" class="btn btn-primary theme-button mt-4">Log in</button>
-
-                        <div class="new-signup">
-                            <a href="~/DangNhapDangKy/DangKy" class="signuplink">Chưa có tên người dùng hoặc mật khẩu?</a>
-                        </div>
                     </form>
-                    <p class="signup"> <a href="@Url.Action("Main","Main")">Trang Chủ</a></p>
+                    <p class="signup" style=" display: flex; justify-content: space-around;">
+                        <a href="@Url.Action("Main","Main")">Trang Chủ</a>
+                        <a href="@Url.Action("DangKy","DangNhapDangKy")">Đăng ký ngay</a>
+                    </p>
                 </div>
             </div>
         </div>
         <div id='stars'></div>
         <div id='stars2'></div>
         <div id='stars3'></div>
-
-        <!-- copyright -->
-        <div class="copy-right">
-            <p style="color:black">&copy; 2023 Snow Login Form. All rights reserved | Design by <a href="https://www.facebook.com/profile.php?id=100041505130533" target="_blank" style="color:red;">Dũng Hồ</a></p>
-        </div>
-        <!-- //copyright -->
     </section>
 
     <!-- /login form -->

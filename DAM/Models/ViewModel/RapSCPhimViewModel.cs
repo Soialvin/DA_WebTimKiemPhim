@@ -16,5 +16,6 @@ namespace DAM.Models.ViewModel
         public List<string> MaGhe { get; set; }
         public string MaGheDaChon {  get; set; }
         public Nullable<decimal> GiaVe { get; set; }
+        public System.DateTime NgayChieu { get; set; }
     }
 }

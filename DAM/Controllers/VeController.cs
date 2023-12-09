@@ -25,6 +25,7 @@ namespace DAM.Controllers
         {
             ViewBag.MaPhim = new SelectList(db.Phims.OrderBy(x => x.TenPhim), "MaPhim", "TenPhim");
             ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.TenRap), "MaRap", "TenRap");
+            ViewBag.NgayChieu = new SelectList(db.SuatChieu_Rap.OrderBy(x => x.NgayChieu), "NgayChieu", "NgayChieu");
             ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
             List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
@@ -58,9 +59,9 @@ namespace DAM.Controllers
             return Json(listRap, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult loadSC(string selectedPhim, string selectedRap)
+        public ActionResult loadNgayChieu(string selectedPhim, string selectedRap)
         {
-            var suatChieu = db.SuatChieu_Phim
+            var ngayChieu = db.SuatChieu_Phim
                 .Join(db.SuatChieus, scp => scp.MaSC, sc => sc.MaSC,
                 (scp, sc) => new
                 {
@@ -74,9 +75,16 @@ namespace DAM.Controllers
                     MaPhim = x.MaPhim,
                     MaSC = x.MaSC,
                     KhungGio = x.KhungGio,
-                    MaRap = scr.MaRap
+                    MaRap = scr.MaRap,
+                    NgayChieu = scr.NgayChieu
                 }).ToList();
-            var listSC = suatChieu.Where(x => x.MaPhim == selectedPhim && x.MaRap == selectedRap).ToList();
+            var listNgayChieu = ngayChieu.Where(x => x.MaPhim == selectedPhim && x.MaRap == selectedRap).ToList();
+            return Json(listNgayChieu, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult loadSC(string selectedRap, DateTime selectedNgayChieu)
+        {
+            var listSC = db.SuatChieu_Rap.Where(x => x.MaRap == selectedRap && x.NgayChieu == selectedNgayChieu).ToList();
             return Json(listSC, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

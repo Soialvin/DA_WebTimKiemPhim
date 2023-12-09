@@ -237,6 +237,9 @@ a.w3_play_icon span,a.w3_play_icon1 span,a.w3_play_icon2 span {
     left: 42%;
     top: 36%;
 }
+.hvr-shutter-out-horizontal img {
+	max-width: 182px;
+}
 /*.agile_tv_series_grid_right{
 	background:#FF8D1B;
 	min-height:312px;

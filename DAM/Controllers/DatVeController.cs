@@ -160,13 +160,18 @@ namespace DAM.Controllers
                 try
                 {
                     db.SaveChanges();
+                    return Json(new { success = true });
                 }
                 catch (Exception)
                 {
-
+                    return Json(new { success = false });
                 }
             }
-            return RedirectToAction("Main","Main");
+            else
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
         }
     }
 }
