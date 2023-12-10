@@ -18,10 +18,12 @@
                                     @for (int j = i * 6; j < (i + 1) * 6 && j < list.Count(); j++)
                                     {
                                         <div class="col-md-2 w3l-movie-gride-agile">
-                                            <a href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = list[j].MaKM })" class="hvr-shutter-out-horizontal">
+                                            <div href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = list[j].MaKM })" class="hvr-shutter-out-horizontal">
                                                 <img src="@Url.Content("~/Content/KMImages/"+list[j].HinhAnh)" title="album-name" class="img-responsive" alt=" " />
-                                                <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
-                                            </a>
+                                                <div class="w3l-action-icon">
+                                                    <a style="margin-bottom:10px;" href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = list[j].MaKM })">Xem chi tiết</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     }
                                     <div class="clearfix"> </div>

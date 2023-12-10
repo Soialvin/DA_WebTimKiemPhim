@@ -686,6 +686,8 @@
     <Content Include="Views\RapChieu\TaoMoiSCRap.cshtml" />
     <Content Include="Views\RapChieu\SuaSCRap.cshtml" />
     <Content Include="Views\ThongKe\ThongKeDoanhThu.cshtml" />
+    <Content Include="Views\Layout\DatVeLayout.cshtml" />
+    <Content Include="Views\Ve\DatVeNgay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

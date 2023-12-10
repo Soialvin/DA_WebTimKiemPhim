@@ -30,6 +30,15 @@ namespace DAM.Controllers
             List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
         }
+        [HttpGet]
+        public ActionResult DatVeNgay(string MaPhim, string TenPhim)
+        {
+            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.TenRap), "MaRap", "TenRap");
+            ViewBag.NgayChieu = new SelectList(db.SuatChieu_Rap.OrderBy(x => x.NgayChieu), "NgayChieu", "NgayChieu");
+            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
+            List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
+            return View();
+        }
         [HttpPost]
         public ActionResult loadRap(string selectedPhim)
         {

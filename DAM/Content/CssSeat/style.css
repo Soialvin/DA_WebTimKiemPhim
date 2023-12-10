@@ -356,12 +356,15 @@ button {
     color: #000;
     font-weight: 600;
     padding: 8px 20px;
-    border-radius: 10px;
     font-size: 1em;
     letter-spacing: 1px;
     font-family: 'Roboto Condensed', sans-serif;
     cursor: pointer;
 }
+
+    button:hover {
+        background-color: #FFCC80;
+    }
 
 ul.seat_w3ls {
     margin: 2em 0;

@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <h1>Movie Seat Selection</h1>
+    <h1>Chọn ghế xem phim</h1>
     <div class="container">
 
         <div class="w3ls-reg">
@@ -487,12 +487,17 @@
                     @Html.HiddenFor(model => model.KhungGio)
                     @Html.HiddenFor(model => model.GiaVe)
 
-                    <button type="button" onclick="confirmSelection()">Xác Nhận Chọn Ghế</button>
+                    <button type="button" id="confirmButton" onclick="confirmSelection()">Xác Nhận Chọn Ghế</button>
                 </form>
             </div>
         </div>
     </div>
-        <!-- Script cho việc chọn ghế -->
+    <style>
+        #confirmButton:disabled {
+            pointer-events: none;
+        }
+    </style>
+    <!-- Script cho việc chọn ghế -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Danh sách các giá trị MaGhe từ ViewModel
@@ -513,9 +518,36 @@
                     if (checkbox.hasAttribute('readonly')) {
                     event.preventDefault();
                     }
+                    checkSeatSelection();
                 });
             });
         });
+
+        function checkSeatSelection() {
+            // Lấy tất cả các ô đánh dấu ghế
+            var seatCheckboxes = document.querySelectorAll('.seats');
+            var isSelected = false;
+
+            // Kiểm tra xem có ghế nào được chọn không
+            seatCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    isSelected = true;
+                }
+            });
+
+            // Lấy nút xác nhận chọn ghế
+            var confirmButton = document.getElementById('confirmButton');
+
+            // Nếu không có ghế nào được chọn, vô hiệu hóa nút xác nhận
+            if (!isSelected) {
+                confirmButton.disabled = true;
+            } else {
+                confirmButton.disabled = false;
+            }
+        }
+
+        // Gọi hàm kiểm tra ban đầu khi trang được tải
+        checkSeatSelection();
 
         function confirmSelection() {
             // Lấy tất cả các ô đánh dấu ghế

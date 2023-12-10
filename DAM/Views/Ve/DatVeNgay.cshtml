@@ -15,16 +15,16 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.MaPhim, "Tên phim", htmlAttributes: new { @class = "control-label col-md-1" })
+                        @Html.LabelFor(model => model.TenPhim, "Tên phim", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownList("MaPhim", null, "- Chọn phim -", htmlAttributes: new { @class = "form-control", @id = "dropdown1", onchange = "showMaPhim()" })
-                            @Html.ValidationMessageFor(model => model.MaPhim, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.TenPhim, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style ="width: 100%;" } })
+                            @Html.HiddenFor(model => model.MaPhim, new {@id = "txtMaPhim"})
                         </div>
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.MaRap, "Tên rạp", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @disabled = "disable", @id = "dropdown2", onchange = "showMaRap()" })
+                            @Html.DropDownList("MaRap", null, "- Chọn rạp -", htmlAttributes: new { @class = "form-control", @id = "dropdown2", onchange = "showMaRap()" })
                             @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -72,52 +72,6 @@
             document.getElementById("datVeButton1").addEventListener('click', function() {
                 window.location.href = '@Url.Action("DangNhap", "DangNhapDangKy")';
             });
-        }
-        function showMaPhim() {
-            var maPhimDropdown = document.getElementById("dropdown1");
-            var maRapDropdown = document.getElementById("dropdown2");
-            var ngayChieuDropdown = document.getElementById("dropdown3");
-            var maSCDropdown = document.getElementById("dropdown4");
-            var datVeButton = document.getElementById("datVeButton");
-            var datVeButton1 = document.getElementById("datVeButton1");
-            if (datVeButton != null) {
-                if (maPhimDropdown.value != "") {
-                    maRapDropdown.disabled = false;
-                    ngayChieuDropdown.disabled = true;
-                    ngayChieuDropdown.selectedIndex = 0;
-                    maSCDropdown.disabled = true;
-                    maSCDropdown.selectedIndex = 0;
-                    datVeButton.disabled = true;
-                }
-                else {
-                    maRapDropdown.disabled = true;
-                    maRapDropdown.selectedIndex = 0;
-                    ngayChieuDropdown.disabled = true;
-                    ngayChieuDropdown.selectedIndex = 0;
-                    maSCDropdown.disabled = true;
-                    maSCDropdown.selectedIndex = 0;
-                    datVeButton.disabled = true;
-                }
-            }
-            if (datVeButton1 != null) {
-                if (maPhimDropdown.value != "") {
-                    maRapDropdown.disabled = false;
-                    ngayChieuDropdown.disabled = true;
-                    ngayChieuDropdown.selectedIndex = 0;
-                    maSCDropdown.disabled = true;
-                    maSCDropdown.selectedIndex = 0;
-                    datVeButton1.disabled = true;
-                }
-                else {
-                    maRapDropdown.disabled = true;
-                    maRapDropdown.selectedIndex = 0;
-                    ngayChieuDropdown.disabled = true;
-                    ngayChieuDropdown.selectedIndex = 0;
-                    maSCDropdown.disabled = true;
-                    maSCDropdown.selectedIndex = 0;
-                    datVeButton1.disabled = true;
-                }
-            }
         }
         function showMaRap() {
             var maRapDropdown = document.getElementById("dropdown2");
@@ -207,10 +161,8 @@
         }
 
         $(document).ready(function () {
-            // Gọi hàm loadRapOptions khi giá trị của dropdown MaPhim thay đổi
-            $("#dropdown1").change(function () {
-                loadRapOptions();
-            });
+            var selectedPhim = $("#txtMaPhim").val();
+            loadRapOptions(selectedPhim);
 
             // Gọi hàm loadNgayChieuOptions khi giá trị của dropdown MaRap thay đổi
             $("#dropdown2").change(function () {
@@ -222,8 +174,7 @@
                 loadSCOptions();
             });
 
-            function loadRapOptions() {
-                var selectedPhim = $("#dropdown1").val();
+            function loadRapOptions(selectedPhim) {
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("loadRap", "Ve")",
@@ -267,7 +218,6 @@
             }
 
             function loadNgayChieuOptions() {
-                var selectedPhim = $("#dropdown1").val();
                 var selectedRap = $("#dropdown2").val();
                 var addedDates = [];
                 $.ajax({
@@ -281,7 +231,9 @@
                             text: "- Chọn ngày chiếu -"
                         }));
                         $.each(data, function (index, option) {
+                            console.log("NgayChieu from server:", option.NgayChieu);
                             var ngayChieuFM = convertTimestampToDateString(option.NgayChieu);
+                            console.log("Formatted NgayChieu:", ngayChieuFM);
                             if (!addedDates.includes(ngayChieuFM)) {
                                 // Nếu chưa, thêm ngày vào danh sách và dropdown
                                 addedDates.push(ngayChieuFM);

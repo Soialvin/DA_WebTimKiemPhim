@@ -192,12 +192,12 @@ a.brand-logo {
 
 .w3l-login p.signup a:hover {
     text-decoration: none;
-    color: #0B5ED7;
+    color: #DE355A;
 }
 
 .w3l-login p.signup a {
     font-weight: bold;
-    color: #007542;
+    color: #000000;
 }
 
 .w3l-login .new-signup a:hover {
@@ -206,7 +206,7 @@ a.brand-logo {
 
 .w3l-login p.signup {
     color: #5a5a5a;
-    font-size: 15px;
+    font-size: 16px;
     display: block;
     margin-top: 20px;
     padding-top: 20px;

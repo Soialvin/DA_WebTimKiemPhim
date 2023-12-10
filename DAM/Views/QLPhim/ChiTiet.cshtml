@@ -59,7 +59,7 @@
                     <div class="w3l_sign_in_register" style="float:none; width:100%;">
                         <ul style="width:20%; margin:0 auto;">
                             <li>
-                                @Html.ActionLink("Đặt vé ngay", "", "", null, new { @class = "datVeLink" })
+                                @Html.ActionLink("Đặt vé ngay", "DatVeNgay", "Ve", new { MaPhim = Model.MaPhim, TenPhim = Model.TenPhim}, new { @class = "datVeLink" })
                             </li>
                         </ul>
                     </div>

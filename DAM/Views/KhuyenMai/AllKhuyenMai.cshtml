@@ -13,7 +13,7 @@
             <div class="agileits-single-top">
                 <ol class="breadcrumb">
                     <li><a href="@Url.Action("Main","Main")">Trang chủ</a></li>
-                    <li class="active">Tin tức</li>
+                    <li class="active">Khuyến mãi</li>
                 </ol>
             </div>
         </div>
@@ -23,10 +23,12 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-2 w3l-movie-gride-agile">
-                    <a href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = item.MaKM })" class="hvr-shutter-out-horizontal">
+                    <div class="hvr-shutter-out-horizontal">
                         <img src="@Url.Content("~/Content/KMImages/" + item.HinhAnh)" title="album-name" alt=" " />
-                        <div class="w3l-action-icon"><i class="fa-solid fa-circle-info" style="color: #ffffff;" aria-hidden="true"></i></div>
-                    </a>
+                        <div class="w3l-action-icon">
+                            <a style="margin-bottom:10px;" href="@Url.Action("ChiTietKM", "KhuyenMai", new { MaKM = item.MaKM })">Xem chi tiết</a>
+                        </div>
+                    </div>
                 </div>
             }
             <div class="clearfix"> </div>
