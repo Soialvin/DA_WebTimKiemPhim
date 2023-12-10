@@ -278,12 +278,21 @@ namespace DAM.Controllers
         }
         public ActionResult TimKiem(string keyword)
         {
-            var result = db.KhuyenMais.ToList();
+            var result = db.KhuyenMais.Select(x => new ChiTietKMViewModel
+            {
+                MaKM = x.MaKM,
+                MaRap = x.MaRap,
+                TenKM = x.TenKM,
+                HinhAnh = x.HinhAnh,
+                NoiDung = x.NoiDung,
+                NgayBD = x.NgayBD,
+                NgayKT = x.NgayKT,
+            }).ToList();
             if (string.IsNullOrEmpty(keyword))
             {
                 return View("Index", result);
             }
-            result = result.Where(x => (x.MaKM != null && x.MaKM.Contains(keyword)) || (x.TenKM != null && x.TenKM.Contains(keyword))).ToList();
+            result = result.Where(x => (x.MaKM != null && x.MaKM.Contains(keyword) || (x.TenKM != null && x.TenKM.Contains(keyword)) || x.MaRap != null && x.MaRap.Contains(keyword))).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", result);
         }
