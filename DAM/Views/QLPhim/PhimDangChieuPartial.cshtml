@@ -1,6 +1,8 @@
 ﻿@using DAM.Models
 @model IEnumerable<Phim>
 
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
 @if (Model.Count() < 12)
 {
     foreach (var item in Model)
@@ -17,7 +19,9 @@
             <div class="mid-1 agileits_w3layouts_mid_1_home">
                 <div class="w3l-movie-text">
                     <h6><a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a></h6>
+                    <a href="#" class="btn btn-light" onclick="changeColor(event, '@item.MaPhim')"><i id="heartIcon_@item.MaPhim" class="fa-regular fa-heart"></i> <span id="label_@item.MaPhim">Yêu thích</span></a>
                 </div>
+
             </div>
         </div>
     }
@@ -38,9 +42,30 @@ else
             <div class="mid-1 agileits_w3layouts_mid_1_home">
                 <div class="w3l-movie-text">
                     <h6><a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a></h6>
+                    <a href="#" class="btn btn-light" onclick="changeColor(event, '@item.MaPhim')"><i id="heartIcon_@item.MaPhim" class="fa-regular fa-heart"></i> <span id="label_@item.MaPhim">Yêu thích</span></a>
                 </div>
             </div>
         </div>
     }
 }
+<script>
+    var isRed = false;
+
+    function changeColor(event, maPhim) {
+        event.preventDefault();
+        var heartIcon = document.getElementById("heartIcon_" + maPhim);
+        var label = document.getElementById("label_" + maPhim);
+
+        if (isRed) {
+            heartIcon.style.color = "";
+            label.style.color = "";
+            isRed = false;
+        } else {
+            heartIcon.style.color = "red";
+            label.style.color = "red";
+            isRed = true;
+        }
+    }
+</script>
+
 
