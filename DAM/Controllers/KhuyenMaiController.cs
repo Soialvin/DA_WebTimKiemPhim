@@ -38,7 +38,7 @@ namespace DAM.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult TaoMoi(KhuyenMai km, HttpPostedFileBase HinhAnh)
+        public ActionResult TaoMoi(ChiTietKMViewModel km, HttpPostedFileBase HinhAnh)
         {
             ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.MaRap), "MaRap", "TenRap");
             if (ModelState.IsValid)
@@ -129,7 +129,17 @@ namespace DAM.Controllers
             {
                 return HttpNotFound();
             }
-            return View(km);
+            var result = new ChiTietKMViewModel
+            {
+                MaKM = km.MaKM,
+                MaRap = km.MaRap,
+                TenKM = km.TenKM,
+                HinhAnh = km.HinhAnh,
+                NoiDung = km.NoiDung,
+                NgayBD = km.NgayBD,
+                NgayKT = km.NgayKT
+            };
+            return View(result);
         }
         [HttpPost]
         public ActionResult Sua(KhuyenMai km, HttpPostedFileBase HinhAnh)
@@ -217,11 +227,11 @@ namespace DAM.Controllers
                 SetAlert($"Cập nhật không thành công. Lỗi đã được ghi nhận vui lòng liên hệ Admin", "danger");
                 return View(km);
             }
-
         }
         public ActionResult Xoa(string maKM)
         {
             var result = db.KhuyenMais.Find(maKM);
+            db.KhuyenMais.Remove(result);
             db.KhuyenMais.Remove(result);
             try
             {
