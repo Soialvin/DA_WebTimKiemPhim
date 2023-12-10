@@ -240,6 +240,7 @@
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\VeController.cs" />
     <Compile Include="Controllers\XuatChieuController.cs" />
+    <Compile Include="Controllers\YeuThichController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -722,6 +723,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\YeuThich\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

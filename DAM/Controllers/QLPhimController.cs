@@ -573,5 +573,6 @@ namespace DAM.Controllers
             ViewBag.MaTL = MaTL;
             return View(ptl.ToPagedList(PageNumber, PageSize));
         }
+        
     }
 }
