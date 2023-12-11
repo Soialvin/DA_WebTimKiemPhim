@@ -41,7 +41,7 @@ namespace DAM.Models
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TheLoai> TheLoais { get; set; }
         public virtual DbSet<Ve> Ves { get; set; }
-        public virtual DbSet<YeuThich> YeuThiches { get; set; }
+        public virtual DbSet<YeuThich> YeuThichs { get; set; }
         public virtual DbSet<YeuThich_Phim> YeuThich_Phim { get; set; }
     
         public virtual ObjectResult<DemTKTheoThangNam_Result> DemTKTheoThangNam()

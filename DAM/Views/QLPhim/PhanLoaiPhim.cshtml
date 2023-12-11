@@ -1,9 +1,15 @@
-﻿@using PagedList.Mvc
+﻿@using DAM.Models
+@using PagedList.Mvc
 @model PagedList.IPagedList<DAM.Models.ViewModel.PhanLoaiPhimViewModel>
 
 @{
     ViewBag.Title = "PhanLoaiPhim";
     Layout = "~/Views/Layout/TheLoaiPhimLayout.cshtml";
+}
+
+@{
+    DA_WebTimKiemPhimEntities db = new DA_WebTimKiemPhimEntities();
+    string color = "rgb(26, 140, 255)";
 }
 
 <div class="browse-agile-w3ls general-w3ls">
@@ -12,7 +18,9 @@
         <div class="container">
             <div class="agileits-single-top">
                 <ol class="breadcrumb">
-                    <li><a href="@Url.Action("Main","Main")">Trang chủ</a></li>
+                    <li>
+                        <a href="@Url.Action("Main","Main")">Trang chủ</a>
+                    </li>
                     <li class="active">Thể loại</li>
                 </ol>
             </div>
@@ -22,6 +30,20 @@
         <div class="browse-inner">
             @foreach (var item in Model)
             {
+                if (Session["user"] != null)
+                {
+                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                    var tkyt = db.YeuThichs.FirstOrDefault(x => x.TenTK == TKDN.TenTK);
+                    var pyt = db.YeuThich_Phim.FirstOrDefault(x => x.MaPhim == item.MaPhim && x.MaYT == tkyt.MaYT);
+                    if (pyt != null)
+                    {
+                        color = "rgb(255, 26, 198)";
+                    }
+                    else
+                    {
+                        color = "rgb(26, 140, 255)";
+                    }
+                }
                 <div class="col-md-2 w3l-movie-gride-agile">
                     <div class="hvr-shutter-out-horizontal">
                         <img src="@Url.Content("~/Content/MovieImages/" + item.HinhAnh)" title="album-name" alt=" " />
@@ -32,8 +54,18 @@
                     </div>
                     <div class="mid-1">
                         <div class="w3l-movie-text">
-                            <h6><a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a></h6>
+                            <h6>
+                                <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a>
+                            </h6>
                         </div>
+                        @if (Session["user"] == null)
+                        {
+                            <button class="btn btn-login-like" value="@item.MaPhim" style="color: @color; background-color:transparent; outline: none; box-shadow: none;"><i class="fa fa-heart"></i> Yêu thích</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-like" value="@item.MaPhim" style="color: @color; background-color:transparent; outline: none; box-shadow: none;"><i class="fa fa-heart"></i> Yêu thích</button>
+                        }
                     </div>
                 </div>
             }

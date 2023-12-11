@@ -14,10 +14,6 @@ namespace DAM.Controllers
         DA_WebTimKiemPhimEntities db = new DA_WebTimKiemPhimEntities();
         public ActionResult Main()
         {
-            var listPhimDangChieu = db.Phims.Where(x => x.TrangThai == "Đang chiếu");
-            ViewBag.listPhimDangChieu = listPhimDangChieu;
-            var listPhimSapChieu = db.Phims.Where(x => x.TrangThai == "Sắp chiếu");
-            ViewBag.listPhimSapChieu = listPhimSapChieu;
             return View();
         }
         public ActionResult MenuTheLoaiPartial()

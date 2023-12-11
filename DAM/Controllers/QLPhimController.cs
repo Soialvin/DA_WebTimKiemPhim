@@ -458,15 +458,17 @@ namespace DAM.Controllers
             }
             return new EmptyResult();
         }
-        [ChildActionOnly]
+        [HttpGet]
         public ActionResult PhimDangChieuPartial()
         {
-            return PartialView();
+            var listPhimDangChieu = db.Phims.Where(x => x.TrangThai == "Đang chiếu").ToList();
+            return PartialView(listPhimDangChieu);
         }
-        [ChildActionOnly]
+        [HttpGet]
         public ActionResult PhimSapChieuPartial()
         {
-            return PartialView();
+            var listPhimSapChieu = db.Phims.Where(x => x.TrangThai == "Sắp chiếu").ToList();
+            return PartialView(listPhimSapChieu);
         }
         public ActionResult ChiTiet(string MaPhim)
         {
@@ -508,8 +510,7 @@ namespace DAM.Controllers
                     MaSC = scr.MaSC,
                     MaRap = scr.MaRap,
                     TenRap = r.TenRap
-                }
-            );
+                });
             var listRap = groupRap.Where(x => x.MaPhim == MaPhim).ToList();
             var groupPhimTheLoai = db.Phim_TheLoai
             .Join(

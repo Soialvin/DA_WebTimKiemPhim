@@ -501,6 +501,7 @@
     <Content Include="Content\MainLayout\js\jquery.flexslider.js" />
     <Content Include="Content\MainLayout\js\jquery.magnific-popup.js" />
     <Content Include="Content\MainLayout\js\jquery.slidey.js" />
+    <Content Include="Content\MainLayout\js\likeUnlike.js" />
     <Content Include="Content\MainLayout\js\TK.js" />
     <Content Include="Content\MainLayout\js\move-top.js" />
     <Content Include="Content\MainLayout\js\owl.carousel.js" />
@@ -720,10 +721,11 @@
     <Content Include="Views\ThongKe\ThongKeDoanhThu.cshtml" />
     <Content Include="Views\Layout\DatVeLayout.cshtml" />
     <Content Include="Views\Ve\DatVeNgay.cshtml" />
+    <Content Include="Views\YeuThich\Top7YTPartial.cshtml" />
+    <Content Include="Views\YeuThich\TKPYTPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\YeuThich\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

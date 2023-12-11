@@ -127,7 +127,7 @@ ul#myTab {
     font-size: 3em;
     color: #fff;
 }
-.w3l-movie-gride-agile:hover .w3l-action-icon {
+.hvr-shutter-out-horizontal:hover .w3l-action-icon {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -140,8 +140,8 @@ ul#myTab {
     -o-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
 }
-.w3l-movie-gride-agile{
-	position:relative;
+.hvr-shutter-out-horizontal {
+    position: relative;
 }
 .w3l-action-icon{
 	display:none;
