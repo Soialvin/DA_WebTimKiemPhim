@@ -28,53 +28,26 @@
         else
         {
             <div id="owl-demo" class="owl-carousel owl-theme">
-                @if (Model.Count() < 7)
+                @foreach (var item in Model)
                 {
-                    foreach (var item in Model)
-                    {
-                        <div class="item">
-                            <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-                                <div class="hvr-shutter-out-horizontal">
-                                    <img src="@Url.Content("~/Content/MovieImages/"+item.HinhAnh)" title="album-name" class="img-responsive" alt=" " />
-                                    <div class="w3l-action-icon">
-                                        <a style="margin-bottom:10px;" href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">Xem chi tiết</a>
-                                        <a style="margin-top:10px;" href="@Url.Action("DatVeNgay", "Ve", new { MaPhim = item.MaPhim , TenPhim = item.TenPhim})">Đặt vé ngay</a>
-                                    </div>
+                    <div class="item">
+                        <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                            <div class="hvr-shutter-out-horizontal">
+                                <img src="@Url.Content("~/Content/MovieImages/"+item.HinhAnh)" title="album-name" class="img-responsive" alt=" " />
+                                <div class="w3l-action-icon">
+                                    <a style="margin-bottom:10px;" href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">Xem chi tiết</a>
+                                    <a style="margin-top:10px;" href="@Url.Action("DatVeNgay", "Ve", new { MaPhim = item.MaPhim , TenPhim = item.TenPhim})">Đặt vé ngay</a>
                                 </div>
-                                <div class="mid-1 agileits_w3layouts_mid_1_home">
-                                    <div class="w3l-movie-text">
-                                        <h6>
-                                            <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a>
-                                        </h6>
-                                    </div>
+                            </div>
+                            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                <div class="w3l-movie-text">
+                                    <h6>
+                                        <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
-                    }
-                }
-                else
-                {
-                    foreach (var item in Model.Take(7))
-                    {
-                        <div class="item">
-                            <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-                                <div class="hvr-shutter-out-horizontal">
-                                    <img src="@Url.Content("~/Content/MovieImages/"+item.HinhAnh)" title="album-name" class="img-responsive" alt=" " />
-                                    <div class="w3l-action-icon">
-                                        <a style="margin-bottom:10px;" href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">Xem chi tiết</a>
-                                        <a style="margin-top:10px;" href="@Url.Action("DatVeNgay", "Ve", new { MaPhim = item.MaPhim , TenPhim = item.TenPhim})">Đặt vé ngay</a>
-                                    </div>
-                                </div>
-                                <div class="mid-1 agileits_w3layouts_mid_1_home">
-                                    <div class="w3l-movie-text">
-                                        <h6>
-                                            <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    </div>
                 }
             </div>
         }

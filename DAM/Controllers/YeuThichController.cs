@@ -85,7 +85,8 @@ namespace DAM.Controllers
                     MaPhim = b.Key,
                     LuotThich = b.Count()
                 })
-                .OrderByDescending(c => c.LuotThich).ToList();
+                .OrderByDescending(c => c.LuotThich)
+                .Take(7).ToList();
             var listMaPhim = top.Select(x => x.MaPhim).ToList();
             var phim = db.Phims.Where(x => listMaPhim.Contains(x.MaPhim) && x.TrangThai != "Ngừng chiếu").ToList();
             return PartialView(phim);
