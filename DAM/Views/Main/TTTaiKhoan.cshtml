@@ -13,8 +13,8 @@
         $("#btn_CapNhat").click(function (e) {
             e.preventDefault(); // Ngăn chặn form submit mặc định
 
-            var formData = $("#purchaseForm1").serialize(); // Lấy dữ liệu từ form
-
+            var formData = $("#purchaseForm").serialize(); // Lấy dữ liệu từ form
+            console.log("Dữ liệu Form:", formData); 
            $.ajax({
                 url: '@Url.Action("TTTaiKhoan", "Main")',
                 type: 'POST',
@@ -59,7 +59,7 @@
     }
 </style>
 <div id="form_TaoMoi">
-    @using (Html.BeginForm("TTTaiKhoan", "Main", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm1" }))
+    @using (Html.BeginForm("TTTaiKhoan", "Main", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
     {
         @Html.AntiForgeryToken()
 

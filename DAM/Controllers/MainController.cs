@@ -142,14 +142,26 @@ namespace DAM.Controllers
                     db.SaveChanges();
                     Session["user"] = x;
                     Session.Remove("Anh");
-                    return RedirectToAction("Main", "Main");
+                    return Json(new { success = true });
                 }
-                return View(tk);
+                return Json(new { success = false });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                if (Session["user"] != null)
+                {
+                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                    LichSu ls = new LichSu
+                    {
+                        ThongTinTT = $"Error cập nhật tài khoản của khách hàng. Mã lỗi: {ex.Message}",
+                        NgayGioTT = DateTime.Now,
+                        TenTK = TKDN.TenTK
+                    };
+                    db.LichSus.Add(ls);
+                }
                 db.SaveChanges();
-                return View(tk);
+                Response.StatusCode = 404;
+                return null;
             }
 
         }
