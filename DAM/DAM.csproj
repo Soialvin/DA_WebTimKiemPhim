@@ -723,6 +723,8 @@
     <Content Include="Views\Ve\DatVeNgay.cshtml" />
     <Content Include="Views\YeuThich\Top7YTPartial.cshtml" />
     <Content Include="Views\YeuThich\TKPYTPartial.cshtml" />
+    <Content Include="Views\Layout\TTTaiKhoanLayout.cshtml" />
+    <Content Include="Views\Main\TTTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
