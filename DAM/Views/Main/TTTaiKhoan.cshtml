@@ -13,12 +13,14 @@
         $("#btn_CapNhat").click(function (e) {
             e.preventDefault(); // Ngăn chặn form submit mặc định
 
-            var formData = $("#purchaseForm").serialize(); // Lấy dữ liệu từ form
-            console.log("Dữ liệu Form:", formData); 
+            var formData = new FormData($("#purchaseForm")[0]);
+            console.log("Dữ liệu Form:", formData);
            $.ajax({
                 url: '@Url.Action("TTTaiKhoan", "Main")',
                 type: 'POST',
                 data: formData,
+                contentType: false,
+                processData: false,
                 success: function (response) {
                     if (response.success) {
                         Swal.fire({
