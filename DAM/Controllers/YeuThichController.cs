@@ -97,9 +97,16 @@ namespace DAM.Controllers
             {
                 TaiKhoan TKDN = (TaiKhoan)Session["user"];
                 var tkyt = db.YeuThichs.FirstOrDefault(x => x.TenTK == TKDN.TenTK);
-                var listPhim = db.YeuThich_Phim.Where(x => x.MaYT == tkyt.MaYT).Select(x => x.MaPhim).ToList();
-                var phim = db.Phims.Where(x => listPhim.Contains(x.MaPhim) && x.TrangThai != "Ngừng chiếu").ToList();
-                return PartialView(phim);
+                if (tkyt != null)
+                {
+                    var listPhim = db.YeuThich_Phim.Where(x => x.MaYT == tkyt.MaYT).Select(x => x.MaPhim).ToList();
+                    var phim = db.Phims.Where(x => listPhim.Contains(x.MaPhim) && x.TrangThai != "Ngừng chiếu").ToList();
+                    return PartialView(phim);
+                }
+                else
+                {
+                    return PartialView();
+                }
             }
             return new EmptyResult();
         }
