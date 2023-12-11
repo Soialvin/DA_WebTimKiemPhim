@@ -105,7 +105,7 @@ namespace DAM.Controllers
                 }
                 else
                 {
-                    return PartialView();
+                    return PartialView(null);
                 }
             }
             return new EmptyResult();

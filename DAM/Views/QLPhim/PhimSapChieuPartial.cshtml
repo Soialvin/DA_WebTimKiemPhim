@@ -14,14 +14,17 @@
         {
             TaiKhoan TKDN = (TaiKhoan)Session["user"];
             var tkyt = db.YeuThichs.FirstOrDefault(x => x.TenTK == TKDN.TenTK);
-            var pyt = db.YeuThich_Phim.FirstOrDefault(x => x.MaPhim == item.MaPhim && x.MaYT == tkyt.MaYT);
-            if (pyt != null)
+            if (tkyt != null)
             {
-                color = "rgb(255, 26, 198)";
-            }
-            else
-            {
-                color = "rgb(26, 140, 255)";
+                var pyt = db.YeuThich_Phim.FirstOrDefault(x => x.MaPhim == item.MaPhim && x.MaYT == tkyt.MaYT);
+                if (pyt != null)
+                {
+                    color = "rgb(255, 26, 198)";
+                }
+                else
+                {
+                    color = "rgb(26, 140, 255)";
+                }
             }
         }
 
@@ -61,14 +64,17 @@ else
         {
             TaiKhoan TKDN = (TaiKhoan)Session["user"];
             var tkyt = db.YeuThichs.FirstOrDefault(x => x.TenTK == TKDN.TenTK);
-            var pyt = db.YeuThich_Phim.FirstOrDefault(x => x.MaPhim == item.MaPhim && x.MaYT == tkyt.MaYT);
-            if (pyt != null)
+            if (tkyt != null)
             {
-                color = "rgb(255, 26, 198)";
-            }
-            else
-            {
-                color = "rgb(26, 140, 255)";
+                var pyt = db.YeuThich_Phim.FirstOrDefault(x => x.MaPhim == item.MaPhim && x.MaYT == tkyt.MaYT);
+                if (pyt != null)
+                {
+                    color = "rgb(255, 26, 198)";
+                }
+                else
+                {
+                    color = "rgb(26, 140, 255)";
+                }
             }
         }
 
