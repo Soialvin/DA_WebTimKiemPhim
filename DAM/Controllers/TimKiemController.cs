@@ -20,7 +20,7 @@ namespace DAM.Controllers
                 page = 1;
             }
             ViewBag.TuKhoa = TuKhoa;
-            var listPhim = db.Phims.Where(x => x.TenPhim.Contains(TuKhoa));
+            var listPhim = db.Phims.Where(x => x.TenPhim.Contains(TuKhoa) || x.ThongTinPhim.Contains(TuKhoa));
             int PageSize = 18;
             int PageNumber = (page ?? 1);
             return View(listPhim.OrderBy(x => x.TenPhim).ToPagedList(PageNumber, PageSize));

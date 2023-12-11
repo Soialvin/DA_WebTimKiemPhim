@@ -204,14 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>*@
     <!-- //banner-bottom -->
     <div class="general_social_icons">
-        <nav class="social">
-            <ul>
-                <li class="w3_twitter"><a href="#">Twitter <i class="fa fa-twitter"></i></a></li>
-                <li class="w3_facebook"><a href="#">Facebook <i class="fa fa-facebook"></i></a></li>
-                <li class="w3_dribbble"><a href="#">Dribbble <i class="fa fa-dribbble"></i></a></li>
-                <li class="w3_g_plus"><a href="#">Google+ <i class="fa fa-google-plus"></i></a></li>
-            </ul>
-        </nav>
+        @Html.Partial("~/Views/Layout/MXHLayoutPartial.cshtml")
     </div>
     <!-- general -->
     @*<div class="general">
@@ -385,7 +378,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="clearfix"> </div>
             </div>
             <div class="col-md-5 w3ls_footer_grid1_left">
-                <p>&copy; 2023 Thích Sửa Lỗi. All rights reserved | Design by <a href="#">Thích Sửa Lỗi</a></p>
+                <p>
+                    &copy; 2023 Thích Sửa Lỗi. All rights reserved | Design by
+                    <a href="#">Thích Sửa Lỗi</a>
+                </p>
             </div>
             <div class="col-md-7 w3ls_footer_grid1_right">
                 <ul>

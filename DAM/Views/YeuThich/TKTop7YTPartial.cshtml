@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DAM.Models.Phim>
+
+<script src="~/Content/MainLayout/js/owl.carousel.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+            items: 5,
+            itemsDesktop: [640, 4],
+            itemsDesktopSmall: [414, 3]
+
+        });
+
+    });
+</script>
+
+<h4 class="latest-text">TOP 7 phim yêu thích</h4>
+<div class="container">
+    <div class="w3_agile_banner_bottom_grid">
+        @if (Model.Count() == 0)
+        {
+            <h3 style="text-align: center;">
+                Chưa có phim nào trong TOP 7
+            </h3>
+        }
+        else
+        {
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                @foreach (var item in Model)
+                {
+                    <div class="item">
+                        <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+                            <div class="hvr-shutter-out-horizontal">
+                                <img src="@Url.Content("~/Content/MovieImages/"+item.HinhAnh)" title="album-name" class="img-responsive" alt=" " />
+                                <div class="w3l-action-icon">
+                                    <a style="margin-bottom:10px;" href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">Xem chi tiết</a>
+                                    <a style="margin-top:10px;" href="@Url.Action("DatVeNgay", "Ve", new { MaPhim = item.MaPhim , TenPhim = item.TenPhim})">Đặt vé ngay</a>
+                                </div>
+                            </div>
+                            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                <div class="w3l-movie-text">
+                                    <h6>
+                                        <a href="@Url.Action("ChiTiet", "QLPhim", new { MaPhim = item.MaPhim })">@item.TenPhim</a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

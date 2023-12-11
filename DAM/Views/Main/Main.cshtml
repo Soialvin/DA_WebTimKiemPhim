@@ -39,7 +39,6 @@
 <div class="banner-bottom" id="banner-bottom">
     @{
         var user = (DAM.Models.TaiKhoan)HttpContext.Current.Session["user"];
-        <input type="hidden" id="userSession" value="@user" />
         if (user != null)
         {
             @Html.Action("TKPYTPartial", "YeuThich")
@@ -49,6 +48,7 @@
             @Html.Action("Top7YTPartial", "YeuThich")
         }
     }
+    <input type="hidden" id="userSession" value="@user" />
 </div>
 <div class="general">
     <h4 class="latest-text w3_latest_text">Phim</h4>

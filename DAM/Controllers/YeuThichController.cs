@@ -111,5 +111,21 @@ namespace DAM.Controllers
             }
             return new EmptyResult();
         }
+        [HttpGet]
+        public ActionResult TKTop7YTPartial()
+        {
+            var top = db.YeuThich_Phim
+                .GroupBy(a => a.MaPhim)
+                .Select(b => new
+                {
+                    MaPhim = b.Key,
+                    LuotThich = b.Count()
+                })
+                .OrderByDescending(c => c.LuotThich)
+                .Take(7).ToList();
+            var listMaPhim = top.Select(x => x.MaPhim).ToList();
+            var phim = db.Phims.Where(x => listMaPhim.Contains(x.MaPhim) && x.TrangThai != "Ngừng chiếu").ToList();
+            return PartialView(phim);
+        }
     }
 }
