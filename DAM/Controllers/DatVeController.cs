@@ -117,7 +117,7 @@ namespace DAM.Controllers
             {
                 return View("Index", result);
             }
-            result = result.Where(x => (x.TenTK != null && x.TenTK.Contains(keyword)) ).ToList();
+            result = result.Where(x => (x.TenTK != null && x.TenTK.Contains(keyword))).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", result);
         }

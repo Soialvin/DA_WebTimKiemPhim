@@ -1,14 +1,17 @@
 ﻿using DAM.Models;
 using DAM.Models.ViewModel;
+using DAM.Validation;
 using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.EMMA;
 using System;
+using PagedList;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace DAM.Controllers
 {
@@ -20,6 +23,46 @@ namespace DAM.Controllers
         {
             return View(db.Ves);
         }
+        public ActionResult Xoa(int? MaVe)
+        {
+            var result = db.Ves.Find(MaVe);
+            try
+            {
+                result.TrangThaiVe = "Đã xóa";
+                if (Session["user"] != null)
+                {
+                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                    LichSu ls = new LichSu
+                    {
+                        ThongTinTT = $"Đã xóa vé mã: {result.MaVe}",
+                        NgayGioTT = DateTime.Now,
+                        TenTK = TKDN.TenTK
+                    };
+                    db.LichSus.Add(ls);
+                }
+                db.SaveChanges();
+                SetAlert("Xóa thành công", "sucsess");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                if (Session["user"] != null)
+                {
+                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                    LichSu ls = new LichSu
+                    {
+                        ThongTinTT = $"Error xóa vé. Mã lỗi: {ex.Message}",
+                        NgayGioTT = DateTime.Now,
+                        TenTK = TKDN.TenTK
+                    };
+                    db.LichSus.Add(ls);
+                }
+                db.SaveChanges();
+                SetAlert($"Xóa không thành công. Lỗi đã được ghi nhận vui lòng liên hệ Admin", "danger");
+                return RedirectToAction("Index");
+            }
+            
+        }
         [HttpGet]
         public ActionResult TaoMoi()
         {
@@ -30,6 +73,7 @@ namespace DAM.Controllers
             List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
         }
+        
         [HttpGet]
         public ActionResult DatVeNgay(string MaPhim, string TenPhim)
         {
@@ -147,8 +191,9 @@ namespace DAM.Controllers
             };
             return View(laydl);
         }
-        public ActionResult LichSuGiaoDich(string TenTK)
+        public ActionResult LichSuGiaoDich(string TenTK, int? page)
         {
+            
             var ls = db.Ves
                 .Join(db.HoaDons, v => v.MaVe, hd => hd.MaVe, (v, hd) => new
                 {
@@ -159,34 +204,34 @@ namespace DAM.Controllers
                     MaSC = v.MaSC,
                     MaPhim = v.MaPhim,
                     MaRap = v.MaRap
-                }).Join(db.Ghe_Ve, x => x.MaVe, gv => gv.MaVe, (x, gv) => new
-                {
-                    MaGhe = gv.MaGhe,
-                    TenTK = x.TenTK,
-                    MaVe = gv.MaVe,
-                    NgayDat = x.NgayDat,
-                    TongTien = x.TongTien,
-                    MaSC = x.MaSC,
-                    MaPhim = x.MaPhim,
-                    MaRap = x.MaRap
-
                 }).Join(db.SuatChieus, y => y.MaSC, sc => sc.MaSC, (y, sc) => new
                 {
                     KhungGio = sc.KhungGio,
                     TenTK = y.TenTK,
-                    MaGhe = y.MaGhe,
                     MaVe = y.MaVe,
                     NgayDat = y.NgayDat,
                     TongTien = y.TongTien,
                     MaSC = y.MaSC,
                     MaPhim = y.MaPhim,
                     MaRap = y.MaRap
-                }).Join(db.Raps, z => z.MaRap, r => r.MaRap, (z, r) => new
+                }).Join(db.SuatChieu_Rap, w => w.MaSC, scr => scr.MaSC,(w,scr) => new
+                {
+                    NgayChieu = scr.NgayChieu,
+                    KhungGio = w.KhungGio,
+                    TenTK = w.TenTK,
+                    MaVe = w.MaVe,
+                    NgayDat = w.NgayDat,
+                    TongTien = w.TongTien,
+                    MaSC = w.MaSC,
+                    MaPhim = w.MaPhim,
+                    MaRap = w.MaRap
+                })
+                .Join(db.Raps, z => z.MaRap, r => r.MaRap, (z, r) => new
                 {
                     TenRap = r.TenRap,
+                    NgayChieu = z.NgayChieu,
                     KhungGio = z.KhungGio,
                     TenTK = z.TenTK,
-                    MaGhe = z.MaGhe,
                     MaVe = z.MaVe,
                     NgayDat = z.NgayDat,
                     TongTien = z.TongTien,
@@ -195,11 +240,13 @@ namespace DAM.Controllers
                     MaRap = z.MaRap
                 }).Join(db.Phims, s => s.MaPhim, p => p.MaPhim, (s, p) => new LichSuViewModel
                 {
+
                     TenPhim = p.TenPhim,
+                    NgayChieu = s.NgayChieu,
                     TenTK = s.TenTK,
                     TenRap = s.TenRap,
                     KhungGio = s.KhungGio,
-                    MaGhe = s.MaGhe,
+                    MaGhe = db.Ghe_Ve.Where(k => k.MaVe == s.MaVe).Select(b => b.MaGhe).ToList(),
                     MaVe = (int)s.MaVe,
                     NgayDat = s.NgayDat,
                     TongTien = s.TongTien,
@@ -209,7 +256,31 @@ namespace DAM.Controllers
                     HinhAnh = p.HinhAnh
                 }).ToList();
             var lstk = ls.Where(x => x.TenTK == TenTK).ToList();
-            return View(lstk);
+            int PageSize = 5;
+            int PageNumber = (page ?? 1);
+            ViewBag.TenTK = TenTK;
+            return View(lstk.ToPagedList(PageNumber, PageSize));
+        }
+        public ActionResult TimKiem(string keyword)
+        {
+            int a;
+            var result = db.Ves.ToList();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                return View("Index", result);
+            }
+            if (int.TryParse(keyword,out a) )
+            {
+                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString()))).ToList();
+                ViewBag.Keyword = keyword;
+                return View("Index", result);
+            }
+            else
+            {
+                ViewBag.Keyword = keyword;
+                return new EmptyResult();
+            }
+            
         }
     }
 }

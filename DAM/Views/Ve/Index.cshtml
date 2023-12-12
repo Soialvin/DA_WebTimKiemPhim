@@ -25,14 +25,9 @@
     </div>
 </div>
 
-
-<a href="@Url.Action("TaoMoi", "Ve")" id="btn_TaoMoi">
-    <i class='fa-solid fa-plus fa-beat' style='color: #ffffff;'></i>
-</a>
-
 <div class="form-group col-lg-12">
 
-    @using (Html.BeginForm("TimKiem", "", FormMethod.Get))
+    @using (Html.BeginForm("TimKiem", "Ve", FormMethod.Get))
     {
         <div class="col-md-3">
             <input type="text" placeholder="Nhập từ khóa cần tìm" name="keyword" value="@ViewBag.Search" class="form-control" />
@@ -56,18 +51,10 @@
             grid.Column("MaRap", "Mã rạp"),
                 //grid.Column("HinhAnh", "Hình ảnh", format: x => @Html.Raw("<div class=\"img-container\"><img class=\"HinhAnh\" src=\"../Content/TKImages/" + x.HinhAnh + "\"></div>")),
                 
-
-                
-              
                 grid.Column("TrangThaiVe", "Trạng thái vé"),
                 grid.Column(format: x =>
                 {
-                    var link = Url.Action("Sua", new { TenTK = x.MaVe });
-                    return new HtmlString($"<a href='{link}'><i class=\"fa-regular fa-pen-to-square\" style=\"font-size: 30px;\"></i></a>");
-                }),
-                grid.Column(format: x =>
-                {
-                    var link = Url.Action("Xoa", new { TenTK = x.MaVe });
+                    var link = Url.Action("Xoa","Ve",new { MaVe = x.MaVe });
                 return new HtmlString($"<a href=\"#\" data-href='{link}' data-toggle=\"modal\" data-target=\"#confirm-delete\"><i class=\"fa-solid fa-trash\" style=\"font-size: 30px;\"></i></a>");
             })
             ))
@@ -75,7 +62,7 @@
 </div>
 <style>
     .gridTable {
-        width: 2000px;
+        width: 1240px;
     }
 
     .gridHead {

@@ -531,6 +531,7 @@
     <Content Include="Content\MovieImages\wonka.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TKImages\systemusers_104569.png" />
+    <Content Include="Content\LSGD\style.css" />
     <Content Include="Content\web_Layout\css\bootstrap.min.css" />
     <Content Include="Content\web_Layout\css\calendar.css" />
     <Content Include="Content\web_Layout\css\clndr.css" />

@@ -270,6 +270,7 @@ namespace DAM.Controllers
                         db.LichSus.Add(ls);
                     }
                     db.SaveChanges();
+                    Session["user"] = x;
                     Session.Remove("Anh");
                     SetAlert("Cập nhật thành công", "sucsess");
                     return RedirectToAction("QLTaiKhoan");
