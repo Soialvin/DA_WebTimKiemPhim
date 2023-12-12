@@ -4,7 +4,7 @@
             <a href="@Url.Action("Main","Main")"><img style="width:200px" src="~/Content/MainLayout/images/LogoWeb1.png" /></a>
         </div>
         <div class="w3_search">
-            @using(Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
+            @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
             {
                 <input type="text" name="TuKhoa" placeholder="Nhập tên phim cần tìm" required="">
                 <input type="submit" value="Tìm kiếm">
@@ -16,7 +16,9 @@
                     var user = (DAM.Models.TaiKhoan)HttpContext.Current.Session["user"];
                     if (user == null)
                     {
-                        <li><i class="fa fa-phone" aria-hidden="true"></i>0223 345 653</li>
+                        <li>
+                            <i class="fa fa-phone" aria-hidden="true"></i>0223 345 653
+                        </li>
                         <li>
                             @*<a href="#" data-toggle="modal" data-target="#myModal">Login</a>*@
                             @Html.ActionLink("Đăng nhập", "DangNhap", "DangNhapDangKy", null, new { @class = "dangNhapLink" })
@@ -41,8 +43,15 @@
                                 <p style="color:black;padding-left:10px;">@user.TenTK</p>
                             </a>
                             <ul class="dropdown-content" role="menu">
-                                <li style="padding:0;"><a class="dropdown-item" href="@Url.Action("TTTaiKhoan","Main", new {TenTK = user.TenTK})"><i class="fa fa-user"></i>Tài khoản</a></li>
-                                <li style="padding:0;"><a class="dropdown-item" href="@Url.Action("DangXuatKH","DangNhapDangKy")"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a></li>
+                                <li style="padding:0;">
+                                    <a class="dropdown-item" href="@Url.Action("TTTaiKhoan","Main", new {TenTK = user.TenTK})"><i class="fa fa-user"></i>Tài khoản</a>
+                                </li>
+                                <li style="padding:0;">
+                                    <a class="dropdown-item" href="#"><i class="fa fa-list-ol"></i>Lịch sử giao dịch</a>
+                                </li>
+                                <li style="padding:0;">
+                                    <a class="dropdown-item" href="@Url.Action("DangXuatKH","DangNhapDangKy")"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
+                                </li>
                             </ul>
                         </li>
                     }
