@@ -147,5 +147,69 @@ namespace DAM.Controllers
             };
             return View(laydl);
         }
+        public ActionResult LichSuGiaoDich(string TenTK)
+        {
+            var ls = db.Ves
+                .Join(db.HoaDons, v => v.MaVe, hd => hd.MaVe, (v, hd) => new
+                {
+                    TenTK = hd.TenTK,
+                    MaVe = v.MaVe,
+                    NgayDat = hd.NgayDat,
+                    TongTien = hd.TongTien,
+                    MaSC = v.MaSC,
+                    MaPhim = v.MaPhim,
+                    MaRap = v.MaRap
+                }).Join(db.Ghe_Ve, x => x.MaVe, gv => gv.MaVe, (x, gv) => new
+                {
+                    MaGhe = gv.MaGhe,
+                    TenTK = x.TenTK,
+                    MaVe = gv.MaVe,
+                    NgayDat = x.NgayDat,
+                    TongTien = x.TongTien,
+                    MaSC = x.MaSC,
+                    MaPhim = x.MaPhim,
+                    MaRap = x.MaRap
+
+                }).Join(db.SuatChieus, y => y.MaSC, sc => sc.MaSC, (y, sc) => new
+                {
+                    KhungGio = sc.KhungGio,
+                    TenTK = y.TenTK,
+                    MaGhe = y.MaGhe,
+                    MaVe = y.MaVe,
+                    NgayDat = y.NgayDat,
+                    TongTien = y.TongTien,
+                    MaSC = y.MaSC,
+                    MaPhim = y.MaPhim,
+                    MaRap = y.MaRap
+                }).Join(db.Raps, z => z.MaRap, r => r.MaRap, (z, r) => new
+                {
+                    TenRap = r.TenRap,
+                    KhungGio = z.KhungGio,
+                    TenTK = z.TenTK,
+                    MaGhe = z.MaGhe,
+                    MaVe = z.MaVe,
+                    NgayDat = z.NgayDat,
+                    TongTien = z.TongTien,
+                    MaSC = z.MaSC,
+                    MaPhim = z.MaPhim,
+                    MaRap = z.MaRap
+                }).Join(db.Phims, s => s.MaPhim, p => p.MaPhim, (s, p) => new LichSuViewModel
+                {
+                    TenPhim = p.TenPhim,
+                    TenTK = s.TenTK,
+                    TenRap = s.TenRap,
+                    KhungGio = s.KhungGio,
+                    MaGhe = s.MaGhe,
+                    MaVe = (int)s.MaVe,
+                    NgayDat = s.NgayDat,
+                    TongTien = s.TongTien,
+                    MaSC = s.MaSC,
+                    MaPhim = s.MaPhim,
+                    MaRap = s.MaRap,
+                    HinhAnh = p.HinhAnh
+                }).ToList();
+            var lstk = ls.Where(x => x.TenTK == TenTK).ToList();
+            return View(lstk);
+        }
     }
 }

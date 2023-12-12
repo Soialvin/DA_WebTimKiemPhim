@@ -281,6 +281,7 @@
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\HoaDonViewModel.cs" />
+    <Compile Include="Models\ViewModel\LichSuViewModel.cs" />
     <Compile Include="Models\ViewModel\PhanLoaiPhimViewModel.cs" />
     <Compile Include="Models\Phim.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
@@ -727,6 +728,7 @@
     <Content Include="Views\Main\TTTaiKhoan.cshtml" />
     <Content Include="Views\YeuThich\TKTop7YTPartial.cshtml" />
     <Content Include="Views\Layout\MXHLayoutPartial.cshtml" />
+    <Content Include="Views\Ve\LichSuGiaoDich.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

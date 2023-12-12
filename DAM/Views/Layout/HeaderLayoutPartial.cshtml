@@ -47,7 +47,7 @@
                                     <a class="dropdown-item" href="@Url.Action("TTTaiKhoan","Main", new {TenTK = user.TenTK})"><i class="fa fa-user"></i>Tài khoản</a>
                                 </li>
                                 <li style="padding:0;">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-list-ol"></i>Lịch sử giao dịch</a>
+                                    <a class="dropdown-item" href="@Url.Action("LichSuGiaoDich","Ve",new {TenTK = user.TenTK})"><i class="fa fa-list-ol"></i>Lịch sử giao dịch</a>
                                 </li>
                                 <li style="padding:0;">
                                     <a class="dropdown-item" href="@Url.Action("DangXuatKH","DangNhapDangKy")"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
