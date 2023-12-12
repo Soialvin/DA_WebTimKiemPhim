@@ -725,7 +725,6 @@
     <Content Include="Views\YeuThich\TKPYTPartial.cshtml" />
     <Content Include="Views\Layout\TTTaiKhoanLayout.cshtml" />
     <Content Include="Views\Main\TTTaiKhoan.cshtml" />
-    <Content Include="Views\YeuThich\TKTop7YTPartial.cshtml" />
     <Content Include="Views\Layout\MXHLayoutPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
