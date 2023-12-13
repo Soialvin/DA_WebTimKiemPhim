@@ -22,7 +22,7 @@ namespace DAM.Controllers
         public ActionResult Index()
         {
             var rap = db.Raps.ToList();
-            var result = rap.Select(r => new RapPhimViewModel
+            var result = rap.Where(x => x.TrangThai != "Ngừng hoạt động").Select(r => new RapPhimViewModel
             {
                 MaRap = r.MaRap,
                 TenRap = r.TenRap,
@@ -441,7 +441,7 @@ namespace DAM.Controllers
         public ActionResult TimKiem(string keyword)
         {
             var RapChieu = db.Raps.ToList();
-            var result = RapChieu.Select(p => new RapPhimViewModel
+            var result = RapChieu.Where(x => x.TrangThai != "Ngừng hoạt động").Select(p => new RapPhimViewModel
             {
                 MaRap = p.MaRap,
                 TenRap = p.TenRap,

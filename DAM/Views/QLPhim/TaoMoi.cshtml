@@ -32,8 +32,8 @@
         padding-top: 10px;
     }
 </style>
-<div id="form_TaoMoi" >
-    @using (Html.BeginForm("TaoMoi", "QLPhim", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+<div id="form_TaoMoi">
+    @using (Html.BeginForm("TaoMoi", "QLPhim", FormMethod.Post, new { @enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()
 
@@ -140,7 +140,7 @@
     }
 </div>
 <div>
-    @Html.ActionLink("Quay lại", "QLPhim", null, new {@class = "btn btn-primary"})
+    @Html.ActionLink("Quay lại", "QLPhim", null, new { @class = "btn btn-primary" })
 </div>
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 <script>

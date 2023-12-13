@@ -21,7 +21,7 @@ namespace DAM.Controllers
         DA_WebTimKiemPhimEntities db = new DA_WebTimKiemPhimEntities();
         public ActionResult Index()
         {
-            return View(db.Ves);
+            return View(db.Ves.Where(x => x.TrangThaiVe != "Đã xóa"));
         }
         public ActionResult Xoa(int? MaVe)
         {
@@ -66,10 +66,10 @@ namespace DAM.Controllers
         [HttpGet]
         public ActionResult TaoMoi()
         {
-            ViewBag.MaPhim = new SelectList(db.Phims.OrderBy(x => x.TenPhim), "MaPhim", "TenPhim");
-            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.TenRap), "MaRap", "TenRap");
+            ViewBag.MaPhim = new SelectList(db.Phims.Where(x => x.TrangThai != "Ngừng chiếu").OrderBy(x => x.TenPhim), "MaPhim", "TenPhim");
+            ViewBag.MaRap = new SelectList(db.Raps.Where(x => x.TrangThai != "Ngừng hoạt động").OrderBy(x => x.TenRap), "MaRap", "TenRap");
             ViewBag.NgayChieu = new SelectList(db.SuatChieu_Rap.OrderBy(x => x.NgayChieu), "NgayChieu", "NgayChieu");
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
+            ViewBag.MaSC = new SelectList(db.SuatChieus.Where(x => x.TrangThai != "Đã hủy").OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
             List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
         }
@@ -277,10 +277,10 @@ namespace DAM.Controllers
             }
             else
             {
+                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString()))).ToList();
                 ViewBag.Keyword = keyword;
-                return new EmptyResult();
+                return View("Index", result);
             }
-            
         }
     }
 }

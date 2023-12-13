@@ -14,7 +14,7 @@ namespace DAM.Controllers
         // GET: DatVe
         public ActionResult Index()
         {
-            return View(db.HoaDons);
+            return View(db.HoaDons.Where(x => x.TrangThai != "Đã xóa"));
         }
         [HttpGet]
         public ActionResult Sua()
@@ -112,7 +112,7 @@ namespace DAM.Controllers
         }
         public ActionResult TimKiem(string keyword)
         {
-            var result = db.HoaDons.ToList();
+            var result = db.HoaDons.Where(x => x.TrangThai != "Đã xóa").ToList();
             if (string.IsNullOrEmpty(keyword))
             {
                 return View("Index", result);

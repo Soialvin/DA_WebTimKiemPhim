@@ -27,7 +27,7 @@ namespace DAM.Controllers
             var phims = db.Phims.ToList();
             var phimTL = db.Phim_TheLoai.ToList();
             var scPhim = db.SuatChieu_Phim.ToList();
-            var result = phims.Select(p => new PhimViewModel
+            var result = phims.Where(x => x.TrangThai != "Ngừng chiếu").Select(p => new PhimViewModel
             {
                 MaPhim = p.MaPhim,
                 TenPhim = p.TenPhim,
@@ -386,7 +386,7 @@ namespace DAM.Controllers
             var suatChieuPhims = db.SuatChieu_Phim.ToList();
             var phimTheLoais = db.Phim_TheLoai.ToList();
 
-            var result = phims.Select(p => new PhimViewModel
+            var result = phims.Where(x => x.TrangThai != "Ngừng chiếu").Select(p => new PhimViewModel
             {
                 MaPhim = p.MaPhim,
                 TenPhim = p.TenPhim,

@@ -14,7 +14,6 @@
             e.preventDefault(); // Ngăn chặn form submit mặc định
 
             var formData = new FormData($("#purchaseForm")[0]);
-            console.log("Dữ liệu Form:", formData);
            $.ajax({
                 url: '@Url.Action("TTTaiKhoan", "Main")',
                 type: 'POST',

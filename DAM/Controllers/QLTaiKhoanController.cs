@@ -20,7 +20,7 @@ namespace DAM.Controllers
         DA_WebTimKiemPhimEntities db = new DA_WebTimKiemPhimEntities();
         public ActionResult QLTaiKhoan()
         {
-            var result = db.TaiKhoans.Select(x => new TKViewModel
+            var result = db.TaiKhoans.Where(x => x.TrangThai != "Ngừng hoạt động").Select(x => new TKViewModel
             {
                 TenTK = x.TenTK,
                 MatKhau = x.MatKhau,
@@ -350,7 +350,7 @@ namespace DAM.Controllers
         }
         public ActionResult TimKiem(string keyword)
         {
-            var result = db.TaiKhoans.Select(x => new TKViewModel
+            var result = db.TaiKhoans.Where(x => x.TrangThai != "Ngừng hoạt động").Select(x => new TKViewModel
             {
                 TenTK = x.TenTK,
                 MatKhau = x.MatKhau,

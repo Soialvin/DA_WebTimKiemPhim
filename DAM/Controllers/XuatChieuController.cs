@@ -19,7 +19,7 @@ namespace DAM.Controllers
         public ActionResult Index()
         {
             var suat = db.SuatChieus.ToList();
-            var result = suat.Select(p => new SuatChieuPhimModel
+            var result = suat.Where(x => x.TrangThai != "Đã hủy").Select(p => new SuatChieuPhimModel
             {
                 MaSC = p.MaSC,
                 KhungGio = p.KhungGio,
@@ -212,7 +212,7 @@ namespace DAM.Controllers
         public ActionResult TimKiem(string keyword)
         {
             var suatchieu = db.SuatChieus.ToList();
-            var result = suatchieu.Select(p => new SuatChieuPhimModel
+            var result = suatchieu.Where(x => x.TrangThai != "Đã hủy").Select(p => new SuatChieuPhimModel
             {
                MaSC = p.MaSC,
                KhungGio = p.KhungGio,
