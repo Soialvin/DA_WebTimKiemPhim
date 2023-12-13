@@ -77,9 +77,9 @@ namespace DAM.Controllers
         [HttpGet]
         public ActionResult DatVeNgay(string MaPhim, string TenPhim)
         {
-            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.TenRap), "MaRap", "TenRap");
+            ViewBag.MaRap = new SelectList(db.Raps.Where(x => x.TrangThai != "Ngừng hoạt động").OrderBy(x => x.TenRap), "MaRap", "TenRap");
             ViewBag.NgayChieu = new SelectList(db.SuatChieu_Rap.OrderBy(x => x.NgayChieu), "NgayChieu", "NgayChieu");
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
+            ViewBag.MaSC = new SelectList(db.SuatChieus.Where(x => x.TrangThai != "Đã hủy").OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
             List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
         }
@@ -106,9 +106,10 @@ namespace DAM.Controllers
                     MaPhim = y.MaPhim,
                     MaSC = y.MaSC,
                     MaRap = y.MaRap,
-                    TenRap = r.TenRap
+                    TenRap = r.TenRap,
+                    TrangThai = r.TrangThai
                 }).ToList();
-            var listRap = rap.Where(x => x.MaPhim == selectedPhim).ToList();
+            var listRap = rap.Where(x => x.MaPhim == selectedPhim && x.TrangThai != "Ngừng hoạt động").ToList();
             return Json(listRap, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -131,13 +132,21 @@ namespace DAM.Controllers
                     MaRap = scr.MaRap,
                     NgayChieu = scr.NgayChieu
                 }).ToList();
-            var listNgayChieu = ngayChieu.Where(x => x.MaPhim == selectedPhim && x.MaRap == selectedRap).ToList();
+            var listNgayChieu = ngayChieu.Where(x => x.MaPhim == selectedPhim && x.MaRap == selectedRap && x.NgayChieu >= DateTime.Now).ToList();
             return Json(listNgayChieu, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult loadSC(string selectedRap, DateTime selectedNgayChieu)
         {
-            var listSC = db.SuatChieu_Rap.Where(x => x.MaRap == selectedRap && x.NgayChieu == selectedNgayChieu).ToList();
+            var listSC = db.SuatChieus
+                .Join(db.SuatChieu_Rap, sc => sc.MaSC, scr => scr.MaSC,
+                (sc,scr) => new
+                {
+                    MaSC = sc.MaSC,
+                    TrangThai = sc.TrangThai,
+                    MaRap = scr.MaRap,
+                    NgayChieu = scr.NgayChieu
+                }).Where(x => x.MaRap == selectedRap && x.NgayChieu == selectedNgayChieu && x.TrangThai != "Đã hủy").ToList();
             return Json(listSC, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
