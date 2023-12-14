@@ -54,11 +54,15 @@
     <h4 style="margin: 0 0 50px 0;" class="latest-text w3_latest_text">Đặt vé</h4>
     <div class="all-comments">
         <div style="" class="all-comments-info">
-            <p style="font-size:20px; font-weight:bold">Thông tin chi tiết</p>
+            <p style="font-size:25px; font-weight:bold; text-align: center">Thông tin chi tiết</p>
             <div class="agile-info-wthree-box">
-                @using (Html.BeginForm("XuLyHD", "DatVe", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm", @style = "margin: 0 auto;width: 50%;" }))
+                @using (Html.BeginForm("XuLyHD", "DatVe", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
                 {
                     @Html.AntiForgeryToken()
+                <div class="container-content" >
+                    <div class="image-container">
+                        <img style="max-width: 182px" src="@Url.Content("~/Content/MovieImages/" + Model.HinhAnh)" />
+                    </div>
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <p class="ttPhim">Tên phim: @Model.TenPhim</p>
@@ -67,6 +71,7 @@
                         <p class="ttPhim">Khung giờ: @Model.KhungGio</p>
                         <p class="ttPhim">Giá vé: @Model.GiaVe / 1 ghế</p>
                         <p class="ttPhim">Tổng tiền: @Model.TongTien</p>
+
                         <div class="form-group">
                             <div class="col-md-8">
                                 @Html.HiddenFor(model => model.MaPhim)
@@ -86,6 +91,7 @@
                         </div>
                         <input type="submit" style="margin-left: 17%;" id="btn_ThanhToan" value="Thanh toán" disabled class="hoverable" />
                     </div>
+                </div>
                 }
             </div>
         </div>
@@ -110,5 +116,17 @@
 
     }
 </script>
-
+<style>
+    .container-content {
+         display: flex;
+        justify-content: space-around;
+        margin-left: 15%;
+    }
+    .image-container{
+        flex: 1;
+    }
+    .form-horizontal {
+        flex: 1.5;
+    }
+</style>
 

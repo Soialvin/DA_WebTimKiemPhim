@@ -9,6 +9,7 @@ namespace DAM.Models.ViewModel
     {
         public string MaPhim { get; set; }
         public string TenPhim { get; set; }
+        public string HinhAnh { get; set; }
         public string MaRap { get; set; }
         public string TenRap { get; set; }
         public string MaSC {  get; set; }

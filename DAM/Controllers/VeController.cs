@@ -175,6 +175,7 @@ namespace DAM.Controllers
                 MaGhe = listGhe.Select(x => x.MaGhe).ToList(),
                 MaSC = laySC.MaSC,
                 TenPhim = layPhim.TenPhim,
+                HinhAnh = layPhim.HinhAnh,
                 TenRap = layRap.TenRap,
                 GiaVe = layRap.GiaVe,
                 KhungGio = laySC.KhungGio
@@ -198,7 +199,8 @@ namespace DAM.Controllers
                 MaSC = RSCP.MaSC,
                 GiaVe = RSCP.GiaVe,
                 TongTien = ((decimal)(RSCP.GiaVe * soLuongGheDaChon)),
-                KhungGio = RSCP.KhungGio
+                KhungGio = RSCP.KhungGio,
+                HinhAnh = RSCP.HinhAnh
             };
             return View(laydl);
         }
