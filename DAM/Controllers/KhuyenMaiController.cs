@@ -117,13 +117,13 @@ namespace DAM.Controllers
         [HttpGet]
         public ActionResult Sua(String maKM)
         {
-            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.MaRap), "MaRap", "TenRap");
             if (maKM == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
             KhuyenMai km = db.KhuyenMais.SingleOrDefault(x => x.MaKM == maKM);
+            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.MaRap), "MaRap", "TenRap",km.MaRap);
             Session["Anh"] = km;
             if (km == null)
             {
@@ -144,7 +144,7 @@ namespace DAM.Controllers
         [HttpPost]
         public ActionResult Sua(KhuyenMai km, HttpPostedFileBase HinhAnh)
         {
-            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.MaRap), "MaRap", "TenRap");
+            ViewBag.MaRap = new SelectList(db.Raps.OrderBy(x => x.MaRap), "MaRap", "TenRap", km.MaRap);
             try
             {
                 if (ModelState.IsValid)
