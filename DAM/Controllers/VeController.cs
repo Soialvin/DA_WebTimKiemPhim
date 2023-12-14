@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using Microsoft.Ajax.Utilities;
 
 namespace DAM.Controllers
 {
@@ -270,7 +271,7 @@ namespace DAM.Controllers
                     MaRap = s.MaRap,
                     HinhAnh = p.HinhAnh
                 }).ToList();
-            var lstk = ls.Where(x => x.TenTK == TenTK).ToList();
+            var lstk = ls.Where(x => x.TenTK == TenTK).DistinctBy(x => x.MaHD).ToList();
             int PageSize = 5;
             int PageNumber = (page ?? 1);
             ViewBag.TenTK = TenTK;
