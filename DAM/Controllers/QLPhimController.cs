@@ -168,10 +168,6 @@ namespace DAM.Controllers
         [HttpGet]
         public ActionResult ChinhSua(string MaPhim)
         {
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
-            ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL");
-            List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu" };
-            ViewBag.TrangThai = new SelectList(listTrangThai);
             var phims = db.Phims.ToList();
             var p = phims.FirstOrDefault(x => x.MaPhim == MaPhim);
             Session["AnhPhim"] = p;
@@ -200,6 +196,10 @@ namespace DAM.Controllers
                 MaSC = suatChieuPhims.Select(sc => sc.MaSC).ToList(),
                 MaTL = phimTheLoais.Select(tl =>  tl.MaTL).ToList(),
             };
+            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio",result.MaSC);
+            ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL",result.MaTL);
+            List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu"};
+            ViewBag.TrangThai = new SelectList(listTrangThai,p.TrangThai);
             return View(result);
         }
         [HttpPost]
@@ -207,10 +207,10 @@ namespace DAM.Controllers
         {
             try
             {
-                ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
-                ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL");
+                ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio", model.MaSC);
+                ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL", model.MaTL);
                 List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu" };
-                ViewBag.TrangThai = new SelectList(listTrangThai);
+                ViewBag.TrangThai = new SelectList(listTrangThai, model.TrangThai);
                 if (ModelState.IsValid)
                 {
                     //check ảnh tồn tại

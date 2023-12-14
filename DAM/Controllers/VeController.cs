@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using Microsoft.Ajax.Utilities;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace DAM.Controllers
 {
@@ -71,17 +72,52 @@ namespace DAM.Controllers
             ViewBag.MaRap = new SelectList(db.Raps.Where(x => x.TrangThai != "Ngừng hoạt động").OrderBy(x => x.TenRap), "MaRap", "TenRap");
             ViewBag.NgayChieu = new SelectList(db.SuatChieu_Rap.OrderBy(x => x.NgayChieu), "NgayChieu", "NgayChieu");
             ViewBag.MaSC = new SelectList(db.SuatChieus.Where(x => x.TrangThai != "Đã hủy").OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
-            List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
         }
-        
+        [HttpGet]
+        public ActionResult TaoMoiCDN()
+        {
+            RapSCPhimViewModel DatVeCDN = (RapSCPhimViewModel)Session["DatVeCDN"];
+            var RapGheVe = db.Ves
+           .Join(db.Ghe_Ve, ve => ve.MaVe, gv => gv.MaVe, (ve, gv) => new
+           {
+               MaRap = ve.MaRap,
+               MaVe = ve.MaVe,
+               MaGhe = gv.MaGhe,
+               MaSC = ve.MaSC,
+               MaPhim = ve.MaPhim,
+               TrangThaiVe = ve.TrangThaiVe
+           });
+            var listGhe = RapGheVe.Where(x => x.MaRap == DatVeCDN.MaRap && x.MaSC == DatVeCDN.MaSC && x.MaPhim == DatVeCDN.MaPhim && x.TrangThaiVe == "Chưa xóa");
+            var laySC = db.SuatChieus.FirstOrDefault(x => x.MaSC == DatVeCDN.MaSC);
+            var layRap = db.Raps.FirstOrDefault(x => x.MaRap == DatVeCDN.MaRap);
+            var layPhim = db.Phims.FirstOrDefault(x => x.MaPhim == DatVeCDN.MaPhim);
+            var laydl = new RapSCPhimViewModel
+            {
+                MaPhim = layPhim.MaPhim,
+                MaRap = layRap.MaRap,
+                MaGhe = listGhe.Select(x => x.MaGhe).ToList(),
+                MaSC = laySC.MaSC,
+                TenPhim = layPhim.TenPhim,
+                TenRap = layRap.TenRap,
+                GiaVe = layRap.GiaVe,
+                KhungGio = laySC.KhungGio
+            };
+            return View(laydl);
+        }
+        [HttpPost]
+        public ActionResult SaveToSession(RapSCPhimViewModel model)
+        {
+            Session["DatVeCDN"] = model;
+            return Json(new { success = true });
+        }
+
         [HttpGet]
         public ActionResult DatVeNgay(string MaPhim, string TenPhim)
         {
             ViewBag.MaRap = new SelectList(db.Raps.Where(x => x.TrangThai != "Ngừng hoạt động").OrderBy(x => x.TenRap), "MaRap", "TenRap");
             ViewBag.NgayChieu = new SelectList(db.SuatChieu_Rap.OrderBy(x => x.NgayChieu), "NgayChieu", "NgayChieu");
             ViewBag.MaSC = new SelectList(db.SuatChieus.Where(x => x.TrangThai != "Đã hủy").OrderBy(x => x.KhungGio), "MaSC", "KhungGio");
-            List<string> listTrangThai = new List<string> { "Chưa xóa", "Đã xóa" };
             return View();
         }
         [HttpPost]
@@ -155,15 +191,15 @@ namespace DAM.Controllers
         public ActionResult ChonGhe(RapSCPhimViewModel RSCP)
         {
             var RapGheVe = db.Ves
-                .Join(db.Ghe_Ve, ve => ve.MaVe, gv => gv.MaVe, (ve, gv) => new
-                {
-                    MaRap = ve.MaRap,
-                    MaVe = ve.MaVe,
-                    MaGhe = gv.MaGhe,
-                    MaSC = ve.MaSC,
-                    MaPhim = ve.MaPhim,
-                    TrangThaiVe = ve.TrangThaiVe
-                });
+            .Join(db.Ghe_Ve, ve => ve.MaVe, gv => gv.MaVe, (ve, gv) => new
+            {
+                MaRap = ve.MaRap,
+                MaVe = ve.MaVe,
+                MaGhe = gv.MaGhe,
+                MaSC = ve.MaSC,
+                MaPhim = ve.MaPhim,
+                TrangThaiVe = ve.TrangThaiVe
+            });
             var listGhe = RapGheVe.Where(x => x.MaRap == RSCP.MaRap && x.MaSC == RSCP.MaSC && x.MaPhim == RSCP.MaPhim && x.TrangThaiVe == "Chưa xóa");
             var laySC = db.SuatChieus.FirstOrDefault(x => x.MaSC == RSCP.MaSC);
             var layRap = db.Raps.FirstOrDefault(x => x.MaRap == RSCP.MaRap);
@@ -185,6 +221,7 @@ namespace DAM.Controllers
         [HttpPost]
         public ActionResult XuLyVe(RapSCPhimViewModel RSCP)
         {
+            Session.Remove("DatVeCDN");
             List<string> listGheDaChon = new List<string>(RSCP.MaGheDaChon.Split(','));
             List<string> listPPThanhToan = new List<string> { "Thanh toán qua E-Banking", "Thanh toán qua MoMo", "Thanh toán qua VnPay" };
             ViewBag.PPThanhToan = new SelectList(listPPThanhToan);

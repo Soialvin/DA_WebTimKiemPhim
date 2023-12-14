@@ -169,10 +169,10 @@ namespace DAM.Controllers
                 NgayDK = tk.NgayDK,
                 TrangThai = tk.TrangThai
             };
-            List<string> listLoaiTK = new List<string> { "Admin", "User" };
-            ViewBag.LoaiTK = new SelectList(listLoaiTK);
+            List<string> listLoaiTK = new List<string> { "Admin", "User"};
+            ViewBag.LoaiTK = new SelectList(listLoaiTK,tk.LoaiTK);
             List<string> listTrangThai = new List<string> { "Đang hoạt động", "Ngừng hoạt động" };
-            ViewBag.TrangThai = new SelectList(listTrangThai);
+            ViewBag.TrangThai = new SelectList(listTrangThai,tk.TrangThai);
             return View(result);
         }
         [HttpPost]
@@ -182,9 +182,9 @@ namespace DAM.Controllers
             try
             {
                 List<string> listLoaiTK = new List<string> { "Admin", "User" };
-                ViewBag.LoaiTK = new SelectList(listLoaiTK);
-                List<string> listTrangThai = new List<string> { "Đang hoạt động", "Ngừng hoạt động" };
-                ViewBag.TrangThai = new SelectList(listTrangThai);
+                ViewBag.LoaiTK = new SelectList(listLoaiTK, tk.LoaiTK);
+                List<string> listTrangThai = new List<string> { "Đang hoạt động", "Ngừng hoạt động"};
+                ViewBag.TrangThai = new SelectList(listTrangThai, tk.LoaiTK);
                 if (ModelState.IsValid)
                 {
                     var x = db.TaiKhoans.Find(tk.TenTK);

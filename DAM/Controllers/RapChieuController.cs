@@ -198,9 +198,9 @@ namespace DAM.Controllers
         [HttpGet]
         public ActionResult Sua(string MaRapPhim)
         {
-            List<string> listTrangThai = new List<string> { "Đang hoạt động", "Ngừng hoạt động" };
-            ViewBag.TrangThai = new SelectList(listTrangThai);
             var r = db.Raps.FirstOrDefault(x => x.MaRap == MaRapPhim);
+            List<string> listTrangThai = new List<string> { "Đang hoạt động", "Ngừng hoạt động" };
+            ViewBag.TrangThai = new SelectList(listTrangThai,r.TrangThai);
             if (string.IsNullOrEmpty(MaRapPhim))
             {
                 Response.StatusCode = 404;
@@ -224,8 +224,8 @@ namespace DAM.Controllers
         public ActionResult SuaSCRap(string MaRap, string MaSC, string NgayChieu)
         {
             DateTime ngayChieu = DateTime.ParseExact(NgayChieu, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
             var scr = db.SuatChieu_Rap.FirstOrDefault(x => x.MaRap == MaRap &&  x.MaSC == MaSC && x.NgayChieu == ngayChieu);
+            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio",scr.MaSC);
             if (string.IsNullOrEmpty(MaRap) || string.IsNullOrEmpty(MaSC) || NgayChieu == null)
             {
                 Response.StatusCode = 404;
@@ -252,7 +252,7 @@ namespace DAM.Controllers
             try
             {
                 List<string> listTrangThai = new List<string> { "Đang hoạt động", "Ngừng hoạt động" };
-                ViewBag.TrangThai = new SelectList(listTrangThai);
+                ViewBag.TrangThai = new SelectList(listTrangThai,rp.TrangThai);
                 if (ModelState.IsValid)
                 {
                     var r = db.Raps.Find(rp.MaRap);
@@ -307,7 +307,7 @@ namespace DAM.Controllers
         {
             try
             {
-                ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
+                ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio",model.MaSC);
                 var scRap = db.SuatChieus
                 .Join(db.SuatChieu_Rap, sc => sc.MaSC, scr => scr.MaSC,
                 (sc, scr) => new

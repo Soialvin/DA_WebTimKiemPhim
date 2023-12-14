@@ -87,12 +87,12 @@ namespace DAM.Controllers
         }
         public ActionResult Sua(string maSuatChieu)
         {
-            List<string> lstloaichieu = new List<string> { "2D", "3D", "4DX" };
-            ViewBag.LoaiChieu = new SelectList(lstloaichieu);
-            List<string> lstTrangThai = new List<string> { "Đang chiếu", "Đã hủy" };
-            ViewBag.TrangThai = new SelectList(lstTrangThai);
             var sc = db.SuatChieus.ToList();
             var suatchieu = sc.FirstOrDefault(x => x.MaSC == maSuatChieu);
+            List<string> lstloaichieu = new List<string> { "2D", "3D", "4DX" };
+            ViewBag.LoaiChieu = new SelectList(lstloaichieu,suatchieu.LoaiChieu);
+            List<string> lstTrangThai = new List<string> { "Đang chiếu", "Đã hủy" };
+            ViewBag.TrangThai = new SelectList(lstTrangThai,suatchieu.TrangThai);
             if (string.IsNullOrEmpty(maSuatChieu))
             {
                 Response.StatusCode = 404;
@@ -117,9 +117,9 @@ namespace DAM.Controllers
             try
             {
                 List<string> lstloaichieu = new List<string> { "2D", "3D", "4DX" };
-                ViewBag.LoaiChieu = new SelectList(lstloaichieu);
+                ViewBag.LoaiChieu = new SelectList(lstloaichieu,model.LoaiChieu);
                 List<string> lstTrangThai = new List<string> { "Đang chiếu", "Đã hủy" };
-                ViewBag.TrangThai = new SelectList(lstTrangThai);
+                ViewBag.TrangThai = new SelectList(lstTrangThai,model.TrangThai);
                 if (ModelState.IsValid)
                 {
                     var sc = db.SuatChieus.Find(model.MaSC);

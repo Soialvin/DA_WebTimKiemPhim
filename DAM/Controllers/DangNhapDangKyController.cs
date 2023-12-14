@@ -35,7 +35,14 @@ namespace DAM.Controllers
                 var tk1 = TKKH.LoaiTK;
                 if (tk1 == "User")
                 {
-                    return RedirectToAction("Main", "Main");
+                    if(Session["DatVeCDN"] == null)
+                    {
+                        return RedirectToAction("Main", "Main");
+                    }
+                    else
+                    {
+                        return RedirectToAction("TaoMoiCDN", "Ve");
+                    }
                 }
                 return RedirectToAction("Index", "ThongKe");
 
