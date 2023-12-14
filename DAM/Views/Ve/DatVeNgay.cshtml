@@ -175,6 +175,7 @@
             });
 
             function loadRapOptions(selectedPhim) {
+                var rap = [];
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("loadRap", "Ve")",
@@ -186,10 +187,13 @@
                             text: "- Chọn rạp -"
                         }));
                         $.each(data, function (index, option) {
-                            $("#dropdown2").append($('<option>', {
-                                value: option.MaRap,
-                                text: option.TenRap
-                            }));
+                            if (!rap.includes(option.MaRap)) {
+                                rap.push(option.MaRap);
+                                $("#dropdown2").append($('<option>', {
+                                    value: option.MaRap,
+                                    text: option.TenRap
+                                }));
+                            }
                         });
                     }
                 });
@@ -231,9 +235,7 @@
                             text: "- Chọn ngày chiếu -"
                         }));
                         $.each(data, function (index, option) {
-                            console.log("NgayChieu from server:", option.NgayChieu);
                             var ngayChieuFM = convertTimestampToDateString(option.NgayChieu);
-                            console.log("Formatted NgayChieu:", ngayChieuFM);
                             if (!addedDates.includes(ngayChieuFM)) {
                                 // Nếu chưa, thêm ngày vào danh sách và dropdown
                                 addedDates.push(ngayChieuFM);
