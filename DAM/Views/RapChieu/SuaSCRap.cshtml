@@ -45,6 +45,7 @@
                 @Html.LabelFor(model => model.MaSC, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("MaSC", null, new { @class = "form-control" })
+                    @Html.HiddenFor(model => model.MaSCGoc)
                     <span class="text-danger">@ViewBag.errMaSC</span>
                     @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
                 </div>
@@ -54,7 +55,7 @@
                 @Html.LabelFor(model => model.MaRap, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.MaRap, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.MaRap, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
                 </div>
             </div>
 
@@ -64,6 +65,7 @@
                     @if (Model.NgayChieu != null)
                     {
                         @Html.TextBox("NgayChieu", Model.NgayChieu.ToString("dd/MM/yyyy"), new { @id = "datepicker", @readonly = "readonly" })
+                        @Html.HiddenFor(model => model.NgayChieuGoc)
                         <span class="text-danger">@ViewBag.errNgayChieu</span>
                         @Html.ValidationMessageFor(model => model.NgayChieu, "", new { @class = "text-danger" })
                     }

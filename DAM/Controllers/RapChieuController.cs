@@ -225,9 +225,12 @@ namespace DAM.Controllers
             }
             var result = new SuatChieu_RapViewModel
             {
+                ID = scr.ID,
                 MaSC = scr.MaSC,
+                MaSCGoc = scr.MaSC,
                 MaRap = scr.MaRap,
-                NgayChieu = scr.NgayChieu
+                NgayChieu = scr.NgayChieu,
+                NgayChieuGoc = scr.NgayChieu
             };
             return View(result);
         }
@@ -305,32 +308,63 @@ namespace DAM.Controllers
                 var listSC = scRap.Where(x => x.MaRap == model.MaRap && x.NgayChieu == model.NgayChieu).Select(sc => sc.MaSC).ToList();
                 if (ModelState.IsValid)
                 {
-                    var scr = db.SuatChieu_Rap.FirstOrDefault(x => x.MaSC == model.MaSC && x.MaRap == model.MaRap && x.NgayChieu == model.NgayChieu);
+                    var scr = db.SuatChieu_Rap.FirstOrDefault(x => x.ID == model.ID);
                     if (scr == null)
                     {
                         return HttpNotFound();
                     }
-                    if (!listSC.Any(x => x == model.MaSC))
-                    {
-                        scr.MaSC = model.MaSC;
-                        scr.NgayChieu = model.NgayChieu;
-                        if (Session["user"] != null)
-                        {
-                            TaiKhoan TKDN = (TaiKhoan)Session["user"];
-                            LichSu ls = new LichSu
-                            {
-                                ThongTinTT = $"Đã tạo cập nhật suất chiếu mã: {scr.MaSC}, của rạp mã: {scr.MaRap}, với ngày chiếu : {scr.NgayChieu.ToString("dd/MM/yyyy")}",
-                                NgayGioTT = DateTime.Now,
-                                TenTK = TKDN.TenTK
-                            };
-                            db.LichSus.Add(ls);
-                        }
-                    }
                     else
                     {
-                        ViewBag.errMaSC = "Suất chiếu đã có trong này";
-                        ViewBag.errNgayChieu = "Ngày này đã có suất chiếu trên";
-                        return View(model);
+                        if (model.MaSC != model.MaSCGoc && model.NgayChieu != model.NgayChieuGoc)
+                        {
+                            if (!listSC.Any(x => x == model.MaSC))
+                            {
+                                scr.MaSC = model.MaSC;
+                                scr.NgayChieu = model.NgayChieu;
+                                if (Session["user"] != null)
+                                {
+                                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                                    LichSu ls = new LichSu
+                                    {
+                                        ThongTinTT = $"Đã tạo cập nhật suất chiếu mã: {scr.MaSC}, của rạp mã: {scr.MaRap}, với ngày chiếu : {scr.NgayChieu.ToString("dd/MM/yyyy")}",
+                                        NgayGioTT = DateTime.Now,
+                                        TenTK = TKDN.TenTK
+                                    };
+                                    db.LichSus.Add(ls);
+                                }
+                            }
+                            else
+                            {
+                                ViewBag.errMaSC = "Suất chiếu đã có trong ngày";
+                                ViewBag.errNgayChieu = "Ngày này đã có suất chiếu trên";
+                                return View(model);
+                            }
+                        }
+                        else if (model.MaSC == model.MaSCGoc || model.NgayChieuGoc == model.NgayChieu)
+                        {
+                            if (!listSC.Any(x => x == model.MaSC))
+                            {
+                                scr.MaSC = model.MaSC;
+                                scr.NgayChieu = model.NgayChieu;
+                                if (Session["user"] != null)
+                                {
+                                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                                    LichSu ls = new LichSu
+                                    {
+                                        ThongTinTT = $"Đã tạo cập nhật suất chiếu mã: {scr.MaSC}, của rạp mã: {scr.MaRap}, với ngày chiếu : {scr.NgayChieu.ToString("dd/MM/yyyy")}",
+                                        NgayGioTT = DateTime.Now,
+                                        TenTK = TKDN.TenTK
+                                    };
+                                    db.LichSus.Add(ls);
+                                }
+                            }
+                            else
+                            {
+                                ViewBag.errMaSC = "Suất chiếu đã có trong ngày";
+                                ViewBag.errNgayChieu = "Ngày này đã có suất chiếu trên";
+                                return View(model);
+                            }
+                        }
                     }
                     db.SaveChanges();
                     SetAlert("Cập nhật thành công", "sucsess");
