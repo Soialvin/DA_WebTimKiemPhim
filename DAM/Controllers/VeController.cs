@@ -207,6 +207,7 @@ namespace DAM.Controllers
             var ls = db.Ves
                 .Join(db.HoaDons, v => v.MaVe, hd => hd.MaVe, (v, hd) => new
                 {
+                    MaHD = hd.MaHD,
                     TenTK = hd.TenTK,
                     MaVe = v.MaVe,
                     NgayDat = hd.NgayDat,
@@ -217,6 +218,7 @@ namespace DAM.Controllers
                 }).Join(db.SuatChieus, y => y.MaSC, sc => sc.MaSC, (y, sc) => new
                 {
                     KhungGio = sc.KhungGio,
+                    MaHD = y.MaHD,
                     TenTK = y.TenTK,
                     MaVe = y.MaVe,
                     NgayDat = y.NgayDat,
@@ -227,6 +229,7 @@ namespace DAM.Controllers
                 }).Join(db.SuatChieu_Rap, w => w.MaSC, scr => scr.MaSC,(w,scr) => new
                 {
                     NgayChieu = scr.NgayChieu,
+                    MaHD = w.MaHD,
                     KhungGio = w.KhungGio,
                     TenTK = w.TenTK,
                     MaVe = w.MaVe,
@@ -239,6 +242,7 @@ namespace DAM.Controllers
                 .Join(db.Raps, z => z.MaRap, r => r.MaRap, (z, r) => new
                 {
                     TenRap = r.TenRap,
+                    MaHD = z.MaHD,
                     NgayChieu = z.NgayChieu,
                     KhungGio = z.KhungGio,
                     TenTK = z.TenTK,
@@ -252,6 +256,7 @@ namespace DAM.Controllers
                 {
 
                     TenPhim = p.TenPhim,
+                    MaHD = s.MaHD,
                     NgayChieu = s.NgayChieu,
                     TenTK = s.TenTK,
                     TenRap = s.TenRap,

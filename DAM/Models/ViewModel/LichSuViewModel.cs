@@ -8,6 +8,7 @@ namespace DAM.Models.ViewModel
 {
     public class LichSuViewModel
     {
+        public int MaHD {  get; set; }
         public string TenTK { get; set; }
         public System.DateTime NgayChieu { get; set; }
         public string HinhAnh { get; set; }
@@ -21,5 +22,6 @@ namespace DAM.Models.ViewModel
         public Nullable<System.TimeSpan> KhungGio { get; set; }
         public decimal TongTien { get; set; }
         public System.DateTime NgayDat { get; set; }
+        
     }
 }
