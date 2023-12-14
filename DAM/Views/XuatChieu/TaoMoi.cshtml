@@ -44,20 +44,6 @@
                     @Html.ValidationMessageFor(model => model.MaSC, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.MaPhim, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.MaPhim, new MultiSelectList(ViewBag.MaPhim, "Value", "Text"), new { @class = "form-label select-label", multiple = "multiple", id = "countries1" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.NgayChieu, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBox("NgayChieu", "", new { @id = "datepicker", @readonly = "readonly" })
-                    @Html.ValidationMessageFor(model => model.NgayChieu, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.KhungGio, htmlAttributes: new { @class = "control-label col-md-2" })

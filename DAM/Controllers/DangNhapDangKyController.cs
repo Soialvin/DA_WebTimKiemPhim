@@ -26,7 +26,7 @@ namespace DAM.Controllers
         {
             //Checkdb
 
-            var TKKH = db.TaiKhoans.SingleOrDefault(m => m.TenTK.ToLower() == user.ToLower());
+            var TKKH = db.TaiKhoans.SingleOrDefault(m => m.TenTK.ToLower() == user.ToLower() && m.TrangThai == "Đang hoạt động");
             MH_GM mh = new MH_GM();
             //check code
             if (TKKH != null && TKKH.MatKhau == mh.MH(password))

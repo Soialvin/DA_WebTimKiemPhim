@@ -69,32 +69,44 @@ namespace DAM.Controllers
         [HttpPost]
         public ActionResult TaoMoi(RapPhimViewModel Model)
         {
-            var r = new Rap
-            {
-                MaRap = Model.MaRap,
-                TenRap = Model.TenRap,
-                DiaChi = Model.DiaChi,
-                GiaVe = Model.GiaVe,
-                TrangThai = "Đang hoạt động"
-            };
-            db.Raps.Add(r);
             try
             {
-                if (Session["user"] != null)
+                if (ModelState.IsValid)
                 {
-                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
-                    LichSu ls = new LichSu
+                    if (Model.GiaVe > 0 || string.IsNullOrEmpty(Model.GiaVe.ToString()))
                     {
-                        ThongTinTT = $"Đã tạo mới rạp mã: {r.MaRap}",
-                        NgayGioTT = DateTime.Now,
-                        TenTK = TKDN.TenTK
-                    };
-                    db.LichSus.Add(ls);
+                        var r = new Rap
+                        {
+                            MaRap = Model.MaRap,
+                            TenRap = Model.TenRap,
+                            DiaChi = Model.DiaChi,
+                            GiaVe = Model.GiaVe,
+                            TrangThai = "Đang hoạt động"
+                        };
+                        db.Raps.Add(r);
+                        if (Session["user"] != null)
+                        {
+                            TaiKhoan TKDN = (TaiKhoan)Session["user"];
+                            LichSu ls = new LichSu
+                            {
+                                ThongTinTT = $"Đã tạo mới rạp mã: {r.MaRap}",
+                                NgayGioTT = DateTime.Now,
+                                TenTK = TKDN.TenTK
+                            };
+                            db.LichSus.Add(ls);
+                        }
+                        db.SaveChanges();
+                        // Nếu không có lỗi khi lưu dữ liệu, dòng sau sẽ được thực hiện
+                        SetAlert("Thêm mới thành công", "sucsess");
+                        return RedirectToAction("Index", "RapChieu");
+                    }
+                    else
+                    {
+                        ViewBag.ErrorGiaVe = "Gía vé không đúng";
+                        return View("TaoMoi");
+                    }
                 }
-                db.SaveChanges();
-                // Nếu không có lỗi khi lưu dữ liệu, dòng sau sẽ được thực hiện
-                SetAlert("Thêm mới thành công", "sucsess");
-                return RedirectToAction("Index", "RapChieu");
+                return View(Model); 
             }
             catch (Exception ex)
             {
@@ -372,7 +384,6 @@ namespace DAM.Controllers
                 }
                 return View(model);
             }
-
             catch (Exception ex)
             {
                 if (Session["user"] != null)

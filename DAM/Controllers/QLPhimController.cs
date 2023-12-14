@@ -47,7 +47,7 @@ namespace DAM.Controllers
         public ActionResult TaoMoi()
         {
             //Tạo dropdownlist
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "MaSC");
+            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
             ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL");
             List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu" };
             ViewBag.TrangThai = new SelectList(listTrangThai);
@@ -57,7 +57,7 @@ namespace DAM.Controllers
         public ActionResult TaoMoi(PhimViewModel model, HttpPostedFileBase HinhAnh)
         {
             //Tạo dropdownlist
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "MaSC");
+            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
             ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL");
             List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu" };
             ViewBag.TrangThai = new SelectList(listTrangThai);
@@ -168,7 +168,7 @@ namespace DAM.Controllers
         [HttpGet]
         public ActionResult ChinhSua(string MaPhim)
         {
-            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "MaSC");
+            ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
             ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL");
             List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu" };
             ViewBag.TrangThai = new SelectList(listTrangThai);
@@ -207,7 +207,7 @@ namespace DAM.Controllers
         {
             try
             {
-                ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "MaSC");
+                ViewBag.MaSC = new SelectList(db.SuatChieus.OrderBy(x => x.MaSC), "MaSC", "KhungGio");
                 ViewBag.MaTL = new SelectList(db.TheLoais.OrderBy(x => x.TenTL), "MaTL", "TenTL");
                 List<string> listTrangThai = new List<string> { "Đang chiếu", "Ngừng chiếu", "Sắp chiếu" };
                 ViewBag.TrangThai = new SelectList(listTrangThai);
