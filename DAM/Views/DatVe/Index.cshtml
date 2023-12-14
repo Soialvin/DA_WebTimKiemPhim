@@ -54,15 +54,9 @@
                 grid.Column("TongTien", "Tổng tiền"),
                 grid.Column("PPThanhToan", "Phương thức thanh toán"),
                 grid.Column("TrangThai", "Trạng thái"),
-                
                 grid.Column(format: x =>
                 {
-                    var link = Url.Action("Sua", new { TenTK = x.MaHD });
-                    return new HtmlString($"<a href='{link}'><i class=\"fa-regular fa-pen-to-square\" style=\"font-size: 30px;\"></i></a>");
-                }),
-                grid.Column(format: x =>
-                {
-                    var link = Url.Action("Xoa", new { TenTK = x.MaHD });
+                    var link = Url.Action("Xoa", new { MaHD = x.MaHD });
                 return new HtmlString($"<a href=\"#\" data-href='{link}' data-toggle=\"modal\" data-target=\"#confirm-delete\"><i class=\"fa-solid fa-trash\" style=\"font-size: 30px;\"></i></a>");
             })
             ))
@@ -70,7 +64,7 @@
 </div>
 <style>
     .gridTable {
-        width: 2000px;
+        width: 1240px;
     }
 
     .gridHead {

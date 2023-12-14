@@ -16,61 +16,7 @@ namespace DAM.Controllers
         {
             return View(db.HoaDons.Where(x => x.TrangThai != "Đã xóa"));
         }
-        [HttpGet]
-        public ActionResult Sua()
-        {
-            List<string> listLoaiHoaDon = new List<string> { "Chưa thanh toán", "Đã thanh toán","Đã xóa" };
-            ViewBag.TrangThai = new SelectList(listLoaiHoaDon);
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Sua(HoaDon hd)
-        {
-            List<string> listLoaiHoaDon = new List<string> { "Chưa thanh toán", "Đã thanh toán", "Đã xóa" };
-            ViewBag.TrangThai = new SelectList(listLoaiHoaDon);
-
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Entry(hd).State = System.Data.Entity.EntityState.Modified;
-                    if (Session["user"] != null)
-                    {
-                        TaiKhoan TKDN = (TaiKhoan)Session["user"];
-                        LichSu ls = new LichSu
-                        {
-                            ThongTinTT = $"Đã cập nhật hóa đơn mã: {hd.MaHD}",
-                            NgayGioTT = DateTime.Now,
-                            TenTK = TKDN.TenTK
-                        };
-                        db.LichSus.Add(ls);
-                    }
-                    db.SaveChanges();
-                    SetAlert("Cập nhật thành công", "sucsess");
-                    return RedirectToAction("Index");
-
-                }
-                return View(hd);
-            }
-            catch (Exception ex)
-            {
-                if (Session["user"] != null)
-                {
-                    TaiKhoan TKDN = (TaiKhoan)Session["user"];
-                    LichSu ls = new LichSu
-                    {
-                        ThongTinTT = $"Error cập nhật hóa đơn. Mã lỗi: {ex.Message}",
-                        NgayGioTT = DateTime.Now,
-                        TenTK = TKDN.TenTK
-                    };
-                    db.LichSus.Add(ls);
-                }
-                db.SaveChanges();
-                SetAlert($"Cập nhật không thành công. Lỗi đã được ghi nhận vui lòng liên hệ Admin", "danger");
-                return View(hd);
-            }
-        }
-        public ActionResult Xoa(string maHD)
+        public ActionResult Xoa(int? maHD)
         {
             var result = db.HoaDons.Find(maHD);
             /*db.HoaDons.Remove(result);*/
