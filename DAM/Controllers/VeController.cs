@@ -145,7 +145,8 @@ namespace DAM.Controllers
                     MaSC = sc.MaSC,
                     TrangThai = sc.TrangThai,
                     MaRap = scr.MaRap,
-                    NgayChieu = scr.NgayChieu
+                    NgayChieu = scr.NgayChieu,
+                    KhungGio = sc.KhungGio
                 }).Where(x => x.MaRap == selectedRap && x.NgayChieu == selectedNgayChieu && x.TrangThai != "Đã hủy").ToList();
             return Json(listSC, JsonRequestBehavior.AllowGet);
         }
