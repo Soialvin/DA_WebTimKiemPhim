@@ -5,9 +5,9 @@
     Layout = "~/Views/Layout/DatVeLayout.cshtml";
 }
 <body>
-    <div class="col-sm-8 single-left">
+    <div style="width:100%;" class="col-sm-8 single-left">
         <h4 style="margin: 0 0 50px 0;" class="latest-text w3_latest_text">Đặt vé</h4>
-        <div class="agile-info-wthree-box">
+        <div style="margin:0 auto; width:60%;" class="agile-info-wthree-box">
             @using (Html.BeginForm("ChonGhe", "Ve", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "purchaseForm" }))
             {
                 @Html.AntiForgeryToken()

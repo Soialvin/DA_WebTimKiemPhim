@@ -112,7 +112,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
         </div>*@
-    <script>$('.toggle').click(function () {
+    <script>
+    $('.toggle').click(function () {
             // Switches the Icon
             $(this).children('i').toggleClass('fa-pencil');
             // Switches the forms
@@ -186,137 +187,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!-- /movie-browse-agile -->
                 <div class="show-top-grids-w3lagile">
                     @RenderBody()
-                    @*<div class="col-sm-8 single-left">
-                            <div class="song">
-                                <div class="song-info">
-                                    <h3>THE LEGEND OF TARZAN - Official Trailer 2</h3>
-                                </div>
-                                <div class="video-grid-single-page-agileits">
-                                    <div data-video="dLmKio67pVQ" id="video"> <img src="images/5.jpg" alt="" class="img-responsive" /> </div>
-                                </div>
-                            </div>
-
-                            <div class="clearfix"> </div>
-
-                            <div class="all-comments">
-                                <div class="all-comments-info">
-                                    <a href="#">Comments</a>
-                                    <div class="agile-info-wthree-box">
-                                        <form>
-                                            <input type="text" placeholder="Name" required="">
-                                            <input type="text" placeholder="Email" required="">
-                                            <input type="text" placeholder="Phone" required="">
-                                            <textarea placeholder="Message" required=""></textarea>
-                                            <input type="submit" value="SEND">
-                                            <div class="clearfix"> </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-                    @Html.Action("PhimDangChieu_TT_Partial", "Main")
-                    @*<div class="col-md-4 single-right">
-                            <h3>Up Next</h3>
-                            <div class="single-grid-right">
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m1.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author"><a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m2.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author"><a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views </p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m3.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author"><a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m4.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author"><a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m5.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author"><a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/c5.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author"><a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m6.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author">By <a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="single-right-grids">
-                                    <div class="col-md-4 single-right-grid-left">
-                                        <a href="single.html"><img src="~/Content/MainLayout/images/m15.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="col-md-8 single-right-grid-right">
-                                        <a href="single.html" class="title"> Nullam interdum metus</a>
-                                        <p class="author">By <a href="#" class="author">John Maniya</a></p>
-                                        <p class="views">2,114,200 views</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-
-                            </div>
-                        </div>*@
-
-                    <div class="clearfix"> </div>
                 </div>
-
             </div>
             <!-- //w3l-latest-movies-grids -->
         </div>
     </div>
+    <div class="review-slider" id="banner-bottom">
+        @Html.Action("Top7YTPartial","YeuThich")
+    </div>
+    <style>
+        #banner-bottom h4 {
+            margin-left:12.5%;
+        }
+        .single-page-agile-main{
+            padding-bottom:0;
+        }
+    </style>
     <!-- //w3l-medile-movies-grids -->
     <!-- footer -->
     <div class="footer">
@@ -369,7 +255,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //footer -->
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Content/MainLayout/js/bootstrap.min.js"></script>
-    <script>$(document).ready(function () {
+    <script>
+    $(document).ready(function () {
             $(".dropdown").hover(
                 function () {
                     $('.dropdown-menu', this).stop(true, true).slideDown("fast");
@@ -383,7 +270,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });</script>
     <!-- //Bootstrap Core JavaScript -->
     <!-- here stars scrolling icon -->
-    <script type="text/javascript">$(document).ready(function () {
+    <script type="text/javascript">
+    $(document).ready(function () {
             /*
                 var defaults = {
                 containerID: 'toTop', // fading element id

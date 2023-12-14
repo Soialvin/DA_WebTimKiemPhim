@@ -75,7 +75,6 @@ namespace DAM.Controllers
             }
             return RedirectToAction("Main","Main");
         }
-        [HttpGet]
         public ActionResult Top7YTPartial()
         {
             var top = db.YeuThich_Phim
@@ -91,7 +90,6 @@ namespace DAM.Controllers
             var phim = db.Phims.Where(x => listMaPhim.Contains(x.MaPhim) && x.TrangThai != "Ngừng chiếu").ToList();
             return PartialView(phim);
         }
-        [HttpGet]
         public ActionResult TKPYTPartial()
         {
             if (Session["user"] != null)

@@ -101,7 +101,8 @@ namespace DAM.Controllers
                 TenPhim = layPhim.TenPhim,
                 TenRap = layRap.TenRap,
                 GiaVe = layRap.GiaVe,
-                KhungGio = laySC.KhungGio
+                KhungGio = laySC.KhungGio,
+                HinhAnh = layPhim.HinhAnh
             };
             return View(laydl);
         }
