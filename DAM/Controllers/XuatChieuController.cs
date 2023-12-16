@@ -223,7 +223,7 @@ namespace DAM.Controllers
             {
                 return View("Index", result);
             }
-            result = result.Where(x => (x.MaSC != null && x.MaSC.Contains(keyword)) || (x.LoaiChieu != null && x.LoaiChieu.Contains(keyword))).ToList();
+            result = result.Where(x => (x.MaSC != null && x.MaSC.ToLower().Contains(keyword.ToLower())) || (x.LoaiChieu != null && x.LoaiChieu.ToLower().Contains(keyword.ToLower())) || (x.KhungGio != null && x.KhungGio.ToString().Contains(keyword)) ).ToList();
             ViewBag.Search = keyword;
             return View("Index", result);
         }

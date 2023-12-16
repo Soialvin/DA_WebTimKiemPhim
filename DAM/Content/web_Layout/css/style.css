@@ -1226,7 +1226,7 @@ i.fa.fa-twitter {
     box-shadow: none;
     outline: none;
     border-radius: 0px;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed',sans-serif;
 }
 .form-control:focus {
     border-color: #ccc;

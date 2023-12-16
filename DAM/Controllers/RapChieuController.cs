@@ -491,13 +491,14 @@ namespace DAM.Controllers
                 MaRap = p.MaRap,
                 TenRap = p.TenRap,
                 DiaChi = p.DiaChi,
-                TrangThai = p.TrangThai
+                TrangThai = p.TrangThai,
+                GiaVe = p.GiaVe
             }).ToList();
             if (string.IsNullOrEmpty(keyword))
             {
                 return View("Index", result);
             }
-            result = result.Where(x => (x.MaRap != null && x.MaRap.Contains(keyword)) || (x.TenRap != null && x.TenRap.Contains(keyword)) || (x.DiaChi != null && x.DiaChi.Contains(keyword))).ToList();
+            result = result.Where(x => (x.MaRap != null && RemoveDiacritics(x.MaRap).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.TenRap != null && RemoveDiacritics(x.TenRap).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.DiaChi != null && RemoveDiacritics(x.DiaChi).ToLower().Contains(RemoveDiacritics(keyword).ToLower()))).ToList();
             ViewBag.Search = keyword;
             return View("Index", result);
         }
@@ -514,7 +515,7 @@ namespace DAM.Controllers
             {
                 return View("SCRap", result);
             }
-            result = result.Where(x => (x.MaSC != null && x.MaSC.Contains(keyword))).ToList();
+            result = result.Where(x => (x.MaSC != null && x.MaSC.ToLower().Contains(keyword.ToLower())) || (x.NgayChieu != null && x.NgayChieu.ToString().Contains(keyword))).ToList();
             ViewBag.Search = keyword;
             return View("SCRap", result);
         }
