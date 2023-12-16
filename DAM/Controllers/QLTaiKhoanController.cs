@@ -367,7 +367,7 @@ namespace DAM.Controllers
             {
                 return View("QLTaiKhoan", result);
             }
-            result = result.Where(x => (x.TenTK != null && x.TenTK.Contains(keyword)) || (x.HoVaTen != null && x.HoVaTen.Contains(keyword)) || (x.DiaChi != null && x.DiaChi.Contains(keyword)) || (x.SoDienThoai != null && x.SoDienThoai.Contains(keyword))).ToList();
+            result = result.Where(x => (x.TenTK != null && RemoveDiacritics(x.TenTK).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.HoVaTen != null && RemoveDiacritics(x.HoVaTen).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.DiaChi != null && RemoveDiacritics(x.DiaChi).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.SoDienThoai != null && x.SoDienThoai.Contains(keyword))).ToList();
             ViewBag.Search = keyword;
             return View("QLTaiKhoan", result);
         }

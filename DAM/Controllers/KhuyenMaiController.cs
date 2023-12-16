@@ -292,7 +292,7 @@ namespace DAM.Controllers
             {
                 return View("Index", result);
             }
-            result = result.Where(x => (x.MaKM != null && x.MaKM.Contains(keyword) || (x.TenKM != null && x.TenKM.Contains(keyword)) || x.MaRap != null && x.MaRap.Contains(keyword))).ToList();
+            result = result.Where(x => (x.MaKM != null && RemoveDiacritics(x.MaKM).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.TenKM != null && RemoveDiacritics(x.TenKM).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.MaRap != null && RemoveDiacritics(x.MaRap).ToLower().Contains(RemoveDiacritics(keyword).ToLower()))).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", result);
         }

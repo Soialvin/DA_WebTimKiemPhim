@@ -404,7 +404,7 @@ namespace DAM.Controllers
             {
                 return View("QLPhim", result);
             }
-            result = result.Where(x => (x.MaPhim != null && x.MaPhim.Contains(keyword)) || (x.TenPhim != null && x.TenPhim.Contains(keyword)) || (x.TrangThai != null && x.TrangThai.Contains(keyword))).ToList();
+            result = result.Where(x => (x.MaPhim != null && RemoveDiacritics(x.MaPhim).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.TenPhim != null && RemoveDiacritics(x.TenPhim).ToLower().Contains(RemoveDiacritics(keyword).ToLower())) || (x.ThongTinPhim != null && RemoveDiacritics(x.ThongTinPhim).ToLower().Contains(RemoveDiacritics(keyword).ToLower()))).ToList();
             ViewBag.Search = keyword;
             return View("QLPhim", result);
         }
