@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,6 +23,14 @@ namespace DAM.Controllers
                     TempData["AlertType"] = "alert-danger"; break;
                 default: TempData["AlertType"] = ""; break;
             }
+        }
+        protected string RemoveDiacritics(string input)
+        {
+            return new string(input
+                .Normalize(NormalizationForm.FormD)
+                .ToCharArray()
+                .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                .ToArray());
         }
     }
 }
