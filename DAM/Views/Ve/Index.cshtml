@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DAM.Models.Ve>
+﻿@model IEnumerable<DAM.Models.ViewModel.VeViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/AdminLayout.cshtml";
@@ -46,15 +46,14 @@
         alternatingRowStyle: "gridAltRow",
         columns: grid.Columns(
             grid.Column("MaVe", "Mã vé"),
-            grid.Column("MaSC", "Mã suất chiếu"),
-            grid.Column("MaPhim", "Mã phim"),
-            grid.Column("MaRap", "Mã rạp"),
-                //grid.Column("HinhAnh", "Hình ảnh", format: x => @Html.Raw("<div class=\"img-container\"><img class=\"HinhAnh\" src=\"../Content/TKImages/" + x.HinhAnh + "\"></div>")),
-                
+            grid.Column("KhungGio", "Khung giờ"),
+            grid.Column("TenPhim", "Tên phim"),
+            grid.Column("TenRap", "Tên rạp"),
+            grid.Column("NgayTao", "Ngày tạo", format: x => x.NgayTao.ToString("dd/MM/yyyy")),
                 grid.Column("TrangThaiVe", "Trạng thái vé"),
                 grid.Column(format: x =>
                 {
-                    var link = Url.Action("Xoa","Ve",new { MaVe = x.MaVe });
+                    var link = Url.Action("Xoa", "Ve", new { MaVe = x.MaVe });
                 return new HtmlString($"<a href=\"#\" data-href='{link}' data-toggle=\"modal\" data-target=\"#confirm-delete\"><i class=\"fa-solid fa-trash\" style=\"font-size: 30px;\"></i></a>");
             })
             ))

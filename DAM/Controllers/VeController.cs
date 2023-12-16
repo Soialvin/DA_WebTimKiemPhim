@@ -23,7 +23,44 @@ namespace DAM.Controllers
         DA_WebTimKiemPhimEntities db = new DA_WebTimKiemPhimEntities();
         public ActionResult Index()
         {
-            return View(db.Ves.Where(x => x.TrangThaiVe != "Đã xóa"));
+            var result = db.Ves
+                .Join(db.Phims, ve => ve.MaPhim, p => p.MaPhim,
+                (ve,p) => new
+                {
+                    MaVe = ve.MaVe,
+                    MaPhim = ve.MaPhim,
+                    NgayTao = ve.NgayTao,
+                    TrangThaiVe = ve.TrangThaiVe,
+                    TenPhim = p.TenPhim,
+                    MaSC = ve.MaSC,
+                    MaRap = ve.MaRap
+                })
+                .Join(db.SuatChieus, x => x.MaSC, sc => sc.MaSC,
+                (x,sc) => new
+                {
+                    MaVe = x.MaVe,
+                    MaPhim = x.MaPhim,
+                    NgayTao = x.NgayTao,
+                    TrangThaiVe = x.TrangThaiVe,
+                    TenPhim = x.TenPhim,
+                    MaSC = x.MaSC,
+                    KhungGio = sc.KhungGio,
+                    MaRap = x.MaRap
+                })
+                .Join(db.Raps, y => y.MaRap, r => r.MaRap,
+                (y,r) => new VeViewModel
+                {
+                    MaVe = y.MaVe,
+                    MaPhim = y.MaPhim,
+                    NgayTao = y.NgayTao,
+                    TrangThaiVe = y.TrangThaiVe,
+                    TenPhim = y.TenPhim,
+                    MaSC = y.MaSC,
+                    KhungGio = y.KhungGio,
+                    MaRap = y.MaRap,
+                    TenRap = r.TenRap
+                }).ToList();
+            return View(result.Where(x => x.TrangThaiVe != "Đã xóa"));
         }
         public ActionResult Xoa(int? MaVe)
         {
@@ -320,23 +357,59 @@ namespace DAM.Controllers
         public ActionResult TimKiem(string keyword)
         {
             int a;
-            var result = db.Ves.ToList();
+            var result = db.Ves
+                .Join(db.Phims, ve => ve.MaPhim, p => p.MaPhim,
+                (ve, p) => new
+                {
+                    MaVe = ve.MaVe,
+                    MaPhim = ve.MaPhim,
+                    NgayTao = ve.NgayTao,
+                    TrangThaiVe = ve.TrangThaiVe,
+                    TenPhim = p.TenPhim,
+                    MaSC = ve.MaSC,
+                    MaRap = ve.MaRap
+                })
+                .Join(db.SuatChieus, x => x.MaSC, sc => sc.MaSC,
+                (x, sc) => new
+                {
+                    MaVe = x.MaVe,
+                    MaPhim = x.MaPhim,
+                    NgayTao = x.NgayTao,
+                    TrangThaiVe = x.TrangThaiVe,
+                    TenPhim = x.TenPhim,
+                    MaSC = x.MaSC,
+                    KhungGio = sc.KhungGio,
+                    MaRap = x.MaRap
+                })
+                .Join(db.Raps, y => y.MaRap, r => r.MaRap,
+                (y, r) => new VeViewModel
+                {
+                    MaVe = y.MaVe,
+                    MaPhim = y.MaPhim,
+                    NgayTao = y.NgayTao,
+                    TrangThaiVe = y.TrangThaiVe,
+                    TenPhim = y.TenPhim,
+                    MaSC = y.MaSC,
+                    KhungGio = y.KhungGio,
+                    MaRap = y.MaRap,
+                    TenRap = r.TenRap
+                }).ToList();
             if (string.IsNullOrEmpty(keyword))
             {
                 return View("Index", result);
             }
             if (int.TryParse(keyword,out a) )
             {
-                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString()))).ToList();
+                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString())) 
+                    || (x.NgayTao != null && x.NgayTao.ToString().Contains(keyword))).ToList();
                 ViewBag.Keyword = keyword;
                 return View("Index", result);
             }
-            else
-            {
-                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString()))).ToList();
-                ViewBag.Keyword = keyword;
-                return View("Index", result);
-            }
+            result = result.Where(x => (x.KhungGio != null && x.KhungGio.ToString().Contains(keyword.ToString())) 
+                || (x.TenPhim != null && RemoveDiacritics(x.TenPhim).ToLower().Contains(RemoveDiacritics(keyword).ToLower()))
+                || (x.TenRap != null && RemoveDiacritics(x.TenRap).ToLower().Contains(RemoveDiacritics(keyword).ToLower()))
+                || (x.NgayTao != null && x.NgayTao.ToString().Contains(keyword))).ToList();
+            return View("Index", result);
         }
     }
 }

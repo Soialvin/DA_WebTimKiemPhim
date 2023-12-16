@@ -504,6 +504,7 @@ namespace DAM.Controllers
         }
         public ActionResult TimKiemSCRap(string keyword, string MaRap)
         {
+            ViewBag.MaRap = MaRap;
             var scr = db.SuatChieu_Rap.Where(x => x.MaRap == MaRap).ToList();
             var result = scr.Select(x => new SuatChieu_RapViewModel
             {

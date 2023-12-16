@@ -319,6 +319,7 @@
     <Compile Include="Models\Ve.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\VeViewModel.cs" />
     <Compile Include="Models\YeuThich.cs">
       <DependentUpon>DA_WebTimKiemPhimModel.tt</DependentUpon>
     </Compile>
