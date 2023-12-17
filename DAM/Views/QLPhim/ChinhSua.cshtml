@@ -49,14 +49,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.MaSC, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.MaSC, new MultiSelectList(ViewBag.MaSC, "Value", "Text"), new { @class = "form-label select-label", multiple = "multiple", id = "countries1" })
+                    @Html.ListBoxFor(model => model.MaSC, new MultiSelectList(ViewBag.MaSC, "Value", "Text",Model.MaSC), new { @class = "form-label select-label", multiple = "multiple", id = "countries1" })
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.MaTL, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.MaTL, new MultiSelectList(ViewBag.MaTL, "Value", "Text"), new { @class = "form-label select-label", multiple = "multiple", id = "countries2" })
+                    @Html.ListBoxFor(model => model.MaTL, new MultiSelectList(ViewBag.MaTL, "Value", "Text",Model.MaTL), new { @class = "form-label select-label", multiple = "multiple", id = "countries2" })
                 </div>
             </div>
 

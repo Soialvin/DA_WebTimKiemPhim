@@ -36,9 +36,9 @@ namespace DAM.Models.ViewModel
         [Required(ErrorMessage = "{0} không được để trống")]
         [KTNgayChieu]
         public Nullable<System.DateTime> NgayChieu { get; set; }
-        [DisplayName("Mã suất chiếu")]
+        [DisplayName("Suất chiếu")]
         public List<string> MaSC { get; set; }
-        [DisplayName("Mã thể loại")]
+        [DisplayName("Thể loại")]
         public List<string> MaTL { get; set; }
     }
 }
