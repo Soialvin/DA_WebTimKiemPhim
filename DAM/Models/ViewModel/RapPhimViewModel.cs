@@ -22,6 +22,7 @@ namespace DAM.Models.ViewModel
         [Required(ErrorMessage = "{0} không được để trống")]
         public string DiaChi { get; set; }
         [DisplayName("Giá vé")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Giá vé chỉ được nhập số.")]
         public Nullable<decimal> GiaVe { get; set; }
         [DisplayName("Trạng thái")]
         public string TrangThai { get; set; }

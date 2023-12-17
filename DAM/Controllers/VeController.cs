@@ -400,8 +400,7 @@ namespace DAM.Controllers
             }
             if (int.TryParse(keyword,out a) )
             {
-                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString())) 
-                    || (x.NgayTao != null && x.NgayTao.ToString().Contains(keyword))).ToList();
+                result = result.Where(x => (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString()))).ToList();
                 ViewBag.Keyword = keyword;
                 return View("Index", result);
             }

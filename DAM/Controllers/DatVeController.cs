@@ -58,12 +58,19 @@ namespace DAM.Controllers
         }
         public ActionResult TimKiem(string keyword)
         {
+            int a;
             var result = db.HoaDons.Where(x => x.TrangThai != "Đã xóa").ToList();
             if (string.IsNullOrEmpty(keyword))
             {
                 return View("Index", result);
             }
-            result = result.Where(x => (x.TenTK != null && x.TenTK.Contains(keyword))).ToList();
+            if (int.TryParse(keyword, out a))
+            {
+                result = result.Where(x => (x.MaHD.ToString() != null && x.MaHD.ToString().Contains(a.ToString())) || (x.MaVe.ToString() != null && x.MaVe.ToString().Contains(a.ToString()))).ToList();
+                ViewBag.Keyword = keyword;
+                return View("Index", result);
+            }
+            result = result.Where(x => (x.TenTK != null && x.TenTK.ToLower().Contains(keyword.ToLower()))).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", result);
         }

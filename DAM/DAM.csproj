@@ -395,7 +395,10 @@
     <Content Include="Content\Image\user-1%402x.png" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\jquery.timepicker.min.css" />
+    <Content Include="Content\KMImages\acb.png" />
     <Content Include="Content\KMImages\happyday.jpg" />
+    <Content Include="Content\KMImages\pepsi.png" />
+    <Content Include="Content\KMImages\sala.png" />
     <Content Include="Content\KMImages\thecung.png" />
     <Content Include="Content\KMImages\thieunhi.png" />
     <Content Include="Content\KMImages\tietkiem.png" />

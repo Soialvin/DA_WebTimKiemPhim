@@ -25,7 +25,7 @@ namespace DAM.Models.ViewModel
         public System.DateTime NgayBD { get; set; }
         [DisplayName("Ngày kết thúc")]
         public System.DateTime NgayKT { get; set; }
-        [DisplayName("Mã rạp")]
+        [DisplayName("Tên rạp")]
         public string MaRap { get; set; }
         [DisplayName("Tên rạp")]
         public string TenRap { get; set; }
