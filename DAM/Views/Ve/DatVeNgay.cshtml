@@ -17,8 +17,8 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.TenPhim, "Tên phim", htmlAttributes: new { @class = "control-label col-md-1" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.TenPhim, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style ="width: 100%;" } })
-                            @Html.HiddenFor(model => model.MaPhim, new {@id = "txtMaPhim"})
+                            @Html.EditorFor(model => model.TenPhim, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "width: 100%;" } })
+                            @Html.HiddenFor(model => model.MaPhim, new { @id = "txtMaPhim" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -69,8 +69,24 @@
     <script>
         var datVeButton1 = document.getElementById("datVeButton1");
         if (datVeButton1 != null) {
-            document.getElementById("datVeButton1").addEventListener('click', function() {
-                window.location.href = '@Url.Action("DangNhap", "DangNhapDangKy")';
+            document.getElementById("datVeButton1").addEventListener('click', function () {
+                // Thu thập dữ liệu từ form
+                var DatVeCDN = new FormData(document.getElementById("purchaseForm"));
+
+                // Sử dụng AJAX để gửi dữ liệu đến hành động mong muốn
+                $.ajax({
+                    url: '/Ve/SaveToSession',
+                    type: 'POST',
+                    data: DatVeCDN,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        window.location.href = '@Url.Action("DangNhap", "DangNhapDangKy")';
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
             });
         }
         function showMaRap() {
