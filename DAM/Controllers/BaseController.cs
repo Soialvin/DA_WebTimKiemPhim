@@ -27,6 +27,10 @@ namespace DAM.Controllers
         }
         protected static string RemoveDiacritics(string input)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                return string.Empty; // hoặc có thể trả về null tùy theo logic của bạn
+            }
             string normalizedString = input.Normalize(NormalizationForm.FormD);
             Regex regex = new Regex("[^a-zA-Z0-9 đĐ]");
             string result = regex.Replace(normalizedString, "");
