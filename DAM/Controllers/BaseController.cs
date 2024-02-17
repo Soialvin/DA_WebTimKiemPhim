@@ -25,11 +25,11 @@ namespace DAM.Controllers
                 default: TempData["AlertType"] = ""; break;
             }
         }
-        protected static string RemoveDiacritics(string input)
+        public static string RemoveDiacritics(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
-                return string.Empty; // hoặc có thể trả về null tùy theo logic của bạn
+                return string.Empty;
             }
             string normalizedString = input.Normalize(NormalizationForm.FormD);
             Regex regex = new Regex("[^a-zA-Z0-9 đĐ]");
