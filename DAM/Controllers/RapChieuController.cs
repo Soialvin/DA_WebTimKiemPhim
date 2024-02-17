@@ -73,7 +73,7 @@ namespace DAM.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (Model.GiaVe > 0 || string.IsNullOrEmpty(Model.GiaVe.ToString()))
+                    if (Model.GiaVe > 0 || !string.IsNullOrEmpty(Model.GiaVe.ToString()))
                     {
                         var r = new Rap
                         {
